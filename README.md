@@ -1,0 +1,2 @@
+# assistant-panel
+Mini App
