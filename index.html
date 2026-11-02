@@ -48,7 +48,6 @@ svg { display: block; }
 .cloud { animation: drift 70s linear infinite alternate; }
 @keyframes drift { to { transform: translateX(90px); } }
 .lamp { fill: #ffd98a; animation: twinkle 2.8s ease-in-out infinite alternate; }
-.glint { fill: #fff; animation: twinkle 2.4s ease-in-out infinite alternate; }
 .hill { transition: fill 1.2s linear; }
 .meteor { stroke: #fff; stroke-width: 1.4; stroke-linecap: round; }
 
@@ -322,7 +321,6 @@ nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wi
   <path class="hill" id="h2" d="M0 318 Q70 286 170 312 T390 302 V844 H0z"/>
   <g id="trees"></g>
   <path id="river" d="M0 332 Q120 316 244 334 T390 324 V400 H0z" fill="url(#riverG)"/>
-  <g id="glints"></g>
   <path class="hill" id="h3" d="M0 372 Q130 334 262 366 T390 356 V844 H0z"/>
   <rect id="fog" y="200" width="390" height="190" fill="url(#fogG)" opacity="0"/>
 </svg>
@@ -443,7 +441,6 @@ function paintSky() {
   const dark = Math.max(0, Math.min(1, -alt / 8)), hidden = wx && (wx.kind === 'snow' || wx.kind === 'rain' || wx.kind === 'fog') ? .35 : 1 - cover * cover * .75;
   $('stars').style.opacity = dark * (1 - cover * .85);
   $('town').style.opacity = Math.max(0, Math.min(1, (6 - alt) / 8));
-  $('glints').style.opacity = .1 + dark * .16;
   $('clouds').style.opacity = wx ? Math.min(.92, .1 + cover) * (alt > -4 ? 1 : .34) : .3;
   [...$('clouds').children].forEach((g, i) => { g.style.display = (i + 1) / 6 <= cover + .18 ? '' : 'none'; });
   $('fog').setAttribute('opacity', wx && wx.kind === 'fog' ? .7 : 0);
@@ -465,9 +462,6 @@ function buildScene() {
   let l = '';
   for (let i = 0; i < 26; i++) l += `<rect class="lamp" x="${(rnd(i + 4, 360) + 6).toFixed(1)}" y="${(246 + rnd(i * 5 + 1, 30)).toFixed(1)}" width="1.8" height="1.8" rx=".5" style="animation-delay:${(i * .37) % 3}s"/>`;
   $('town').innerHTML = l;
-  let g = '';
-  for (let i = 0; i < 16; i++) g += `<ellipse class="glint" cx="${(rnd(i + 9, 380)).toFixed(1)}" cy="${(336 + rnd(i * 3 + 5, 22)).toFixed(1)}" rx="${(4 + i % 5 * 3)}" ry=".7" style="animation-delay:${(i * .31) % 2.4}s"/>`;
-  $('glints').innerHTML = g;
 }
 function meteor() {
   if (!calm && !document.hidden && altitude(NOW()) < -8 && (!wx || wx.cloud < 50)) {
@@ -584,7 +578,7 @@ function depth() {
   const s = par.scroll, top = document.querySelector('.top.home');
   $('stars').style.transform = `translate3d(${par.x * 5}px,${par.y * 4 - s * .08}px,0)`;
   $('clouds').style.transform = `translate3d(${par.x * 9}px,${par.y * 6 - s * .14}px,0)`;
-  ['h0', 'town', 'kremlin', 'h1', 'h2', 'trees', 'river', 'glints', 'h3'].forEach((id, i) => { $(id).style.transform = `translate3d(${par.x * (4 + i * 2)}px,${par.y * (2 + i) - s * (.08 + i * .03)}px,0)`; });
+  ['h0', 'town', 'kremlin', 'h1', 'h2', 'trees', 'river', 'h3'].forEach((id, i) => { $(id).style.transform = `translate3d(${par.x * (4 + i * 2)}px,${par.y * (2 + i) - s * (.08 + i * .03)}px,0)`; });
   if (top) { top.style.transform = `translate3d(0,${s * .34}px,0)`; top.style.opacity = Math.max(0, 1 - s / 300); }
   const hero = document.querySelector('.hero');
   if (hero) { hero.style.setProperty('--ry', par.x * 7 + 'deg'); hero.style.setProperty('--rx', -par.y * 6 + 'deg'); hero.style.setProperty('--sx', 50 + par.x * 60 + '%'); hero.style.setProperty('--sy', 30 + par.y * 60 + '%'); }
