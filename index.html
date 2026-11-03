@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <title>Панель</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --gutter: 16px; --gap: 12px; --r-lg: 22px; --r-md: 16px; --r-sm: 11px;
@@ -250,7 +253,7 @@ nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wi
 #fab svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; fill: none; }
 
 /* Обновление данных без повторной анимации экрана */
-.still * { animation: none !important; }
+.still *:not(.sky, .sky *) { animation: none !important; }
 .still .arc, .still .line { stroke-dashoffset: 0; }
 
 /* Быстрый ввод */
@@ -415,12 +418,187 @@ nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wi
 #tip { position: fixed; z-index: 20; max-width: 250px; padding: 8px 11px; border-radius: var(--r-sm); background: var(--ink); color: #0d0f16; font-size: 12.5px; line-height: 1.3; pointer-events: none; opacity: 0; box-shadow: 0 8px 22px rgba(0, 0, 0, .4); transition: opacity .15s; }
 [data-theme="light"] #tip { color: #fff; }
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 30; }
+
+/* ---------- «Ночной Нижний»: тёмная тема, ровное неоновое свечение ---------- */
+@property --a { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+[data-theme] {
+  color-scheme: dark;
+  --sheet: #0A0E19; --sheet-2: #141A2A; --card: #141A2A; --card-2: rgba(255, 255, 255, .06);
+  --line: rgba(255, 255, 255, .07); --ink: #F3EFE6; --ink-2: #A6ADBD; --ink-3: #8A92A6;
+  --track: rgba(255, 255, 255, .09); --good: #5FE0B8; --warn: #FFB547; --bad: #FF8A8A; --cell: rgba(255, 255, 255, .07);
+  --acc: #FFB547; --mint: #5FE0B8; --blue: #8EA8FF; --lilac: #C9C2FF;
+  --pairs: #8EA8FF; --gym: #FFB547; --study: #5FE0B8; --todo: #FF8A5B; --sleep: rgba(201, 194, 255, .45);
+  --lift: 0 18px 36px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .05), 0 0 0 1px rgba(255, 255, 255, .06), 0 0 26px rgba(255, 181, 71, .07);
+  --plate: radial-gradient(circle at 38% 30%, #222a40, #141A2A 62%, #0c101c);
+  --disp: Unbounded, Manrope, sans-serif;
+}
+html, body { background: #0A0E19; }
+body { font-family: Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+#sky, #land, #orb, #fx { display: none; }
+#aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+#aurora span { position: absolute; width: 320px; height: 320px; border-radius: 50%; filter: blur(60px); opacity: .3; animation: aur 18s ease-in-out infinite alternate; }
+#aurora span:nth-of-type(1) { left: -120px; top: 120px; background: var(--acc); }
+#aurora span:nth-of-type(2) { right: -140px; top: 52vh; background: #6F5BFF; animation-duration: 22s; animation-delay: -6s; }
+#aurora span:nth-of-type(3) { left: 10px; bottom: -180px; background: #2FD6C0; opacity: .2; animation-duration: 26s; animation-delay: -12s; }
+@keyframes aur { 50% { transform: translate(60px, -80px); } 100% { transform: translate(-30px, 60px); } }
+#aurora i { position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px 2px var(--acc); animation: rise2 12s linear infinite; }
+#aurora i:nth-of-type(1) { left: 8%; animation-delay: -1s; } #aurora i:nth-of-type(2) { left: 24%; animation-duration: 15s; animation-delay: -7s; }
+#aurora i:nth-of-type(3) { left: 40%; animation-duration: 10s; animation-delay: -4s; box-shadow: 0 0 8px 2px var(--blue); } #aurora i:nth-of-type(4) { left: 56%; animation-duration: 14s; animation-delay: -10s; }
+#aurora i:nth-of-type(5) { left: 70%; animation-duration: 11s; animation-delay: -2s; box-shadow: 0 0 8px 2px var(--mint); } #aurora i:nth-of-type(6) { left: 86%; animation-duration: 16s; animation-delay: -12s; }
+@keyframes rise2 { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-100vh); opacity: 0; } }
+
+/* Шапка и шторка: карточки лежат прямо на тёмном фоне */
+.top { text-shadow: none; }
+.top.home { min-height: 0; justify-content: flex-start; gap: 14px; }
+.top h1 { font-family: var(--disp); font-size: 25px; font-weight: 600; letter-spacing: -.01em; }
+.top p { color: var(--ink-2); opacity: 1; }
+.kick { font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px; }
+.sheet { background: none; box-shadow: none; border-radius: 0; min-height: 0; padding-top: 2px; animation: none; }
+.sheet > .grip { display: none; }
+.sec { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.sec span, .sec button { text-transform: none; letter-spacing: 0; font-weight: 600; }
+.card, .dcard, .allday { background: #141A2A; border-radius: 24px; box-shadow: var(--lift); }
+.tile { background: #141A2A; border-radius: 20px; box-shadow: var(--lift); }
+.clock, .big, .dial .c b, .stat b, .dday b, #ftime, .mini b, .wx b, .strip b, .goal .t, .gorb b { font-family: var(--disp); font-weight: 600; }
+.big, .dial .c b, .stat b, #ftime { text-shadow: 0 0 12px color-mix(in srgb, currentColor 45%, transparent), 0 0 26px rgba(255, 181, 71, .2); }
+.hint { color: var(--ink-2); }
+
+/* Неоновая полоса бежит по краю главных карточек */
+.sky::before, .hero::before, .ghero::before { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; padding: 1px; pointer-events: none; background: conic-gradient(from var(--a), transparent 0deg 240deg, rgba(255, 181, 71, .9) 300deg, #8EA8FF 335deg, transparent 360deg); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: nspin 7s linear infinite; }
+.hero::before { animation-duration: 9s; animation-direction: reverse; }
+@keyframes nspin { to { --a: 360deg; } }
+
+/* Небо: время суток и погода */
+.sky { position: relative; height: 214px; border-radius: 30px; overflow: hidden; isolation: isolate; color: #fff; box-shadow: 0 24px 48px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .07), 0 0 34px rgba(142, 168, 255, .1); animation: rise .6s var(--ease) both; }
+.sky > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.skyt { position: absolute; left: 20px; top: 18px; font-family: var(--disp); font-weight: 500; font-size: 52px; line-height: 1; letter-spacing: -.03em; text-shadow: 0 4px 18px rgba(0, 0, 0, .4), 0 0 22px rgba(255, 255, 255, .22); }
+.skyl { position: absolute; left: 20px; top: 80px; max-width: 58%; font-size: 14px; font-weight: 700; text-shadow: 0 1px 8px rgba(0, 0, 0, .6); }
+.sky .wx { position: absolute; right: 14px; top: 14px; z-index: 2; border-radius: 15px; background: rgba(10, 14, 25, .42); border-color: rgba(255, 255, 255, .16); box-shadow: 0 6px 16px rgba(0, 0, 0, .3); }
+.skyp { position: absolute; left: 16px; bottom: 16px; z-index: 2; display: flex; align-items: center; gap: 7px; padding: 8px 12px 8px 10px; border-radius: 999px; font-size: 13px; background: rgba(10, 14, 25, .62); border: 1px solid rgba(255, 255, 255, .1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.skyp svg { width: 16px; height: 16px; fill: none; stroke: var(--lilac); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.skyp span { color: var(--ink-2); }
+.sky .stars circle { animation: twinkle 3.4s ease-in-out infinite alternate; }
+.sky .cl { animation: skydrift linear infinite; }
+@keyframes skydrift { from { transform: translateX(-130px); } to { transform: translateX(440px); } }
+.sky .rays { stroke: #FFE7A3; stroke-width: 2.2; stroke-linecap: round; opacity: .75; transform-box: fill-box; transform-origin: center; animation: spin 40s linear infinite; }
+.sky .rain { stroke: #CFE0FF; stroke-width: 1.3; stroke-linecap: round; opacity: .7; }
+.sky .rain line { animation: rainfall .8s linear infinite; }
+@keyframes rainfall { to { transform: translate(-14px, 240px); } }
+.sky .snow { fill: #fff; opacity: .85; }
+.sky .snow circle { animation: snowfall linear infinite; }
+@keyframes snowfall { from { transform: translate(0, -20px); } to { transform: translate(-18px, 240px); } }
+.sky .fogb { fill: #fff; filter: blur(6px); }
+.sky .fogb rect { animation: fogdrift 10s ease-in-out infinite alternate; }
+.sky .fogb rect:nth-child(2) { animation-duration: 13s; animation-direction: alternate-reverse; }
+@keyframes fogdrift { from { transform: translateX(-30px); } to { transform: translateX(30px); } }
+.sky .shoot { animation: shoot 11s ease-in infinite 3s; }
+@keyframes shoot { 0%, 88% { opacity: 0; transform: translate(0, 0); } 90% { opacity: 1; } 100% { opacity: 0; transform: translate(-170px, 70px); } }
+
+/* «Сейчас» */
+.hero { background: #141A2A; border: 1px solid rgba(255, 255, 255, .07); color: var(--ink); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 24px 48px rgba(0, 0, 0, .5), 0 0 40px rgba(255, 181, 71, .12), inset 0 1px 0 rgba(255, 255, 255, .06); animation: rise .6s .08s var(--ease) both; margin-top: 0; padding: 16px 16px; border-radius: 24px; }
+.hero::after { background: radial-gradient(180px circle at var(--sx, 85%) var(--sy, 0%), rgba(255, 181, 71, .14), transparent 70%); }
+.hero small { color: var(--acc); font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: 1; }
+.hero b { font-family: var(--disp); font-size: 18px; font-weight: 600; margin-top: 4px; }
+.hero p { color: var(--ink-2); opacity: 1; }
+.hero .hb { background: rgba(255, 255, 255, .1); } .hero .hb i { background: var(--acc); box-shadow: 0 0 10px var(--acc); }
+
+/* Кнопки: янтарный свет и блик */
+.btn3d { overflow: hidden; border-radius: 15px; padding: 11px 16px; font-weight: 800; color: #1A1205; background: linear-gradient(180deg, #FFC86F, #FFB547); box-shadow: 0 10px 26px rgba(255, 181, 71, .36), 0 0 0 3px rgba(255, 181, 71, .1), inset 0 1px 0 rgba(255, 255, 255, .45); }
+.btn3d::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 36%; background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .5), rgba(255, 255, 255, 0)); animation: sheen 4.5s ease-in-out infinite; pointer-events: none; }
+@keyframes sheen { 0% { transform: translateX(-150%) skewX(-20deg); } 55%, 100% { transform: translateX(330%) skewX(-20deg); } }
+.btn3d:active { transform: scale(.97); box-shadow: 0 4px 12px rgba(255, 181, 71, .3), inset 0 1px 0 rgba(255, 255, 255, .4); }
+.btn3d.orange { color: #1A1205; background: linear-gradient(180deg, #FFC86F, #FFB547); box-shadow: 0 10px 26px rgba(255, 181, 71, .36), 0 0 0 3px rgba(255, 181, 71, .1), inset 0 1px 0 rgba(255, 255, 255, .45); }
+.btn3d.quiet, .btn3d.orange.soft { color: var(--ink); background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .13); }
+.btn3d.quiet::after, .btn3d.soft::after { display: none; }
+.btn3d.ldel { color: #FF9C9C; box-shadow: inset 0 0 0 1px rgba(255, 120, 120, .3); }
+.play { background: rgba(255, 181, 71, .12); box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .25); }
+.play svg { fill: var(--acc); }
+.rank { font-family: var(--disp); font-weight: 600; background: #1E2640; color: var(--ink); }
+.pill { background: rgba(255, 255, 255, .06); font-weight: 700; }
+.pill.on { background: rgba(255, 181, 71, .14); color: var(--acc); box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .4), 0 0 14px rgba(255, 181, 71, .15); }
+.box.on { background: var(--mint); border-color: var(--mint); box-shadow: 0 0 16px rgba(95, 224, 184, .5); }
+.box svg { stroke: #06231A; }
+.cells i.on { background: var(--mint); box-shadow: 0 0 8px rgba(95, 224, 184, .4); }
+.nowd { animation: none; }
+
+/* Меню и плюс */
+nav { left: 14px; right: 14px; padding: 6px; border-radius: 26px; background: rgba(20, 26, 42, .9); box-shadow: 0 20px 44px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .07), 0 0 0 1px rgba(255, 255, 255, .08); }
+nav::after { content: ""; position: absolute; left: 18%; right: 18%; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--acc), transparent); box-shadow: 0 0 12px var(--acc); opacity: .8; pointer-events: none; }
+#pill { top: 6px; bottom: 6px; left: 6px; width: calc((100% - 12px) / 5); border-radius: 20px; background: rgba(255, 181, 71, .1); box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .35), 0 0 18px rgba(255, 181, 71, .16); }
+nav button { color: var(--ink-2); font-weight: 700; padding: 7px 0 5px; }
+nav button.on { color: var(--acc); text-shadow: 0 0 10px rgba(255, 181, 71, .6); }
+nav button.on svg { filter: drop-shadow(0 0 6px rgba(255, 181, 71, .8)); }
+#fab { color: #1A1205; background: linear-gradient(180deg, #FFC86F, #FFB547); box-shadow: 0 12px 28px rgba(255, 181, 71, .45), 0 0 0 4px rgba(255, 181, 71, .12), inset 0 1px 0 rgba(255, 255, 255, .5); }
+#fab:active { transform: scale(.93); box-shadow: 0 6px 14px rgba(255, 181, 71, .35); }
+
+/* Переключатель «Зал / Привычки / Сон и фокус» */
+.seg { background: #141A2A; border-radius: 18px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .07); }
+.seg span { background: #252E48; border-radius: 14px; box-shadow: 0 6px 14px rgba(0, 0, 0, .35), inset 0 0 0 1px rgba(255, 181, 71, .35), 0 0 18px rgba(255, 181, 71, .18); }
+.seg button { font-weight: 700; padding: 11px 0; }
+.seg button.on { text-shadow: 0 0 10px rgba(255, 181, 71, .45); }
+.strip .on { background: rgba(255, 181, 71, .12); box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .35); }
+.strip em i { background: var(--acc); }
+
+/* Зал */
+.ghero { color: var(--ink); background: #161D33; box-shadow: 0 24px 48px rgba(0, 0, 0, .5), 0 0 40px rgba(255, 181, 71, .12), inset 0 1px 0 rgba(255, 255, 255, .06); border-radius: 28px; }
+.ghero::after { background: radial-gradient(260px circle at 100% 0%, rgba(255, 181, 71, .16), transparent 70%); }
+.ghero .k { color: var(--acc); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: 1; }
+.ghero h2 { font-family: var(--disp); font-size: 20px; font-weight: 600; margin-top: 4px; }
+.ghero .when, .plabel, .pempty { color: var(--ink-2); opacity: 1; }
+.barbell { filter: drop-shadow(0 14px 16px rgba(0, 0, 0, .5)); }
+.pbar { height: 7px; border-radius: 4px; background: rgba(255, 255, 255, .1); }
+.pbar i { background: linear-gradient(90deg, #5FE0B8, #FFB547); box-shadow: 0 0 12px rgba(255, 181, 71, .6); border-radius: 4px; }
+.pitem { border-top-color: var(--line); } .pitem .box { border-color: var(--ink-3); }
+.pnum { width: 28px; height: 28px; border-radius: 9px; font-family: var(--disp); font-weight: 600; color: var(--ink); background: #1E2640; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08); }
+.pbh b { font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.pbh em { color: var(--blue); font-weight: 700; }
+.pblock.pair .pex + .pex::before { color: var(--blue); left: 11px; }
+.pex b { font-size: 15.5px; font-weight: 800; }
+.pex .pt2 { color: var(--acc); font-weight: 700; }
+.pex small.ok { color: var(--mint); }
+.pdot { position: relative; width: 34px; height: 34px; border-color: rgba(255, 255, 255, .18); }
+.pdot svg { position: absolute; stroke: #06231A; }
+.pdot em { font-style: normal; font-family: var(--disp); font-size: 12px; font-weight: 600; color: var(--ink-2); }
+.pex.done .pdot { background: var(--mint); border-color: var(--mint); box-shadow: 0 0 16px rgba(95, 224, 184, .5); }
+.pex.done .pdot em { display: none; }
+.pex.next .pdot { border-color: var(--acc); background: rgba(255, 181, 71, .12); box-shadow: 0 0 14px rgba(255, 181, 71, .4); }
+.pex.next .pdot em { color: var(--acc); }
+.plus { width: 44px; height: 44px; border-radius: 14px; color: var(--ink); background: rgba(255, 255, 255, .06); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05); }
+.pex.next .plus { color: #1A1205; background: var(--acc); box-shadow: 0 8px 20px rgba(255, 181, 71, .4), inset 0 1px 0 rgba(255, 255, 255, .35); }
+.up { color: var(--mint); background: rgba(95, 224, 184, .14); box-shadow: 0 0 16px rgba(95, 224, 184, .18); }
+.rules summary { color: var(--ink); }
+.dday { color: var(--ink); background: #1E2640; box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .28), 0 0 18px rgba(255, 181, 71, .12); }
+.dday b { color: var(--acc); }
+.dentry::before { background: linear-gradient(var(--acc), transparent); }
+.dadd { color: var(--acc); }
+.dnext { background: rgba(255, 181, 71, .08); border-color: rgba(255, 181, 71, .25); }
+.dlist li::before { background: var(--acc); }
+.plates i.on { background: linear-gradient(90deg, #FFE3A8, #FFB547 60%, #C9862A); box-shadow: 0 0 10px rgba(255, 181, 71, .5); }
+.line { filter: drop-shadow(0 4px 8px rgba(255, 181, 71, .3)); }
+.delta { background: rgba(255, 255, 255, .06); }
+
+/* Окна записи */
+#capture, #logger { background: #141A2A; border-radius: 30px; box-shadow: 0 -24px 60px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .1), 0 0 0 1px rgba(255, 255, 255, .08); }
+.lhead b { font-family: var(--disp); font-size: 20px; font-weight: 600; }
+.lhead span { color: var(--acc); }
+.step3 { background: #0F1422; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .05); }
+.step3 button { width: 44px; }
+.step3 input { font-family: var(--disp); font-size: 17px; font-weight: 600; }
+.lname, #lgDate, .lnote, #capture textarea { background: #0F1422; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .07); }
+
+/* Фокус */
+#focus { background: radial-gradient(circle at 50% 42%, rgba(34, 28, 66, .82), rgba(5, 7, 14, .96)); }
+.fring::before { animation: none; background: radial-gradient(circle, rgba(255, 181, 71, .2), transparent 68%); }
+#ftime { font-size: 52px; }
+#focus .pill.on { background: var(--acc); color: #1A1205; }
+.boot { background: #0A0E19; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 </style>
 </head>
 <body>
+<div id="aurora" aria-hidden="true"><span></span><span></span><span></span><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <svg id="sky" viewBox="0 0 390 844" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
   <defs>
     <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop id="s0" offset="0"/><stop id="s1" offset=".32"/><stop id="s2" offset=".52"/></linearGradient>
@@ -577,7 +755,7 @@ function paintSky() {
   $('orb').style.opacity = hidden;
   drawOrb(isDay, alt, ms);
   placeOrb();
-  if (tg) { try { tg.setHeaderColor(c[0]); tg.setBackgroundColor(c[0]); tg.setBottomBarColor('#0d0f17'); } catch (e) {} }
+  if (tg) { try { tg.setHeaderColor('#0A0E19'); tg.setBackgroundColor('#0A0E19'); tg.setBottomBarColor('#0A0E19'); } catch (e) {} }
 }
 function buildScene() {
   const rnd = (i, m) => (i * 2654435761 % 4294967296) / 4294967296 * m;
@@ -709,7 +887,6 @@ function depth() {
   $('stars').style.transform = `translate3d(${par.x * 5}px,${par.y * 4 - s * .08}px,0)`;
   $('clouds').style.transform = `translate3d(${par.x * 9}px,${par.y * 6 - s * .14}px,0)`;
   ['h0', 'town', 'kremlin', 'h1', 'h2', 'trees', 'river', 'h3'].forEach((id, i) => { $(id).style.transform = `translate3d(${par.x * (4 + i * 2)}px,${par.y * (2 + i) - s * (.08 + i * .03)}px,0)`; });
-  if (top) { top.style.transform = `translate3d(0,${s * .34}px,0)`; top.style.opacity = Math.max(0, 1 - s / 300); }
   const hero = document.querySelector('.hero');
   if (hero) { hero.style.setProperty('--ry', par.x * 7 + 'deg'); hero.style.setProperty('--rx', -par.y * 6 + 'deg'); hero.style.setProperty('--sx', 50 + par.x * 60 + '%'); hero.style.setProperty('--sy', 30 + par.y * 60 + '%'); }
   placeOrb();
@@ -747,7 +924,7 @@ function parseWx(j) {
   return { t: Math.round(d.air_temperature), cloud: d.cloud_area_fraction, wind: Math.round(d.wind_speed), kind, lo: Math.round(Math.min(...temps)), hi: Math.round(Math.max(...temps)), soon: soon ? { kind: wxKind(sym(soon)), at: Date.parse(soon.time) } : null };
 }
 function setWx(w) {
-  wx = w; paintSky(); startFx();
+  wx = w; paintSky();
   if (dash && tab === 'today') render();
 }
 async function loadWeather() {
@@ -875,6 +1052,59 @@ function orbGoal(p, id, size) {
 }
 
 /* ---------- Сегодня ---------- */
+// Небо в шапке «Сегодня»: настоящее солнце или луна с фазой, погода Нижнего Новгорода.
+const CITY = 'M0 150L0 132L20 132L20 124L26 116L32 124L32 132L62 136L62 120L66 110L70 120L70 137L104 140L104 126L110 114L116 126L116 141L150 143L150 118L156 104L162 118L162 144L196 145L210 140L238 142L238 128L243 119L248 128L248 143L282 146L300 144L300 132L305 124L310 132L310 146L358 148L358 162L0 162Z';
+function skyCard(ms) {
+  const sun = sunTimes(ms), alt = altitude(ms), pm = ms > (sun.rise + sun.set) / 2, isDay = ms >= sun.rise && ms <= sun.set;
+  const cover = wx ? wx.cloud / 100 : .15, kind = wx ? wx.kind : '', clear = !kind && cover < .3;
+  const c = tint(SKY, alt, pm).map(v => mix(v, alt > 0 ? '#8d99aa' : '#141822', cover * cover * .6)), land = tint(LAND, alt, pm);
+  const prevSet = sunTimes(sun.rise - 864e5 * .5).set, nextRise = sunTimes(sun.set + 864e5 * .5).rise;
+  const from = isDay ? sun.rise : ms < sun.rise ? prevSet : sun.set, to = isDay ? sun.set : ms < sun.rise ? sun.rise : nextRise;
+  const t = Math.max(0, Math.min(1, (ms - from) / (to - from))), bx = 150 + t * 190, by = Math.min(124, 150 - Math.sin(t * Math.PI) * 86);
+  const dark = Math.max(0, Math.min(1, -alt / 8)), light = Math.max(0, Math.min(1, (alt + 6) / 18)), bodyOp = kind ? .35 : 1 - cover * cover * .75;
+  const a = moonAge(ms), lit = (1 - Math.cos(a * 2 * Math.PI)) / 2, off = (a < .5 ? -1 : 1) * 43 * lit;
+  const rnd = i => (i * 2654435761 % 4294967296) / 4294967296;
+  let stars = '';
+  for (let i = 1; i < 34; i++) stars += `<circle cx="${(rnd(i * 3) * 358).toFixed(1)}" cy="${(rnd(i * 7 + 1) * 120).toFixed(1)}" r="${(.5 + (i % 3) * .4).toFixed(1)}" style="animation-delay:${(i * .37 % 3).toFixed(2)}s"/>`;
+  const n = kind === 'rain' || kind === 'snow' ? 3 : cover > .75 ? 3 : cover > .4 ? 2 : cover > .12 ? 1 : 0;
+  const cf = mix(mix('#3B3F75', '#EEF2FA', light), '#4A5070', kind === 'rain' ? .6 : 0);
+  const cloud = (y, k, d, dl) => `<g class="cl" style="animation-duration:${d}s;animation-delay:-${dl}s"><g transform="translate(0 ${y}) scale(${k})"><ellipse cx="40" cy="10" rx="46" ry="12"/><ellipse cx="58" cy="-2" rx="26" ry="17"/><ellipse cx="24" cy="2" rx="20" ry="12"/></g></g>`;
+  const clouds = [cloud(46, 1, 44, 8), cloud(92, 1.15, 58, 30), cloud(22, .75, 70, 48)].slice(0, n).join('');
+  const drops = kind === 'rain' ? `<g class="rain">${[...Array(18)].map((_, i) => `<line x1="${6 + i * 20}" y1="-20" x2="${3 + i * 20}" y2="-6" style="animation-delay:-${(rnd(i + 5) * .8).toFixed(2)}s"/>`).join('')}</g>` : '';
+  const flakes = kind === 'snow' ? `<g class="snow">${[...Array(16)].map((_, i) => `<circle cx="${(10 + i * 22 + rnd(i) * 10).toFixed(0)}" cy="0" r="${(1 + rnd(i + 9) * .8).toFixed(1)}" style="animation-duration:${(7 + rnd(i + 3) * 5).toFixed(1)}s;animation-delay:-${(rnd(i + 11) * 10).toFixed(1)}s"/>`).join('')}</g>` : '';
+  const fog = kind === 'fog' ? '<g class="fogb"><rect x="-80" y="92" width="520" height="22" rx="11" opacity=".2"/><rect x="-80" y="124" width="520" height="26" rx="13" opacity=".26"/><rect x="-80" y="160" width="520" height="30" rx="15" opacity=".3"/></g>' : '';
+  const veil = kind === 'rain' ? ['#232A40', .45] : kind === 'fog' ? ['#9AA3B5', .35] : kind === 'snow' ? ['#A9B3C8', .2] : null;
+  const glow = alt > -8 && alt < 10 ? `<ellipse cx="${pm ? 300 : 58}" cy="168" rx="220" ry="96" fill="url(#skh)" opacity="${Math.max(0, 1 - Math.abs(alt - 1) / 10).toFixed(2)}"/>` : '';
+  const body = isDay
+    ? `<g transform="translate(${bx.toFixed(1)} ${by.toFixed(1)})" opacity="${bodyOp.toFixed(2)}"><circle r="64" fill="url(#sksg)"/>${clear ? `<g class="rays">${[0, 45, 90, 135, 180, 225, 270, 315].map(d => `<line x1="28" x2="37" transform="rotate(${d})"/>`).join('')}</g>` : ''}<circle r="20" fill="url(#sksf)"/></g>`
+    : `<g transform="translate(${bx.toFixed(1)} ${by.toFixed(1)})" opacity="${bodyOp.toFixed(2)}"><circle r="52" fill="url(#skmg)"/><circle r="21" fill="url(#skmf)"/><circle cx="-7" cy="5" r="2.4" fill="#D9C08A" opacity=".7"/><circle cx="-10" cy="-6" r="1.6" fill="#D9C08A" opacity=".6"/><circle cx="${off.toFixed(1)}" r="21.6" fill="${mix(c[0], c[1], .35)}" opacity=".94"/></g>`;
+  const lamps = Math.max(0, Math.min(1, (6 - alt) / 8)), key = [Math.round(alt), kind, n, Math.round(bx / 4)].join('|');
+  const h = hourOf(ms), s = dash.sleep, night = asleep(h), mn = moonName(a);
+  const info = isDay ? `закат в ${hm(sun.set)}` : ms < sun.rise && sun.rise - ms < 216e5 ? `рассвет в ${hm(sun.rise)}` : `${/луни/.test(mn) ? mn : mn + ' луна'}, ${moonLit(a)}%`;
+  const line = info;
+  return `<div class="sky"><svg viewBox="0 0 358 214" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-key="${key}"><defs>
+      <linearGradient id="skg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset=".62" stop-color="${c[1]}"/><stop offset="1" stop-color="${c[2]}"/></linearGradient>
+      <radialGradient id="sksg"><stop offset="0" stop-color="${alt > 10 ? '#FFF3C4' : '#FFB36B'}" stop-opacity=".6"/><stop offset="1" stop-color="${alt > 10 ? '#FFF3C4' : '#FFB36B'}" stop-opacity="0"/></radialGradient>
+      <radialGradient id="sksf" cx=".4" cy=".38" r=".7"><stop offset="0" stop-color="#FFFBE6"/><stop offset="1" stop-color="#FFD27A"/></radialGradient>
+      <radialGradient id="skmg"><stop offset="0" stop-color="#FFE9B8" stop-opacity=".45"/><stop offset="1" stop-color="#FFE9B8" stop-opacity="0"/></radialGradient>
+      <radialGradient id="skmf" cx=".38" cy=".35" r=".7"><stop offset="0" stop-color="#FFF6DE"/><stop offset="1" stop-color="#E9D29E"/></radialGradient>
+      <radialGradient id="skh" cx=".5" cy="1" r=".6"><stop offset="0" stop-color="#FF9D6B" stop-opacity=".8"/><stop offset="1" stop-color="#FF9D6B" stop-opacity="0"/></radialGradient>
+      <linearGradient id="skr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${mix(c[2], land[2], .25)}"/><stop offset="1" stop-color="${mix(c[1], '#000000', .55)}"/></linearGradient></defs>
+    <rect width="358" height="214" fill="url(#skg)"/>${glow}<g class="stars" fill="#fff" opacity="${(dark * (1 - cover * .85)).toFixed(2)}">${stars}</g>${body}
+    ${dark > .8 && clear ? '<g class="shoot"><line x1="230" y1="18" x2="262" y2="6" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><circle cx="230" cy="18" r="1.8" fill="#fff"/></g>' : ''}
+    ${veil ? `<rect width="358" height="214" fill="${veil[0]}" opacity="${veil[1]}"/>` : ''}<g fill="${cf}" opacity="${kind ? .9 : Math.min(.9, .25 + cover * .7).toFixed(2)}">${clouds}</g>
+    <path d="${CITY}" fill="${mix(land[2], '#000000', .35)}"/><path d="M0 160Q90 150 180 156T358 152L358 214L0 214Z" fill="url(#skr)"/>
+    <g opacity="${lamps.toFixed(2)}"><g fill="#FFB547" opacity=".25"><circle cx="73" cy="134" r="4"/><circle cx="158" cy="141" r="4"/><circle cx="246" cy="139" r="4"/><circle cx="305" cy="140" r="3"/></g><g fill="#FFD98A"><circle cx="73" cy="134" r="1.6"/><circle cx="158" cy="141" r="1.6"/><circle cx="246" cy="139" r="1.6"/><circle cx="206" cy="141" r="1.2"/><circle cx="305" cy="140" r="1.2"/></g>
+      <g stroke="#FFB547" stroke-linecap="round" opacity=".5"><line x1="66" y1="172" x2="80" y2="172" stroke-width="1.6"/><line x1="152" y1="170" x2="168" y2="170" stroke-width="1.6"/><line x1="240" y1="171" x2="252" y2="171" stroke-width="1.6"/><line x1="70" y1="180" x2="78" y2="180" stroke-width="1.2" opacity=".6"/></g></g>
+    ${drops}${flakes}${fog}</svg>
+    <div class="skyt num">${hm(ms)}</div><div class="skyl">${esc(line)}</div>${wxChip()}
+    <div class="skyp"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><b class="num">${night ? 'Подъём в ' + s.wake : 'До сна ' + dur((hours(s.bed) - h) * 60)}</b>${night ? '' : `<span>· свет в ${s.bed}</span>`}</div></div>`;
+}
+function greeting(ms) {
+  const h = hourOf(ms), u = tg && tg.initDataUnsafe && tg.initDataUnsafe.user, name = u && u.first_name ? ', ' + u.first_name : '';
+  return (h < 5 ? 'Доброй ночи' : h < 12 ? 'Доброе утро' : h < 17 ? 'Добрый день' : h < 23 ? 'Добрый вечер' : 'Доброй ночи') + name;
+}
+
 function dial(list) {
   const S = 248, c = S / 2, r = 98, now = NOW();
   const pt = (h, rr) => { const a = h / 24 * 2 * Math.PI - Math.PI / 2; return [c + rr * Math.cos(a), c + rr * Math.sin(a)]; };
@@ -920,7 +1150,7 @@ function viewToday() {
   const hDone = dash.habits.filter(h => h.today).length, hAll = dash.habits.length, g = dash.gym, foc = dash.focus.today || 0, free = freeMinutes(d, ms);
   const top = topTasks().slice(0, 3), goal = dash.goals.find(x => x.due) || dash.goals[0];
   const step = dash.goals.flatMap(x => x.steps.filter(s => !s.done && s.date).map(s => ({ ...s, goal: x.title }))).sort((a, b) => a.date.localeCompare(b.date))[0];
-  return shell(`<div class="head"><div><div class="clock num">${hm(ms).replace(':', '<i>:</i>')}</div><div class="date">${esc(fmt(ms, { weekday: 'long', day: 'numeric', month: 'long' }))}</div></div>${wxChip()}</div>${hero(ms, list)}`,
+  return shell(`<div><div class="kick">${esc(fmt(ms, { weekday: 'long', day: 'numeric', month: 'long' }))}</div><h1>${esc(greeting(ms))}</h1></div>${skyCard(ms)}${hero(ms, list)}`,
     `${top.length ? `<div class="sec">Главное сегодня</div><div class="card">${top.map((t, i) => `<div class="todo"><span class="rank num">${i + 1}</span><div class="x"><div>${esc(t.title)}</div>${t.due ? dueTag(t.due) : ''}</div><button class="play" data-focus="${esc(t.title)}" aria-label="Фокус: ${esc(t.title)}">${PLAY}</button></div>`).join('')}</div>` : ''}
     <div class="card">${dial(list)}</div>
     <div class="tiles">
@@ -1045,7 +1275,7 @@ function motive(info) {
 const BARBELL = `<svg class="barbell" viewBox="0 0 150 86" aria-hidden="true"><defs>
   <linearGradient id="bbBar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdfdff"/><stop offset=".5" stop-color="#a3abbd"/><stop offset="1" stop-color="#4d5466"/></linearGradient>
   <linearGradient id="bbBig" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b3f4c"/><stop offset=".45" stop-color="#20232c"/><stop offset="1" stop-color="#0d0f14"/></linearGradient>
-  <linearGradient id="bbSmall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff3e8"/><stop offset=".5" stop-color="#ffc9a6"/><stop offset="1" stop-color="#d88a5c"/></linearGradient></defs>
+  <linearGradient id="bbSmall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFE3A8"/><stop offset=".5" stop-color="#FFB547"/><stop offset="1" stop-color="#C9862A"/></linearGradient></defs>
   <ellipse class="bbshadow" cx="75" cy="80" rx="54" ry="4.5" fill="#000" opacity=".3"/>
   <g class="bblift"><rect x="4" y="38" width="142" height="6" rx="3" fill="url(#bbBar)"/>
   <rect x="20" y="14" width="13" height="54" rx="4" fill="url(#bbBig)"/><rect x="33" y="22" width="8" height="38" rx="3" fill="url(#bbSmall)"/><rect x="41" y="34" width="5" height="14" rx="1.500" fill="#cfd5e2"/>
@@ -1067,7 +1297,7 @@ function heat(info) {
     }
   }
   const wd = ['пн', 'ср', 'пт'].map((n, i) => `<text class="lab" x="0" y="${T + i * 2 * (C + G) + 11}">${n}</text>`).join('');
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Дни тренировок за 12 недель"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a5c"/><stop offset="1" stop-color="#c2481b"/></linearGradient></defs>${months}${wd}${cells}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Дни тренировок за 12 недель"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFC86F"/><stop offset="1" stop-color="#E8962E"/></linearGradient></defs>${months}${wd}${cells}</svg>`;
 }
 /* ---------- Зал: программа, быстрая запись подходов, дневник ---------- */
 const FREE = ['Разминка', 'Кардио'];
@@ -1115,13 +1345,14 @@ function programBlocks() {
 }
 function programCard() {
   const today = iso(NOW()), fresh = progFresh(), done = fresh ? logOf(today) : [], rules = (dash.gym.program || []).filter(p => p.block === 'Правила');
+  const next = programBlocks().flatMap(b => b.items).find(p => !done.some(i => i.name === nameOf(p)));
   return `<div class="card prog">${programBlocks().map(b => {
     const m = b.name.match(/^(\d+)\.\s*(.*)$/), rounds = Math.max(0, ...b.items.map(i => i.sets || 0)), pair = b.items.length > 1 && m;
     return `<div class="pblock ${pair ? 'pair' : ''}"><div class="pbh">${m ? `<span class="pnum">${m[1]}</span>` : `<span class="pnum ghost">${b.name === 'Кардио' ? '♥' : '↯'}</span>`}<b>${esc(m ? m[2] : b.name)}</b>${rounds > 1 ? `<em>${rounds} ${plural(rounds, 'круг', 'круга', 'кругов')}</em>` : ''}</div>
-      ${b.items.map(p => {
+      ${b.items.map((p, j) => {
         const n = nameOf(p), mine = done.filter(i => i.name === n), prev = lastTime(n, fresh ? today : shift(today, 1)), up = readyToAdd(p);
         const plan = [p.weight, p.target && (p.target + (p.sets > 1 && !p.target.includes('/') ? ' × ' + p.sets : ''))].filter(Boolean).join(' · ');
-        return `<button class="pex ${mine.length ? 'done' : ''}" data-log="${esc(n)}" data-plan-name="${esc(p.name)}"><span class="pdot">${CHECK}</span><span class="x"><b>${esc(p.name)}</b>${plan ? `<span class="pt2">${esc(plan)}</span>` : ''}
+        return `<button class="pex ${mine.length ? 'done' : p === next ? 'next' : ''}" data-log="${esc(n)}" data-plan-name="${esc(p.name)}"><span class="pdot">${CHECK}<em>${pair ? 'АБВГД'[j] || '' : ''}</em></span><span class="x"><b>${esc(p.name)}</b>${plan ? `<span class="pt2">${esc(plan)}</span>` : ''}
           ${mine.length ? `<small class="ok">Сегодня: ${esc(itemText(mine))}</small>` : prev ? `<small>${esc(dateShort(prev.d))}: ${esc(itemText(prev.items))}</small>` : ''}
           ${p.note ? `<small class="pn">${esc(p.note)}</small>` : ''}${up ? '<span class="up">↑ Пора прибавить вес</span>' : ''}</span><span class="plus" aria-hidden="true">${mine.length ? '✎' : '+'}</span></button>`;
       }).join('')}</div>`;
@@ -1291,7 +1522,10 @@ function render(dir) {
   app.classList.toggle('still', same); app.classList.toggle('moved', !first);
   app.style.setProperty('--dir', dir || 0);
   render.key = key;
+  const oldSky = document.querySelector('.sky > svg');
   app.innerHTML = VIEWS[tab]();
+  const newSky = document.querySelector('.sky > svg');
+  if (oldSky && newSky && oldSky.dataset.key === newSky.dataset.key) newSky.replaceWith(oldSky);
   if (!same) {
     const s = document.querySelector('.sheet');
     if (from !== null && s && !calm) { const d = from - s.getBoundingClientRect().top; if (d) s.animate([{ transform: `translate3d(0,${d}px,0)` }, { transform: 'none' }], { duration: 480, easing: 'cubic-bezier(.22,1.2,.36,1)' }); }
@@ -1404,7 +1638,7 @@ const clockText = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + Strin
 function drawFocus() {
   const f = dash.focus.active, run = f && f.end > Date.now(), C = 2 * Math.PI * 118;
   $('focus').innerHTML = `<h2>${esc(run ? f.title : fTitle || 'Фокус')}</h2><div class="sub">${run ? 'Телефон можно заблокировать: бот напишет, когда время выйдет' : fNote ? esc(fNote) : 'Один блок, одно дело. Итог попадёт в статистику'}</div>
-    <div class="fring"><svg viewBox="0 0 268 268" width="268" height="268"><defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6fe3b4"/><stop offset="1" stop-color="#3987e5"/></linearGradient></defs><circle cx="134" cy="134" r="118" stroke="rgba(255,255,255,.1)"/><circle id="fprog" cx="134" cy="134" r="118" stroke="url(#fg)" pathLength="1"/></svg><div id="ftime" class="num">${clockText(fPick * 60)}</div></div>
+    <div class="fring"><svg viewBox="0 0 268 268" width="268" height="268"><defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB547"/><stop offset="1" stop-color="#8EA8FF"/></linearGradient></defs><circle cx="134" cy="134" r="118" stroke="rgba(255,255,255,.1)"/><circle id="fprog" cx="134" cy="134" r="118" stroke="url(#fg)" pathLength="1"/></svg><div id="ftime" class="num">${clockText(fPick * 60)}</div></div>
     ${run ? '<div class="fbtns"><button class="btn3d quiet" data-fstop="1">Завершить</button><button class="btn3d quiet" data-fhide="1">Свернуть</button></div>'
       : `<div class="fbtns">${[15, 25, 50, 90].map(m => `<button class="pill ${m === fPick ? 'on' : ''}" data-fpick="${m}">${m} мин</button>`).join('')}</div><div class="fbtns"><button class="btn3d" data-fstart="1">${PLAY}Начать</button><button class="btn3d quiet" data-fhide="1">Закрыть</button></div>`}`;
   clearInterval(fTimer);
@@ -1539,14 +1773,15 @@ addEventListener('touchend', () => {
 }, { passive: true });
 
 /* ---------- Запуск ---------- */
-function theme() { document.documentElement.dataset.theme = qs.get('theme') || (tg && tg.colorScheme) || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); }
+// Дизайн ночной: тема всегда тёмная, даже если Telegram светлый.
+function theme() { document.documentElement.dataset.theme = 'dark'; }
 if (tg) {
   tg.ready(); tg.expand();
   try { tg.disableVerticalSwipes(); if (/ios|android/.test(tg.platform) && tg.isVersionAtLeast('8.0')) tg.requestFullscreen(); } catch (e) {}
   if (tg.onEvent) { tg.onEvent('themeChanged', theme); tg.onEvent('activated', () => { paintSky(); load(true); loadWeather(); }); }
 }
-theme(); buildScene(); initGl(); paintSky(); renderNav(); startTilt(); meteor();
-addEventListener('resize', () => { placeOrb(); startFx(); });
+theme(); buildScene(); paintSky(); renderNav(); startTilt();
+addEventListener('resize', placeOrb);
 setInterval(() => {
   paintSky();
   if (dash && !gesture && !$('capture').classList.contains('on') && !$('focus').classList.contains('on')) render();
