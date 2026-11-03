@@ -256,12 +256,76 @@ nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wi
 /* Быстрый ввод */
 #back { position: fixed; inset: 0; z-index: 9; background: rgba(4, 6, 16, .55); opacity: 0; pointer-events: none; transition: opacity .25s; }
 #back.on { opacity: 1; pointer-events: auto; }
-#capture { position: fixed; z-index: 10; left: 0; right: 0; bottom: var(--kb, 0px); padding: 10px var(--gutter) calc(14px + var(--safe-bottom)); border-radius: 26px 26px 0 0; background: linear-gradient(180deg, var(--sheet-2), var(--sheet)); box-shadow: 0 -18px 44px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .1); transform: translateY(110%); transition: transform .42s var(--spring), bottom .2s; }
-#capture.on { transform: none; }
+/* Окно ставится по видимой части экрана: на iPhone клавиатура не сдвигает его под шапку */
+#capture { position: fixed; z-index: 10; left: 0; right: 0; top: 0; padding: 10px var(--gutter) 14px; border-radius: 26px; background: linear-gradient(180deg, var(--sheet-2), var(--sheet)); box-shadow: 0 -18px 44px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .1); transform: translate3d(0, 110vh, 0); transition: transform .42s var(--spring); }
+#capture .hint { margin: -2px 2px 8px; }
 #capture textarea { display: block; width: 100%; height: 86px; resize: none; padding: 12px 14px; border: 0; border-radius: var(--r-md); outline: 0; font: inherit; font-size: 16px; color: var(--ink); background: var(--card-2); box-shadow: inset 0 2px 5px rgba(0, 0, 0, .22); user-select: text; -webkit-user-select: text; }
 #capture .chips { margin: 10px 0; }
 .capfoot { display: flex; gap: 10px; align-items: center; justify-content: space-between; }
 #reply { flex: 1; min-width: 0; font-size: 13px; color: var(--ink-2); max-height: 92px; overflow: auto; white-space: pre-wrap; }
+
+/* Переключатель внутри вкладки */
+.seg { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); padding: 4px; border-radius: 16px; background: var(--card-2); margin-bottom: var(--gap); box-shadow: inset 0 1px 3px rgba(0, 0, 0, .25); }
+.seg span { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 3); border-radius: 12px; background: var(--card); box-shadow: var(--lift); transition: transform .42s var(--spring); }
+.seg button { position: relative; padding: 9px 0; font-size: 13.5px; font-weight: 600; color: var(--ink-2); transition: color .2s; }
+.seg button.on { color: var(--ink); }
+
+/* Зал */
+.ghero { color: #fff; overflow: hidden; background: radial-gradient(120% 90% at 90% 0%, #ff9a5c 0%, #d95926 40%, #5e1f0c 100%); box-shadow: 0 18px 36px rgba(140, 45, 10, .38), inset 0 1px 0 rgba(255, 255, 255, .35); }
+.ghero::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: radial-gradient(220px circle at 20% 0%, rgba(255, 255, 255, .18), transparent 70%); }
+.ghero .k { font-size: 12.5px; opacity: .85; }
+.ghero h2 { font-size: 21px; font-weight: 720; letter-spacing: -.01em; line-height: 1.2; margin-top: 2px; max-width: 62%; }
+.ghero .when { font-size: 13px; opacity: .88; margin-top: 2px; }
+.barbell { position: absolute; right: -4px; top: 0; width: 150px; height: 86px; pointer-events: none; }
+.bblift { animation: bar-lift 3.4s ease-in-out infinite; }
+@keyframes bar-lift { 50% { transform: translateY(-7px); } }
+.bbshadow { animation: bar-shadow 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes bar-shadow { 50% { transform: scaleX(.82); opacity: .18; } }
+.plabel { display: flex; justify-content: space-between; font-size: 12px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; opacity: .85; margin: 16px 0 2px; }
+.pbar { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .22); margin: 6px 0 4px; overflow: hidden; }
+.pbar i { display: block; height: 100%; background: #fff; border-radius: 2px; box-shadow: 0 0 8px #fff; transition: width .5s var(--spring); }
+.pitem { display: flex; gap: 11px; align-items: center; padding: 9px 0; border-top: 1px solid rgba(255, 255, 255, .16); font-size: 14.5px; }
+.pitem .box { border-color: rgba(255, 255, 255, .7); }
+.pitem.done span { opacity: .6; text-decoration: line-through; }
+.pempty { font-size: 13.5px; opacity: .9; margin: 14px 0 4px; line-height: 1.4; }
+.btn3d.orange { margin-top: 14px; background: linear-gradient(180deg, #fff, #ffe6d8); color: #9a3412; box-shadow: 0 4px 0 #b9572c, 0 12px 20px rgba(0, 0, 0, .3), inset 0 1px 0 #fff; }
+.btn3d.orange:active { box-shadow: 0 1px 0 #b9572c, 0 3px 8px rgba(0, 0, 0, .3); }
+.btn3d svg.pen { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.stat { padding: 12px 6px 10px; }
+.stat b { display: block; font-size: 23px; font-weight: 750; letter-spacing: -.02em; line-height: 1.1; }
+.stat b span { display: inline; font: inherit; color: inherit; }
+.plates { display: flex; justify-content: center; align-items: center; gap: 4px; height: 28px; margin-bottom: 4px; }
+.plates i { width: 9px; height: 26px; border-radius: 3px; background: var(--cell); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .25); }
+.plates i.on { background: linear-gradient(90deg, #ffb07c, #d95926 60%, #8a2f0f); box-shadow: 0 0 10px rgba(217, 89, 38, .5); animation: pop .45s var(--spring) both; }
+.flame.big { width: 26px; height: 26px; margin: 1px auto 5px; display: block; }
+.ico { width: 26px; height: 26px; margin: 1px auto 5px; display: block; }
+.wtop { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-bottom: 8px; }
+.delta { flex: none; font-size: 12.5px; font-weight: 650; padding: 4px 9px; border-radius: 999px; background: var(--card-2); color: var(--ink-2); }
+.hc { fill: var(--cell); animation: pop .3s ease both; transform-box: fill-box; transform-origin: center; }
+.hc.on { fill: url(#hg); }
+.hc.today { stroke: var(--ink-2); stroke-width: 1.5; }
+.rec { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); }
+.rec svg { width: 26px; height: 26px; flex: none; }
+.rec .x { flex: 1; min-width: 0; }
+.rec .v { font-weight: 700; }
+.gain { font-size: 12px; color: var(--good); font-weight: 600; }
+.dentry { position: relative; display: grid; grid-template-columns: 48px 1fr; gap: 10px; padding-bottom: 14px; animation: slide .5s var(--spring) both; }
+.dentry::before { content: ""; position: absolute; left: 23px; top: 52px; bottom: 2px; width: 2px; border-radius: 1px; background: linear-gradient(var(--gym), transparent); opacity: .45; }
+.dentry:last-of-type::before { display: none; }
+.dday { width: 48px; height: 50px; border-radius: 15px; display: grid; place-content: center; text-align: center; color: #fff; background: linear-gradient(160deg, #ff9a5c, #d95926 60%, #9c3a12); box-shadow: 0 7px 14px rgba(217, 89, 38, .35), inset 0 1px 0 rgba(255, 255, 255, .45), inset 0 -3px 0 rgba(0, 0, 0, .18); }
+.dday b { font-size: 18px; line-height: 1; font-weight: 750; }
+.dday span { font-size: 10.5px; opacity: .92; margin-top: 2px; }
+.dcard { background: var(--card); border-radius: var(--r-md); padding: 11px 13px; box-shadow: var(--lift); min-width: 0; }
+.dhead { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; color: var(--ink-3); }
+.dlabel { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); margin: 7px 0 3px; }
+.dlist { margin: 0; padding: 0; list-style: none; }
+.dlist li { position: relative; padding-left: 14px; font-size: 14px; margin: 3px 0; }
+.dlist li::before { content: ""; position: absolute; left: 1px; top: 8px; width: 6px; height: 6px; border-radius: 2px; background: var(--gym); }
+.dnext { margin-top: 9px; padding: 8px 10px; border-radius: 11px; background: rgba(217, 89, 38, .12); border: 1px solid rgba(217, 89, 38, .3); }
+.dnext .dlabel { margin-top: 0; color: var(--gym); }
+.dnext li::before { background: transparent; border: 1.5px solid var(--gym); }
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: linear-gradient(180deg, #ffe08a, #e8a317); color: #3a2500; box-shadow: 0 2px 0 #a8730c; margin: 8px 6px 0 0; }
+.feel { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--card-2); color: var(--ink-2); }
 
 /* Фокус */
 #focus { position: fixed; inset: 0; z-index: 12; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: calc(var(--safe-top) + 20px) var(--gutter) calc(30px + var(--safe-bottom)); color: #fff; background: radial-gradient(circle at 50% 42%, rgba(18, 26, 66, .72), rgba(5, 7, 20, .94)); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); text-align: center; }
@@ -333,7 +397,8 @@ nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wi
 <div id="back"></div>
 <section id="capture" aria-label="Быстрая запись">
   <div class="grip"></div>
-  <textarea id="say" placeholder="Напишите как боту: завтра в 15:00 встреча, сдать курсовую до пятницы" aria-label="Текст"></textarea>
+  <div class="hint" id="sayHint">Напишите как боту</div>
+  <textarea id="say" placeholder="Завтра в 15:00 встреча, сдать курсовую до пятницы" aria-label="Текст"></textarea>
   <div class="chips" id="sayChips"></div>
   <div class="capfoot"><div id="reply" role="status"></div><button class="btn3d" id="send">Записать</button></div>
 </section>
@@ -360,7 +425,10 @@ const TABS = [
   ['mode', 'Режим', '<path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/>']
 ];
 const STARTERS = ['Подъём в 06:00', 'Свет выключен в 22:15', 'Яркий свет утром', 'Кофеин до 14:00', 'На улице 20 минут'];
-const SAY = [['Задача', 'Задача: '], ['Срок', 'Сдать  до '], ['Цель', 'Цель: '], ['Веха', 'Веха к цели '], ['Зал', 'Сегодня зал: жим 60 на 8, присед 80 3 по 5'], ['Встреча', 'Завтра в 15:00 ']];
+const SAY = [['Задача', 'Задача: '], ['Тренировка', 'Сделал: '], ['Вес', 'Вешу  кг'], ['Срок', 'Сдать  до '], ['Цель', 'Цель: '], ['Веха', 'Веха к цели '], ['Встреча', 'Завтра в 15:00 ']];
+const GYM_SAY = ['Дневник тренировки', 'Сделал жим 60 на 8, присед 80 3 по 5. В следующий раз жим 62,5 на 8. Вешу 72,4'];
+const SEGS = [['gym', 'Зал'], ['habits', 'Привычки'], ['rest', 'Сон и фокус']];
+const PEN = '<svg class="pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>';
 const CHECK = '<svg viewBox="0 0 24 24"><path d="M5 13l4.5 4.5L19 7"/></svg>';
 const PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17a1 1 0 0 0 1.5.9l14-8.5a1 1 0 0 0 0-1.8l-14-8.5A1 1 0 0 0 6 3.5z"/></svg>';
 const FLAME = '<svg class="flame" viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-4 2.5-7 1.500 1 2.500 2.500 2.500 4 1.500-2 2-5 1-9z"/></svg>';
@@ -379,6 +447,7 @@ const tick = () => { try { tg.HapticFeedback.selectionChanged(); } catch (e) {} 
 const success = () => { try { tg.HapticFeedback.notificationOccurred('success'); } catch (e) {} };
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
 let dash = null, tab = 'today', selDay = null, selEx = 0, pillAt = 0, wx = null, gesture = null;
+let seg = store.get('seg') || 'gym', segAt = 0, diaryN = 6;
 
 /* ---------- Солнце и луна: настоящее положение для Нижнего Новгорода ---------- */
 const RAD = Math.PI / 180;
@@ -681,6 +750,7 @@ async function call(body) {
 function adopt(d) {
   dash = d; dash.goals = dash.goals || []; dash.sleep = dash.sleep || { wake: '06:00', calm: '20:30', bed: '22:15' };
   dash.focus = dash.focus || { active: null, today: 0, week: [] };
+  ['diary', 'weight', 'days'].forEach(k => { dash.gym[k] = dash.gym[k] || []; });
   if (!demo) store.set('dash', dash);
 }
 // Панель открывается сразу из сохранённых данных, свежие подтягиваются фоном.
@@ -793,9 +863,9 @@ function viewToday() {
     `${top.length ? `<div class="sec">Главное сегодня</div><div class="card">${top.map((t, i) => `<div class="todo"><span class="rank num">${i + 1}</span><div class="x"><div>${esc(t.title)}</div>${t.due ? dueTag(t.due) : ''}</div><button class="play" data-focus="${esc(t.title)}" aria-label="Фокус: ${esc(t.title)}">${PLAY}</button></div>`).join('')}</div>` : ''}
     <div class="card">${dial(list)}</div>
     <div class="tiles">
-      <button class="tile" data-tab="mode">${ring(hAll ? hDone / hAll : 0, 'var(--good)', `${hDone}/${hAll}`)}<span>Привычки</span></button>
-      <button class="tile" data-tab="mode">${ring(g.goal ? g.week / g.goal : 0, 'var(--gym)', `${g.week}/${g.goal}`)}<span>Зал</span></button>
-      <button class="tile" data-tab="mode">${ring(foc / FOCUS_GOAL, 'var(--pairs)', foc >= 60 ? (foc / 60).toFixed(1).replace('.', ',') + 'ч' : foc + 'м')}<span>Фокус</span></button>
+      <button class="tile" data-seg="habits">${ring(hAll ? hDone / hAll : 0, 'var(--good)', `${hDone}/${hAll}`)}<span>Привычки</span></button>
+      <button class="tile" data-seg="gym">${ring(g.goal ? g.week / g.goal : 0, 'var(--gym)', `${g.week}/${g.goal}`)}<span>Зал</span></button>
+      <button class="tile" data-seg="rest">${ring(foc / FOCUS_GOAL, 'var(--pairs)', foc >= 60 ? (foc / 60).toFixed(1).replace('.', ',') + 'ч' : foc + 'м')}<span>Фокус</span></button>
       <button class="tile" data-tab="day">${ring(free / 780, 'var(--todo)', (free / 60).toFixed(free >= 600 ? 0 : 1).replace('.', ',') + 'ч')}<span>Свободно</span></button>
     </div>
     ${sleepLine(ms)}
@@ -859,17 +929,18 @@ function viewTasks() {
       : `<div class="card empty"><svg viewBox="0 0 76 76"><defs><radialGradient id="eg" cx=".36" cy=".28" r=".85"><stop offset="0" stop-color="#6fe3b4"/><stop offset="1" stop-color="#0c7a56"/></radialGradient></defs><circle cx="38" cy="40" r="30" fill="#000" opacity=".2"/><circle cx="38" cy="36" r="30" fill="url(#eg)"/><path class="arc" pathLength="1" d="M25 37l9 9 17-19" fill="none" stroke="#fff" stroke-width="6"/></svg><b>Открытых задач нет</b>Нажмите плюс, чтобы записать новую</div>`);
 }
 
-/* ---------- Режим: фокус, привычки и зал ---------- */
-function lineChart(s) {
-  const W = 326, H = 160, L = 28, R = 26, T = 14, B = 22, pts = s.points.slice(-12);
-  const vals = pts.map(p => p.w), lo = Math.min(...vals), hi = Math.max(...vals), pad = Math.max(2, (hi - lo) * .2);
+/* ---------- Режим: зал, привычки, сон и фокус ---------- */
+// Одна линия на графике: рабочий вес упражнения или вес тела.
+function trend(pts, o) {
+  const W = 326, H = 156, L = 30, R = 30, T = 18, B = 22;
+  const vals = pts.map(p => p.w), lo = Math.min(...vals), hi = Math.max(...vals), pad = Math.max(o.pad || 2, (hi - lo) * .2);
   const a = lo - pad, b = hi + pad, x = i => L + (pts.length > 1 ? i / (pts.length - 1) : .5) * (W - L - R), y = v => T + (1 - (v - a) / (b - a)) * (H - T - B);
   const path = pts.map((p, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(p.w).toFixed(1)).join('');
-  const lines = [a + (b - a) * .15, (a + b) / 2, a + (b - a) * .85].map(v => `<line class="grid" x1="${L}" x2="${W - 4}" y1="${y(v)}" y2="${y(v)}"/><text class="lab num" x="0" y="${y(v) + 3}">${Math.round(v)}</text>`).join('');
+  const lines = [a + (b - a) * .15, (a + b) / 2, a + (b - a) * .85].map(v => `<line class="grid" x1="${L}" x2="${W - 4}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}"/><text class="lab num" x="0" y="${(y(v) + 3).toFixed(1)}">${kg(v, 0)}</text>`).join('');
   const dates = [0, pts.length - 1].filter((v, i, l) => l.indexOf(v) === i).map(i => `<text class="lab" x="${x(i)}" y="${H - 5}" text-anchor="${i ? 'end' : 'start'}">${esc(fmt(dayMs(pts[i].d), { day: 'numeric', month: 'short' }))}</text>`).join('');
-  const dots = pts.map((p, i) => `<circle class="pt" cx="${x(i)}" cy="${y(p.w)}" r="4.500" style="animation-delay:${.8 + i * .03}s"/><rect class="hit" x="${x(i) - 16}" y="0" width="32" height="${H}" data-tip="${esc(dateText(p.d))}: ${p.w} кг"/>`).join('');
+  const dots = pts.map((p, i) => `<circle class="pt" cx="${x(i).toFixed(1)}" cy="${y(p.w).toFixed(1)}" r="${pts.length > 24 ? 2.5 : 4.5}" style="fill:${o.col};animation-delay:${.8 + i * .02}s"/><rect class="hit" x="${(x(i) - 14).toFixed(1)}" y="0" width="28" height="${H}" data-tip="${esc(dateText(p.d))}: ${kg(p.w)} кг"/>`).join('');
   const last = pts[pts.length - 1], base = H - B;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(s.name)}: рабочий вес по датам"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--gym)" stop-opacity=".32"/><stop offset="1" stop-color="var(--gym)" stop-opacity="0"/></linearGradient></defs>${lines}${dates}<path class="area" fill="url(#ga)" d="${path}L${x(pts.length - 1)} ${base}L${x(0)} ${base}z"/><path class="line" pathLength="1" d="${path}"/>${dots}<text class="val num" x="${x(pts.length - 1)}" y="${y(last.w) - 10}" text-anchor="end">${last.w} кг</text></svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(o.label)}"><defs><linearGradient id="${o.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${o.col}" stop-opacity=".34"/><stop offset="1" stop-color="${o.col}" stop-opacity="0"/></linearGradient></defs>${lines}${dates}<path class="area" fill="url(#${o.id})" d="${path}L${x(pts.length - 1)} ${base}L${x(0)} ${base}z"/><path class="line" pathLength="1" d="${path}" style="stroke:${o.col}"/>${dots}<text class="val num" x="${x(pts.length - 1)}" y="${(y(last.w) - 11).toFixed(1)}" text-anchor="end">${kg(last.w)} кг</text></svg>`;
 }
 function focusBars() {
   const w = dash.focus.week.length ? dash.focus.week : [...Array(7)].map((_, i) => ({ d: shift(iso(NOW()), i - 6), m: 0 }));
@@ -880,26 +951,116 @@ function focusBars() {
   }).join('');
   return `<div class="row" style="padding:0 0 8px;border:0"><div><div class="big num">${dur(sum)}</div><div class="hint">За 7 дней</div></div><button class="btn3d" data-focus="Фокус">${PLAY}Начать</button></div><svg class="bars" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Минуты фокуса по дням">${bars}</svg>`;
 }
-function viewMode() {
-  const today = iso(NOW()), h = dash.habits, g = dash.gym, s = g.series[selEx] || g.series[0], rest = STARTERS.filter(n => !h.some(x => x.name === n));
+
+const kg = (v, n) => String(Math.round(v * (n === 0 ? 1 : 10)) / (n === 0 ? 1 : 10)).replace('.', ',');
+const points = s => String(s || '').split(/\s*[;\n]\s*/).map(x => x.trim()).filter(Boolean);
+const monday = d => shift(d, -((new Date(dayMs(d)).getUTCDay() + 6) % 7));
+const nextGym = () => dash.events.filter(x => x.cal === 'Зал' && !x.allDay && x.end > NOW()).sort((a, b) => a.start - b.start)[0];
+const lastPlan = () => (dash.gym.diary || []).find(x => x.next);
+const planKey = p => p.d + ':' + p.next.length;
+// Недели с тренировками: из записей с весами и из дневника.
+function gymWeeks() {
+  const g = dash.gym, days = new Set(g.days || []), cur = monday(iso(NOW())), weeks = [];
+  (g.diary || []).forEach(x => { if (x.done) days.add(x.d); });
+  for (let i = 11; i >= 0; i--) { const w = shift(cur, -7 * i); let n = 0; for (let k = 0; k < 7; k++) if (days.has(shift(w, k))) n++; weeks.push({ w, n }); }
+  let streak = 0;
+  for (let i = weeks.length - 2; i >= 0 && weeks[i].n >= g.goal; i--) streak++;
+  if (weeks[11].n >= g.goal) streak++;
+  return { weeks, streak, total: weeks.reduce((s, x) => s + x.n, 0), days };
+}
+// Рекорд: день, когда рабочий вес впервые превысил всё, что было раньше.
+function recordsByDay() {
+  const out = {};
+  dash.gym.series.forEach(s => { let best = 0; s.points.forEach((p, i) => { if (i && p.w > best) (out[p.d] = out[p.d] || []).push(`${s.name} ${kg(p.w)} кг`); best = Math.max(best, p.w); }); });
+  return out;
+}
+function motive(info) {
+  const g = dash.gym, left = g.goal - g.week, ng = nextGym();
+  if (!g.days.length && !(g.diary || []).length) return 'Первая запись появится после тренировки';
+  if (left <= 0) return `Норма недели выполнена: ${g.week} из ${g.goal}`;
+  if (info.streak >= 2) return `${info.streak} ${plural(info.streak, 'неделя', 'недели', 'недель')} подряд в норме, осталось ${left}`;
+  return `До нормы недели ${left} ${plural(left, 'тренировка', 'тренировки', 'тренировок')}${ng ? ', ближайшая ' + fmt(ng.start, { weekday: 'short' }) + ' ' + hm(ng.start) : ''}`;
+}
+const BARBELL = `<svg class="barbell" viewBox="0 0 150 86" aria-hidden="true"><defs>
+  <linearGradient id="bbBar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdfdff"/><stop offset=".5" stop-color="#a3abbd"/><stop offset="1" stop-color="#4d5466"/></linearGradient>
+  <linearGradient id="bbBig" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b3f4c"/><stop offset=".45" stop-color="#20232c"/><stop offset="1" stop-color="#0d0f14"/></linearGradient>
+  <linearGradient id="bbSmall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff3e8"/><stop offset=".5" stop-color="#ffc9a6"/><stop offset="1" stop-color="#d88a5c"/></linearGradient></defs>
+  <ellipse class="bbshadow" cx="75" cy="80" rx="54" ry="4.5" fill="#000" opacity=".3"/>
+  <g class="bblift"><rect x="4" y="38" width="142" height="6" rx="3" fill="url(#bbBar)"/>
+  <rect x="20" y="14" width="13" height="54" rx="4" fill="url(#bbBig)"/><rect x="33" y="22" width="8" height="38" rx="3" fill="url(#bbSmall)"/><rect x="41" y="34" width="5" height="14" rx="1.500" fill="#cfd5e2"/>
+  <rect x="117" y="14" width="13" height="54" rx="4" fill="url(#bbBig)"/><rect x="109" y="22" width="8" height="38" rx="3" fill="url(#bbSmall)"/><rect x="104" y="34" width="5" height="14" rx="1.500" fill="#cfd5e2"/>
+  <rect x="22" y="16" width="3" height="50" rx="1.500" fill="#fff" opacity=".18"/><rect x="119" y="16" width="3" height="50" rx="1.500" fill="#fff" opacity=".18"/></g></svg>`;
+const MEDAL = (c1, c2) => `<svg viewBox="0 0 26 26"><path d="M8 1h4l2 7h-4zM18 1h-4l-2 7h4z" fill="#d95926"/><circle cx="13" cy="16" r="8.500" fill="${c2}"/><circle cx="13" cy="16" r="6.500" fill="${c1}"/><path d="M13 12.500l1 2.300 2.400.2-1.800 1.600.6 2.400L13 17.700l-2.200 1.300.6-2.400-1.800-1.600 2.400-.2z" fill="#fff" opacity=".85"/></svg>`;
+const SCALE = '<svg viewBox="0 0 76 76"><defs><linearGradient id="sc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9edf6"/><stop offset="1" stop-color="#9aa3b8"/></linearGradient></defs><rect x="10" y="22" width="56" height="44" rx="14" fill="#000" opacity=".2"/><rect x="10" y="18" width="56" height="44" rx="14" fill="url(#sc)"/><rect x="24" y="26" width="28" height="12" rx="4" fill="#20232c"/><text x="38" y="35" text-anchor="middle" font-size="8" fill="#6fe3b4" font-weight="700">72,4</text></svg>';
+
+function heat(info) {
+  const today = iso(NOW()), start = shift(monday(today), -77), C = 15, G = 4, L = 20, T = 14, W = L + 12 * (C + G), H = T + 7 * (C + G);
+  let cells = '', months = '';
+  for (let w = 0; w < 12; w++) {
+    const d0 = shift(start, w * 7);
+    if (!w || d0.slice(5, 7) !== shift(d0, -7).slice(5, 7)) months += `<text class="lab" x="${w > 9 ? W : L + w * (C + G)}" y="9" text-anchor="${w > 9 ? 'end' : 'start'}">${esc(fmt(dayMs(d0), { month: 'short' }).replace('.', ''))}</text>`;
+    for (let k = 0; k < 7; k++) {
+      const d = shift(start, w * 7 + k), on = info.days.has(d);
+      if (d > today) continue;
+      cells += `<rect class="hc ${on ? 'on' : ''} ${d === today ? 'today' : ''}" x="${L + w * (C + G)}" y="${T + k * (C + G)}" width="${C}" height="${C}" rx="4" style="animation-delay:${(w * 7 + k) * 5}ms" data-tip="${esc(dateText(d))}: ${on ? 'тренировка' : 'отдых'}"/>`;
+    }
+  }
+  const wd = ['пн', 'ср', 'пт'].map((n, i) => `<text class="lab" x="0" y="${T + i * 2 * (C + G) + 11}">${n}</text>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Дни тренировок за 12 недель"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a5c"/><stop offset="1" stop-color="#c2481b"/></linearGradient></defs>${months}${wd}${cells}</svg>`;
+}
+function viewGym() {
+  const g = dash.gym, info = gymWeeks(), ng = nextGym(), plan = lastPlan(), items = plan ? points(plan.next) : [], ticks = (store.get('ticks') || {})[plan ? planKey(plan) : ''] || [];
+  const s = g.series[selEx] || g.series[0], prs = recordsByDay(), diary = g.diary || [];
+  const hero = `<div class="card ghero">${BARBELL}<div class="k">${ng ? 'Следующая тренировка' : 'Тренировка'}</div><h2>${ng ? esc(fmt(ng.start, { weekday: 'long' }).replace(/^./, c => c.toUpperCase())) + ', ' + hm(ng.start) : 'Пока не в календаре'}</h2><div class="when">${ng ? until(ng.start) : 'Напишите боту, когда зал'}</div>
+    ${items.length ? `<div class="plabel"><span>План с ${dateText(plan.d)}</span><span class="num">${ticks.length} из ${items.length}</span></div><div class="pbar"><i style="width:${(ticks.length / items.length * 100).toFixed(0)}%"></i></div>${items.map((t, i) => `<div class="pitem ${ticks.includes(i) ? 'done' : ''}"><button class="box ${ticks.includes(i) ? 'on' : ''}" data-plan="${i}" aria-label="Отметить: ${esc(t)}">${CHECK}</button><span>${esc(t)}</span></div>`).join('')}`
+      : '<p class="pempty">Плана пока нет. После зала запишите, что сделать в следующий раз, и он появится здесь, а бот напомнит его перед тренировкой.</p>'}
+    <button class="btn3d orange" data-gym-say="1">${PEN}Записать тренировку</button></div>`;
+  const stats = `<div class="tiles" style="grid-template-columns:repeat(3,1fr)">
+    <div class="tile stat"><div class="plates">${[...Array(g.goal)].map((_, i) => `<i class="${i < g.week ? 'on' : ''}" style="animation-delay:${i * 90}ms"></i>`).join('')}</div><b class="num">${g.week}/${g.goal}</b><span>Эта неделя</span></div>
+    <div class="tile stat">${FLAME.replace('class="flame"', 'class="flame big"')}<b class="num">${count(info.streak)}</b><span>${plural(info.streak, 'Неделя', 'Недели', 'Недель')} подряд</span></div>
+    <div class="tile stat"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="var(--gym)" stroke-width="2"/><path d="M3 10h18" stroke="var(--gym)" stroke-width="2"/><circle cx="12" cy="15.500" r="2.500" fill="var(--gym)"/></svg><b class="num">${count(info.total)}</b><span>За 12 недель</span></div></div>`;
+  const wp = (g.weight || []).map(p => ({ d: p.d, w: p.kg })), wl = wp[wp.length - 1], wm = wp.find(p => p.d >= shift(iso(NOW()), -30)) || wp[0], dw = wl && wm ? wl.w - wm.w : 0;
+  const weight = wp.length ? `<div class="card"><div class="wtop"><div><div class="hint">Вес тела, ${esc(dateText(wl.d))}</div><div class="big num">${kg(wl.w)} кг</div></div>${wp.length > 1 && wm !== wl ? `<span class="delta num">${dw > 0 ? '+' : dw < 0 ? '−' : ''}${kg(Math.abs(dw))} кг с ${esc(dateText(wm.d))}</span>` : ''}</div>${wp.length > 1 ? trend(wp, { col: 'var(--pairs)', id: 'gw', label: 'Вес тела по датам', pad: .6 }) : '<div class="hint">Добавьте ещё один замер, и появится график</div>'}</div>`
+    : `<div class="card empty">${SCALE}<b>Веса тела пока нет</b>Напишите: вешу 72,4, и здесь появится график</div>`;
+  const lifts = s ? `<div class="card"><div class="chips">${g.series.map((e, i) => `<button class="pill ${e === s ? 'on' : ''}" data-ex="${i}">${esc(e.name)}</button>`).join('')}</div>${s.points.length > 1 ? trend(s.points, { col: 'var(--gym)', id: 'ga', label: s.name + ': рабочий вес по датам' }) : `<div class="hint">Пока одна запись: ${kg(s.points[0].w)} кг</div>`}
+    ${g.records.map((r, i) => { const se = g.series.find(x => x.name === r.name), gain = se && se.points.length > 1 ? r.weight - se.points[0].w : 0; return `<div class="rec">${i ? MEDAL('#d6dbe6', '#9aa3b8') : MEDAL('#ffd76a', '#e0a21a')}<div class="x">${esc(r.name)}${gain > 0 ? `<div class="gain">+${kg(gain)} кг с ${esc(dateText(se.points[0].d))}</div>` : ''}</div><span class="v num">${kg(r.weight)} кг</span></div>`; }).join('')}</div>` : '';
+  const entries = diary.slice(0, diaryN).map((x, i) => `<div class="dentry" style="animation-delay:${i * 60}ms"><div class="dday"><b class="num">${+x.d.slice(8)}</b><span>${esc(fmt(dayMs(x.d), { month: 'short' }).replace('.', ''))}</span></div><div class="dcard">
+      <div class="dhead"><span>${esc(fmt(dayMs(x.d), { weekday: 'long' }))}</span>${x.feel ? `<span class="feel">${esc(x.feel)}</span>` : ''}</div>
+      ${x.done ? `<div class="dlabel">Сделано</div><ul class="dlist">${points(x.done).map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
+      ${(prs[x.d] || []).map(t => `<span class="badge">${MEDAL('#fff', '#e0a21a').replace('<svg', '<svg width="14" height="14"')}Рекорд: ${esc(t)}</span>`).join('')}
+      ${x.next ? `<div class="dnext"><div class="dlabel">В следующий раз</div><ul class="dlist">${points(x.next).map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>` : ''}</div></div>`).join('');
+  return `${hero}${stats}
+    <div class="sec">Вес тела</div>${weight}
+    <div class="sec">Дни тренировок</div><div class="card">${heat(info)}</div>
+    ${lifts ? `<div class="sec">Рабочие веса</div>${lifts}` : ''}
+    <div class="sec">Дневник</div>${diary.length ? `<div>${entries}</div>${diary.length > diaryN ? '<button class="line-btn" data-more="1" style="border:0;text-align:center">Показать ещё</button>' : ''}`
+      : `<div class="card empty"><b>Дневник пуст</b>Нажмите «Записать тренировку» и расскажите, что сделали и что дальше</div>`}`;
+}
+function viewHabits() {
+  const today = iso(NOW()), h = dash.habits, rest = STARTERS.filter(n => !h.some(x => x.name === n));
   const habits = h.length ? h.map(x => `<div class="habit"><div><b>${esc(x.name)}</b><span class="hint">${x.streak ? FLAME + 'Серия: ' + x.streak : 'Серии пока нет'}</span></div>
     <div class="cells" aria-label="Последние 5 недель">${[...Array(35)].map((_, i) => { const d = shift(today, i - 34), on = x.days.includes(d); return `<i class="${on ? 'on' : ''} ${d === today ? 'today' : ''}" data-tip="${esc(dateText(d))}: ${on ? 'сделано' : 'нет'}" style="animation-delay:${i * 7}ms"></i>`; }).join('')}</div>
     <button class="box ${x.today ? 'on' : ''}" data-habit="${x.index}" aria-label="Отметить: ${esc(x.name)}" aria-pressed="${x.today}">${CHECK}</button></div>`).join('') : '<div class="empty" style="padding:6px 0 2px"><b>Привычек пока нет</b>Добавьте одним нажатием:</div>';
   const add = rest.length ? `<div class="starts" ${h.length ? 'style="margin-top:12px;justify-content:flex-start"' : ''}>${rest.slice(0, h.length ? 3 : 5).map(n => `<button class="pill" data-add-habit="${esc(n)}">+ ${esc(n)}</button>`).join('')}</div>` : '';
-  return shell(title('Режим', `Зал на этой неделе: ${g.week} из ${g.goal}`),
-    `<div class="sec">Сон</div>${sleepLine(NOW())}
-    <div class="sec">Фокус</div><div class="card">${focusBars()}</div>
-    <div class="sec">Привычки</div><div class="card">${habits}${add}</div>
-    <div class="sec">Зал</div>
-    ${s ? `<div class="card"><div class="chips">${g.series.map((e, i) => `<button class="pill ${e === s ? 'on' : ''}" data-ex="${i}">${esc(e.name)}</button>`).join('')}</div>${lineChart(s)}</div>` : `<div class="card empty"><b>Тренировок пока нет</b>После зала нажмите плюс и напишите: жим 60 на 8, присед 80 3 по 5</div>`}
-    ${g.records.length ? `<div class="card">${g.records.map(r => `<div class="row"><span>${esc(r.name)}</span><span class="v num">${r.weight} кг</span></div>`).join('')}</div>` : ''}
-    ${tg && tg.addToHomeScreen && tg.isVersionAtLeast('8.0') ? '<button class="line-btn" data-home="1" style="border:0;text-align:center">Добавить панель на экран телефона</button>' : ''}`);
+  return `<div class="card">${habits}${add}</div>`;
+}
+function viewRest() {
+  return `${sleepLine(NOW())}<div class="sec">Фокус</div><div class="card">${focusBars()}</div>
+    ${tg && tg.addToHomeScreen && tg.isVersionAtLeast('8.0') ? '<button class="line-btn" data-home="1" style="border:0;text-align:center">Добавить панель на экран телефона</button>' : ''}`;
+}
+function viewMode() {
+  const g = dash.gym, i = SEGS.findIndex(s => s[0] === seg), hDone = dash.habits.filter(h => h.today).length;
+  const head = seg === 'gym' ? title('Зал', motive(gymWeeks())) : seg === 'habits' ? title('Привычки', dash.habits.length ? `Сегодня ${hDone} из ${dash.habits.length}` : 'Маленькие шаги каждый день') : title('Сон и фокус', `Отбой в ${dash.sleep.bed}, подъём в ${dash.sleep.wake}`);
+  const bar = `<div class="seg"><span id="segPill" style="transform:translateX(${segAt * 100}%)"></span>${SEGS.map(s => `<button class="${s[0] === seg ? 'on' : ''}" data-seg="${s[0]}">${s[1]}</button>`).join('')}</div>`;
+  requestAnimationFrame(() => requestAnimationFrame(() => { const p = $('segPill'); if (p) p.style.transform = `translateX(${i * 100}%)`; }));
+  segAt = i;
+  return shell(head, bar + (seg === 'gym' ? viewGym() : seg === 'habits' ? viewHabits() : viewRest()));
 }
 
 /* ---------- Отрисовка и действия ---------- */
 const VIEWS = { today: viewToday, day: viewDay, goals: viewGoals, tasks: viewTasks, mode: viewMode };
 function render(dir) {
-  const boot = $('boot'), app = $('app'), key = tab + selDay + selEx, same = key === render.key, first = !render.key;
+  const boot = $('boot'), app = $('app'), key = tab + selDay + selEx + seg + diaryN, same = key === render.key, first = !render.key;
   const was = document.querySelector('.sheet'), from = was ? was.getBoundingClientRect().top : null;
   if (boot) boot.remove();
   app.classList.toggle('still', same); app.classList.toggle('moved', !first);
@@ -978,12 +1139,22 @@ async function addHabit(name, btn) {
 }
 
 /* ---------- Быстрая запись: всё, что можно написать боту ---------- */
-function openSay(text) {
+function openSay(text, gym) {
   $('reply').textContent = ''; $('say').value = text || '';
-  $('capture').classList.add('on'); $('back').classList.add('on'); haptic();
-  setTimeout(() => { const s = $('say'); s.focus(); s.setSelectionRange(s.value.length, s.value.length); }, 60);
+  $('sayHint').textContent = gym ? GYM_SAY[0] + ': что сделали, что дальше, вес тела' : 'Напишите как боту';
+  $('say').placeholder = gym ? GYM_SAY[1] : 'Завтра в 15:00 встреча, сдать курсовую до пятницы';
+  $('capture').classList.add('on'); $('back').classList.add('on'); document.body.style.overflow = 'hidden'; haptic();
+  placeSay();
+  setTimeout(() => { const s = $('say'); s.focus({ preventScroll: true }); s.setSelectionRange(s.value.length, s.value.length); placeSay(); }, 60);
 }
-function closeSay() { $('capture').classList.remove('on'); $('back').classList.remove('on'); $('say').blur(); }
+function closeSay() { const c = $('capture'); c.classList.remove('on'); c.style.transform = ''; $('back').classList.remove('on'); document.body.style.overflow = ''; $('say').blur(); }
+// Окно ставится к нижнему краю видимой части экрана, то есть прямо над клавиатурой.
+function placeSay() {
+  const c = $('capture');
+  if (!c.classList.contains('on')) return;
+  const vv = window.visualViewport, top = vv ? vv.offsetTop : 0, h = vv ? vv.height : innerHeight;
+  c.style.transform = `translate3d(0,${Math.max(top + 8, top + h - c.offsetHeight - 8)}px,0)`;
+}
 async function sendSay() {
   const s = $('say'), text = s.value.trim(), btn = $('send');
   if (!text || btn.disabled) return;
@@ -1053,6 +1224,10 @@ document.addEventListener('click', e => {
   if ((el = q('[data-task]'))) return closeTask(+el.dataset.task);
   if ((el = q('[data-step]'))) return closeStep(+el.dataset.step, el);
   if ((el = q('[data-add-habit]'))) return addHabit(el.dataset.addHabit, el);
+  if ((el = q('[data-plan]'))) return togglePlan(+el.dataset.plan);
+  if (q('[data-gym-say]')) return openSay('', true);
+  if (q('[data-more]')) { diaryN += 10; tick(); return render(); }
+  if ((el = q('[data-seg]'))) { seg = el.dataset.seg; store.set('seg', seg); tick(); return tab === 'mode' ? render(el.closest('.seg') ? 0 : 1) : go('mode'); }
   if ((el = q('[data-focus]'))) return openFocus(el.dataset.focus, el.dataset.note);
   if (q('[data-open-focus]')) return openFocus();
   if ((el = q('[data-fpick]'))) { fPick = +el.dataset.fpick; tick(); return drawFocus(); }
@@ -1068,14 +1243,22 @@ document.addEventListener('click', e => {
   if ((el = q('[data-tip]'))) showTip(el);
 });
 document.addEventListener('pointerover', e => { const el = e.target.closest && e.target.closest('[data-tip]'); if (el && e.pointerType === 'mouse') showTip(el); });
-$('fab').addEventListener('click', e => { e.stopPropagation(); openSay(); });
+$('fab').addEventListener('click', e => { e.stopPropagation(); openSay('', tab === 'mode' && seg === 'gym'); });
 $('back').addEventListener('click', closeSay);
 $('send').addEventListener('click', sendSay);
 $('sayChips').innerHTML = SAY.map(s => `<button class="pill" data-put="${esc(s[1])}">${esc(s[0])}</button>`).join('');
 $('sayChips').addEventListener('click', e => { const b = e.target.closest('[data-put]'); if (!b) return; e.stopPropagation(); const s = $('say'); s.value = b.dataset.put; tick(); s.focus(); const i = s.value.indexOf('  '); if (i >= 0) s.setSelectionRange(i + 1, i + 1); });
 $('say').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendSay(); } });
-// Клавиатура поднимает окно записи над собой.
-if (window.visualViewport) visualViewport.addEventListener('resize', () => { document.documentElement.style.setProperty('--kb', Math.max(0, innerHeight - visualViewport.height - visualViewport.offsetTop) + 'px'); });
+if (window.visualViewport) { visualViewport.addEventListener('resize', placeSay); visualViewport.addEventListener('scroll', placeSay); }
+$('say').addEventListener('input', placeSay);
+// Галочки плана живут только на телефоне: это подсказка на время тренировки.
+function togglePlan(i) {
+  const p = lastPlan(), all = store.get('ticks') || {}, k = planKey(p), l = all[k] || [], on = !l.includes(i), n = points(p.next).length;
+  all[k] = on ? l.concat(i) : l.filter(x => x !== i); store.set('ticks', all);
+  haptic(on ? 'medium' : 'light');
+  if (on && all[k].length === n) { confetti(); success(); toast('План выполнен, запишите тренировку'); }
+  render();
+}
 
 // Смахивание: вкладки влево и вправо, задача вправо закрывается, вниз обновить.
 addEventListener('touchstart', e => {
@@ -1145,7 +1328,7 @@ function demoData(body) {
     return dash;
   }
   const t = iso(NOW()), ev = (d, a, b, cal, title, place, note) => ({ cal, title, place: place || '', note: note || '', allDay: false, start: at(d, a), end: at(d, b) });
-  if (qs.has('empty')) return { events: [], now: NOW(), tasks: [], goals: [], habits: [], focus: { active: null, today: 0, week: [] }, gym: { goal: 3, week: 0, last: '', lastSets: [], records: [], series: [] } };
+  if (qs.has('empty')) return { events: [], now: NOW(), tasks: [], goals: [], habits: [], focus: { active: null, today: 0, week: [] }, gym: { goal: 3, week: 0, last: '', lastSets: [], records: [], series: [], diary: [], weight: [], days: [] } };
   const events = [];
   for (let i = 0; i < 7; i++) {
     const d = shift(t, i), wd = new Date(dayMs(d)).getUTCDay();
@@ -1166,7 +1349,14 @@ function demoData(body) {
     ],
     habits: [{ index: 0, name: 'Читать 20 минут', days: nearby(9), streak: 9, today: false }, { index: 1, name: 'Вода 2 литра', days: nearby(3), streak: 3, today: false }],
     focus: { active: null, today: 75, week: [40, 0, 90, 120, 25, 60, 75].map((m, i) => ({ d: shift(t, i - 6), m })) },
-    gym: { goal: 3, week: 1, last: shift(t, -1), lastSets: [], records: [{ name: 'Жим лёжа', weight: 72.5 }, { name: 'Присед', weight: 95 }], series: [{ name: 'Жим лёжа', points: [50, 52.5, 55, 60, 62.5, 60, 65, 67.5, 70, 72.5].map((w, i) => ({ d: shift(t, (i - 10) * 4), w })) }, { name: 'Присед', points: [70, 75, 80, 85, 90, 95].map((w, i) => ({ d: shift(t, (i - 6) * 4), w })) }] }
+    gym: { goal: 3, week: 1, last: shift(t, -1), lastSets: [], records: [{ name: 'Жим лёжа', weight: 72.5 }, { name: 'Присед', weight: 95 }], series: [{ name: 'Жим лёжа', points: [50, 52.5, 55, 60, 62.5, 60, 65, 67.5, 70, 72.5].map((w, i) => ({ d: shift(t, (i - 10) * 4), w })) }, { name: 'Присед', points: [70, 75, 80, 85, 90, 95].map((w, i) => ({ d: shift(t, (i - 6) * 4), w })) }],
+      diary: [
+        { d: shift(t, -1), done: 'Жим лёжа 72,5 на 6; Присед 95 3 по 5; Тяга в наклоне 60 3 по 10', next: 'Жим 72,5 на 8; Присед 97,5 3 по 5; Подтягивания 3 по 8', feel: 'бодро' },
+        { d: shift(t, -4), done: 'Жим лёжа 70 на 8; Присед 92,5 3 по 5', next: 'Жим 72,5 на 6; Присед 95 3 по 5', feel: 'устал' },
+        { d: shift(t, -6), done: 'Становая 100 на 5; Жим стоя 40 3 по 8', next: '', feel: '' }
+      ],
+      weight: [74.1, 73.8, 73.9, 73.4, 73.2, 73.3, 72.9, 72.6, 72.8, 72.4].map((kg, i) => ({ d: shift(t, (i - 9) * 4), kg })),
+      days: [-1, -4, -6, -8, -11, -13, -15, -18, -20, -25, -27, -29, -32, -36, -39, -41, -46, -50, -53].map(n => shift(t, n)) }
   };
 }
 load(); loadWeather();
