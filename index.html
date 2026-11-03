@@ -606,6 +606,135 @@ nav button.on svg { filter: drop-shadow(0 0 6px rgba(255, 181, 71, .8)); }
 .tload { color: var(--acc); padding: 14px 0; }
 .coach { max-height: 52vh; overflow-y: auto; margin-bottom: 14px; white-space: pre-wrap; font-size: 14.5px; line-height: 1.5; color: var(--ink); user-select: text; -webkit-user-select: text; }
 .btn3d svg { margin-right: 2px; }
+/* Новые разделы: деньги, мы, ритм, учёба, списки */
+.seg { grid-template-columns: repeat(var(--n, 3), 1fr); }
+.seg span { width: calc((100% - 8px) / var(--n, 3)); }
+.seg button { font-size: 13px; white-space: nowrap; }
+.cico { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--c, var(--ink-2)); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--c, transparent) 45%, transparent)); }
+.mhero, .ushero, .rhero { position: relative; overflow: hidden; background: #161D33; border-radius: 28px; box-shadow: 0 24px 48px rgba(0, 0, 0, .5), 0 0 40px rgba(255, 181, 71, .12), inset 0 1px 0 rgba(255, 255, 255, .06); }
+.ushero { box-shadow: 0 24px 48px rgba(0, 0, 0, .5), 0 0 44px rgba(255, 107, 139, .14), inset 0 1px 0 rgba(255, 255, 255, .06); }
+.mhero::before, .ushero::before, .rhero::before { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; padding: 1px; pointer-events: none; background: conic-gradient(from var(--a), transparent 0deg 240deg, rgba(255, 181, 71, .9) 300deg, #8EA8FF 335deg, transparent 360deg); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: nspin 8s linear infinite; }
+.ushero::before { background: conic-gradient(from var(--a), transparent 0deg 240deg, rgba(255, 107, 139, .95) 300deg, #FFB547 335deg, transparent 360deg); }
+.mhero .k, .ushero .k { position: relative; color: var(--acc); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.ushero .k { color: #FF8FA6; }
+.mbig { position: relative; font-family: var(--disp); font-size: 40px; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; margin-top: 4px; text-shadow: 0 0 22px rgba(255, 181, 71, .35); }
+.mhero .when, .ushero .when { position: relative; color: var(--ink-2); font-size: 13.5px; margin-top: 4px; max-width: 66%; }
+.coins { position: absolute; right: 4px; top: 6px; width: 120px; height: 90px; filter: drop-shadow(0 12px 14px rgba(0, 0, 0, .45)) drop-shadow(0 0 14px rgba(255, 181, 71, .3)); }
+.mbar { position: relative; height: 8px; border-radius: 4px; background: rgba(255, 255, 255, .1); margin: 14px 0 2px; }
+.mbar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #5FE0B8, #FFB547); box-shadow: 0 0 12px rgba(255, 181, 71, .5); transform-origin: left; animation: fill 1s var(--ease) both; }
+.mbar.over i { background: linear-gradient(90deg, #FFB547, #FF6B6B); }
+.mbar b { position: absolute; top: -4px; width: 2px; height: 16px; border-radius: 1px; background: #fff; box-shadow: 0 0 8px #fff; }
+.tips { padding: 6px 16px; }
+.tipr { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; font-size: 14px; line-height: 1.4; border-top: 1px solid var(--line); }
+.tipr:first-child { border-top: 0; }
+.tipr i { flex: none; width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 8px var(--blue); }
+.tipr.good i { background: var(--mint); box-shadow: 0 0 8px var(--mint); }
+.tipr.warn i { background: var(--acc); box-shadow: 0 0 8px var(--acc); }
+.tipr.bad i { background: #FF6B6B; box-shadow: 0 0 8px #FF6B6B; }
+.mbars rect.b { fill: var(--acc); } .mbars rect.b.over { fill: #FF8A5B; } .mbars rect.b.today { fill: #FFE3A8; filter: drop-shadow(0 0 6px rgba(255, 227, 168, .8)); }
+.norm { stroke: var(--mint); stroke-dasharray: 4 4; stroke-width: 1.2; opacity: .7; }
+.mcatr { display: flex; gap: 12px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); }
+.mcatr:first-child { border-top: 0; padding-top: 0; }
+.mcatr .x, .box2, .subj { flex: 1; min-width: 0; }
+.mrow { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 14.5px; }
+.mrow b { font-weight: 800; }
+.mrow em { font-style: normal; color: var(--ink-3); font-size: 12.5px; }
+.mline { position: relative; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .07); margin: 6px 0 2px; }
+.mline i { display: block; height: 100%; border-radius: 3px; background: var(--c, var(--acc)); box-shadow: 0 0 10px var(--c, var(--acc)); transform-origin: left; animation: fill .9s var(--ease) both; }
+.mline.over i { background: #FF6B6B; box-shadow: 0 0 10px #FF6B6B; }
+.mline b { position: absolute; top: -3px; width: 2px; height: 12px; border-radius: 1px; background: #fff; }
+.mcatr small, .box2 small { font-size: 12px; color: var(--ink-3); }
+.box2 { padding: 9px 0; border-top: 1px solid var(--line); }
+.box2:first-child { border-top: 0; padding-top: 0; }
+.box2 .pbar { margin: 6px 0 3px; }
+.hrec { display: flex; gap: 12px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); }
+.hrec:first-child { border-top: 0; padding-top: 0; }
+.hrec .x { flex: 1; min-width: 0; }
+.hrec b { font-family: var(--disp); font-weight: 600; font-size: 14px; }
+.hrec b.inc { color: var(--mint); }
+.mamount { display: flex; align-items: baseline; gap: 6px; padding: 8px 16px; margin: 4px 0 10px; border-radius: 18px; background: #0F1422; box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .25), 0 0 18px rgba(255, 181, 71, .08); }
+.mamount input { flex: 1; min-width: 0; font-family: var(--disp); font-size: 38px; font-weight: 600; color: var(--ink); background: none; border: 0; outline: 0; user-select: text; -webkit-user-select: text; }
+.mamount span { font-family: var(--disp); font-size: 26px; color: var(--acc); }
+.mcats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 4px 0 10px; max-height: 30vh; overflow-y: auto; }
+.mcat { display: grid; justify-items: center; gap: 4px; padding: 9px 2px; border-radius: 14px; font-size: 11px; font-weight: 700; color: var(--ink-2); background: rgba(255, 255, 255, .04); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06); transition: transform .15s; }
+.mcat.on { color: var(--ink); background: color-mix(in srgb, var(--c) 16%, transparent); box-shadow: inset 0 0 0 1.5px var(--c), 0 0 14px color-mix(in srgb, var(--c) 30%, transparent); }
+.mcat:active { transform: scale(.94); }
+.mquick { margin: 0 0 8px; }
+.heart { position: absolute; right: 8px; top: 10px; width: 104px; height: 96px; filter: drop-shadow(0 0 22px rgba(255, 107, 139, .55)) drop-shadow(0 14px 16px rgba(0, 0, 0, .4)); }
+.ushero h2 { position: relative; font-family: var(--disp); font-size: 20px; font-weight: 600; margin-top: 4px; max-width: 64%; }
+.usbig { position: relative; display: flex; align-items: baseline; gap: 8px; margin-top: 2px; }
+.usbig b { font-family: var(--disp); font-size: 52px; font-weight: 600; line-height: 1; letter-spacing: -.03em; text-shadow: 0 0 24px rgba(255, 107, 139, .45); }
+.usbig span { font-family: var(--disp); font-size: 18px; color: var(--ink-2); }
+.ushero .pbar { max-width: 62%; }
+.ushero .pbar i { background: linear-gradient(90deg, #FFB547, #FF6B8B); box-shadow: 0 0 12px rgba(255, 107, 139, .6); }
+.drow { display: flex; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.drow:first-child { border-top: 0; padding-top: 0; }
+.drow .x { flex: 1; min-width: 0; }
+.drow b { font-weight: 800; }
+.dchip { flex: none; font-size: 12.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px; color: var(--ink-2); background: rgba(255, 255, 255, .06); }
+.drow.soon .dchip { color: #FFC2D1; background: rgba(255, 107, 139, .16); box-shadow: 0 0 14px rgba(255, 107, 139, .25); }
+.mc { fill: var(--cell); }
+.mc.on { fill: #FF6B8B; filter: drop-shadow(0 0 4px rgba(255, 107, 139, .7)); }
+.film { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); }
+.film .x { flex: 1; min-width: 0; }
+.film b { font-weight: 700; }
+.film .cico { --c: var(--blue); }
+.rate { flex: none; min-width: 30px; text-align: center; font-family: var(--disp); font-weight: 600; font-size: 13px; padding: 4px 6px; border-radius: 9px; color: var(--acc); background: rgba(255, 181, 71, .12); }
+.rate.her { color: #FF8FA6; background: rgba(255, 107, 139, .14); }
+.moments { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: var(--gap); }
+.moment { border-radius: 20px; overflow: hidden; background: #141A2A; box-shadow: var(--lift); animation: rise .5s var(--ease) both; }
+.mph { aspect-ratio: 1; background: linear-gradient(110deg, #1b2236 30%, #232c45 50%, #1b2236 70%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+.mph img { display: block; width: 100%; height: 100%; object-fit: cover; animation: fadein .4s ease both; }
+.mt { padding: 9px 11px 11px; }
+.mt p { margin-top: 3px; font-size: 13.5px; line-height: 1.35; }
+.pick { display: grid; place-items: center; min-height: 140px; padding: 10px; margin-bottom: 12px; border-radius: 20px; background: #0F1422; box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .2); text-align: center; }
+.pick b { font-family: var(--disp); font-size: 24px; font-weight: 600; transition: transform .2s; }
+.pick b.hit { color: var(--acc); transform: scale(1.12); text-shadow: 0 0 24px rgba(255, 181, 71, .6); }
+.rhero { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+.rhero .legend { grid-column: 1 / -1; justify-content: flex-start; }
+.sring { position: relative; width: 168px; height: 168px; }
+.sring .c { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.sring .c b { font-family: var(--disp); font-size: 44px; font-weight: 600; line-height: 1; text-shadow: 0 0 22px rgba(255, 181, 71, .35); }
+.sring .c span { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+.rside { display: grid; gap: 12px; }
+.rstat b { display: block; font-family: var(--disp); font-size: 24px; font-weight: 600; }
+.rstat span { font-size: 12px; color: var(--ink-2); }
+.rstat .flame.big { margin: 0 0 2px; }
+.crow { display: flex; gap: 10px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); }
+.crow:first-child { border-top: 0; padding-top: 0; }
+.crow .x { flex: 1; min-width: 0; }
+.crow b { font-weight: 800; }
+.cbtns { display: flex; gap: 6px; flex: none; }
+.cbtns .pill:first-child { color: #06231A; background: var(--mint); }
+.cstate { flex: none; font-size: 12.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px; background: rgba(255, 255, 255, .06); color: var(--ink-2); }
+.cstate.good { color: var(--mint); background: rgba(95, 224, 184, .12); }
+.cstate.bad { color: #FF9C9C; background: rgba(255, 120, 120, .12); }
+.rbars rect.b { fill: rgba(255, 255, 255, .18); }
+.rbars rect.b.good { fill: var(--acc); }
+.rbars rect.b.today { fill: var(--mint); filter: drop-shadow(0 0 6px rgba(95, 224, 184, .7)); }
+.exams { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: var(--gap); }
+.exam { margin: 0; padding: 14px; animation: rise .5s var(--ease) both; }
+.exam .k { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+.exam b { display: block; font-weight: 800; margin-top: 2px; }
+.eleft { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; color: var(--ink-2); font-size: 13px; }
+.eleft span { font-family: var(--disp); font-size: 32px; font-weight: 600; color: var(--ink); }
+.exam.soon { box-shadow: var(--lift), inset 0 0 0 1px rgba(255, 138, 91, .4), 0 0 24px rgba(255, 138, 91, .15); }
+.exam.soon .eleft span { color: #FF8A5B; text-shadow: 0 0 16px rgba(255, 138, 91, .5); }
+.subj { padding: 10px 0; border-top: 1px solid var(--line); }
+.subj:first-child { border-top: 0; padding-top: 0; }
+.avg { font-family: var(--disp); font-weight: 600; font-size: 18px; }
+.avg.good { color: var(--mint); } .avg.bad { color: #FF9C9C; }
+.subj .mline i { background: linear-gradient(90deg, #8EA8FF, #C9C2FF); box-shadow: 0 0 10px rgba(142, 168, 255, .5); }
+.gchips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.gchip { font-size: 12px; font-weight: 800; padding: 3px 8px; border-radius: 8px; background: rgba(255, 255, 255, .06); }
+.lcard .mrow { margin-bottom: 4px; }
+.litem { display: flex; gap: 11px; align-items: center; padding: 8px 0; font-size: 15px; }
+.litem.done span { color: var(--ink-3); text-decoration: line-through; }
+.hx { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: var(--gap); }
+.hxc { margin: 0; display: grid; gap: 4px; text-align: left; padding: 14px; --c: var(--acc); }
+.hxc:nth-child(2) { --c: #FF6B8B; }
+.hxc b { font-family: var(--disp); font-weight: 600; font-size: 17px; }
+.mt3 .stat b { font-size: 16px; white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
@@ -672,15 +801,16 @@ const COL = { 'Пары': 'pairs', 'Зал': 'gym', 'Учёба дома': 'stud
 const NAMES = { 'Пары': 'Пары', 'Зал': 'Зал', 'Учёба дома': 'Учёба', 'Дела': 'Дела' };
 const TABS = [
   ['today', 'Сегодня', '<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>'],
-  ['day', 'День', '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>'],
-  ['goals', 'Цели', '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>'],
-  ['tasks', 'Задачи', '<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 12l2.5 2.5 4.5-5"/>'],
+  ['plan', 'План', '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M8 14l2 2 4-4"/>'],
+  ['money', 'Деньги', '<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/>'],
+  ['us', 'Мы', '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>'],
   ['mode', 'Режим', '<path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/>']
 ];
 const STARTERS = ['Подъём в 06:00', 'Свет выключен в 22:15', 'Яркий свет утром', 'Кофеин до 14:00', 'На улице 20 минут'];
 const SAY = [['Задача', 'Задача: '], ['Тренировка', 'Сделал: '], ['Вес', 'Вешу  кг'], ['Срок', 'Сдать  до '], ['Цель', 'Цель: '], ['Веха', 'Веха к цели '], ['Встреча', 'Завтра в 15:00 ']];
 const GYM_SAY = ['Дневник тренировки', 'Сделал жим 60 на 8, присед 80 3 по 5. В следующий раз жим 62,5 на 8. Вешу 72,4'];
-const SEGS = [['gym', 'Зал'], ['habits', 'Привычки'], ['rest', 'Сон и фокус']];
+const SEGS = [['gym', 'Зал'], ['rhythm', 'Ритм'], ['goals', 'Цели'], ['study', 'Учёба'], ['rest', 'Сон']];
+const PLAN_SEGS = [['day', 'День'], ['tasks', 'Задачи'], ['lists', 'Списки']];
 const PEN = '<svg class="pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>';
 const CHECK = '<svg viewBox="0 0 24 24"><path d="M5 13l4.5 4.5L19 7"/></svg>';
 const PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17a1 1 0 0 0 1.5.9l14-8.5a1 1 0 0 0 0-1.8l-14-8.5A1 1 0 0 0 6 3.5z"/></svg>';
@@ -700,7 +830,7 @@ const tick = () => { try { tg.HapticFeedback.selectionChanged(); } catch (e) {} 
 const success = () => { try { tg.HapticFeedback.notificationOccurred('success'); } catch (e) {} };
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
 let dash = null, tab = 'today', selDay = null, selEx = 0, pillAt = 0, wx = null, gesture = null;
-let seg = store.get('seg') || 'gym', segAt = 0, diaryN = 6;
+let seg = ({ habits: 'rhythm' })[store.get('seg')] || store.get('seg') || 'gym', planSeg = store.get('pseg') || 'day', diaryN = 6;
 
 /* ---------- Солнце и луна: настоящее положение для Нижнего Новгорода ---------- */
 const RAD = Math.PI / 180;
@@ -1168,11 +1298,12 @@ function viewToday() {
     `${top.length ? `<div class="sec">Главное сегодня</div><div class="card">${top.map((t, i) => `<div class="todo"><span class="rank num">${i + 1}</span><div class="x"><div>${esc(t.title)}</div>${t.due ? dueTag(t.due) : ''}</div><button class="play" data-focus="${esc(t.title)}" aria-label="Фокус: ${esc(t.title)}">${PLAY}</button></div>`).join('')}</div>` : ''}
     <div class="card">${dial(list)}</div>
     <div class="tiles">
-      <button class="tile" data-seg="habits">${ring(hAll ? hDone / hAll : 0, 'var(--good)', `${hDone}/${hAll}`)}<span>Привычки</span></button>
+      <button class="tile" data-seg="rhythm">${ring((dash.rhythm ? dash.rhythm.today.score : 0) / 100, 'var(--acc)', dash.rhythm ? dash.rhythm.today.score : 0)}<span>Ритм</span></button>
       <button class="tile" data-seg="gym">${ring(g.goal ? g.week / g.goal : 0, 'var(--gym)', `${g.week}/${g.goal}`)}<span>Зал</span></button>
       <button class="tile" data-seg="rest">${ring(foc / FOCUS_GOAL, 'var(--pairs)', foc >= 60 ? (foc / 60).toFixed(1).replace('.', ',') + 'ч' : foc + 'м')}<span>Фокус</span></button>
       <button class="tile" data-tab="day">${ring(free / 780, 'var(--todo)', (free / 60).toFixed(free >= 600 ? 0 : 1).replace('.', ',') + 'ч')}<span>Свободно</span></button>
     </div>
+    ${homeExtras()}
     ${sleepLine(ms)}
     ${goal ? `<button class="card goal" data-tab="goals"><div class="ghead">${orbGoal(goal.progress, 'h')}<div><div class="hint">Главная цель</div><div class="t">${esc(goal.title)}</div>${step ? `<div class="s">Дальше: ${esc(step.title)}, ${dateText(step.date)}</div>` : ''}</div></div></button>` : ''}`, true);
 }
@@ -1203,35 +1334,35 @@ function ribbon(d) {
   const rest = `<div class="rest" style="top:${y(mute)}px;height:${(bed - mute) * PX}px">спокойный вечер</div><div class="rest deep" style="top:${y(bed)}px;height:${(to - bed) * PX}px">сон с ${dash.sleep.bed}, подъём в ${dash.sleep.wake}</div>`;
   return `<div class="ribbon" style="height:${H}px;background:linear-gradient(180deg,${stops.join(',')})">${hrs}${mark(sun.rise, 'восход')}${mark(sun.set, 'закат')}${gaps}${rest}${chips}${now}</div>`;
 }
-function viewDay() {
+function viewDay(bar) {
   const start = iso(NOW()), days = [...Array(7)].map((_, i) => shift(start, i)), sel = days.includes(selDay) ? selDay : start, sun = sunTimes(dayMs(sel));
   const all = dayEvents(sel).filter(x => x.allDay), load = d => Math.min(1, dayEvents(d).filter(x => !x.allDay).reduce((s, x) => s + (x.end - x.start) / 36e5, 0) / 10);
   const free = freeMinutes(sel, sel === start ? NOW() : 0);
   return shell(title(fmt(dayMs(sel), { weekday: 'long' }).replace(/^./, c => c.toUpperCase()), `${dateText(sel)}, солнце ${hm(sun.rise)}–${hm(sun.set)}, свободно ${dur(free)}`),
-    `<div class="strip">${days.map(d => `<button class="${d === sel ? 'on' : ''}" data-sel="${d}" data-tip-off="1">${esc(fmt(dayMs(d), { weekday: 'short' }))}<b class="num">${+d.slice(8)}</b><em><i style="width:${(load(d) * 100).toFixed(0)}%"></i></em></button>`).join('')}</div>
+    `${bar || ''}<div class="strip">${days.map(d => `<button class="${d === sel ? 'on' : ''}" data-sel="${d}" data-tip-off="1">${esc(fmt(dayMs(d), { weekday: 'short' }))}<b class="num">${+d.slice(8)}</b><em><i style="width:${(load(d) * 100).toFixed(0)}%"></i></em></button>`).join('')}</div>
     ${all.map(x => `<div class="allday">${esc(x.title)}</div>`).join('')}${ribbon(sel)}`);
 }
 
 /* ---------- Цели ---------- */
-function viewGoals() {
+function viewGoals(bar) {
   const g = dash.goals;
   return shell(title('Цели', g.length ? 'То, к чему вы идёте' : ''),
-    g.length ? g.map((x, n) => {
+    (bar || '') + (g.length ? g.map((x, n) => {
       const left = x.due ? daysLeft(x.due) : null, next = x.steps.filter(s => !s.done).slice(0, 3), done = x.steps.length - x.steps.filter(s => !s.done).length;
       return `<div class="card goal"><div class="ghead">${orbGoal(x.progress, n)}<div><div class="t">${esc(x.title)}</div><div class="s">${x.metric ? esc(x.metric) : ''}</div></div></div>
       <div class="pct"><span>${x.steps.length ? `Вех: ${done} из ${x.steps.length}` : 'Вех пока нет'}</span><span>${x.due ? dateText(x.due) + (left >= 0 ? `, ${left} дн.` : '') : 'без срока'}</span></div>
       ${next.map(s => `<div class="step"><button class="box" data-step="${s.row}" aria-label="Отметить: ${esc(s.title)}">${CHECK}</button><span>${esc(s.title)}</span><span class="d">${s.date ? dateText(s.date) + (daysLeft(s.date) <= 30 ? `<br>${daysLeft(s.date)} дн.` : '') : ''}</span></div>`).join('')}
       <button class="line-btn" data-say="${esc(`Веха к цели «${x.title}»: `)}">+ Добавить веху</button></div>`;
-    }).join('') : '<div class="card empty"><b>Целей пока нет</b>Нажмите плюс и напишите: цель сдать IELTS на 6.5 до июля</div>');
+    }).join('') : '<div class="card empty"><b>Целей пока нет</b>Нажмите плюс и напишите: цель сдать IELTS на 6.5 до июля</div>'));
 }
 
 /* ---------- Задачи ---------- */
-function viewTasks() {
+function viewTasks(bar) {
   const t = topTasks(), groups = [['Просрочено', 'bad', x => x.due && daysLeft(x.due) < 0], ['Сегодня и завтра', '', x => x.due && daysLeft(x.due) >= 0 && daysLeft(x.due) <= 1], ['На этой неделе', '', x => x.due && daysLeft(x.due) > 1 && daysLeft(x.due) <= 7], ['Потом', '', x => !x.due || daysLeft(x.due) > 7]];
   const item = x => `<div class="twrap" id="task${x.row}"><div class="tback">Закрыть задачу</div><div class="task" data-row="${x.row}"><button class="box" data-task="${x.row}" aria-label="Закрыть: ${esc(x.title)}">${CHECK}</button><div class="x"><div>${esc(x.title)}</div>${x.due ? dueTag(x.due) : ''}${x.priority === 'высокая' ? ' <span class="due bad">важно</span>' : ''}${x.minutes ? ` <span class="due">${dur(x.minutes)}</span>` : ''}</div><button class="play" data-focus="${esc(x.title)}" aria-label="Фокус: ${esc(x.title)}">${PLAY}</button></div></div>`;
   return shell(title('Задачи', t.length ? `Открыто: ${t.length}. Смахните вправо, чтобы закрыть` : 'Ничего не горит'),
-    t.length ? `<div class="card">${groups.map(g => { const l = t.filter(g[2]); return l.length ? `<div class="tgroup ${g[1]}">${g[0]}</div>${l.map(item).join('')}` : ''; }).join('')}</div>`
-      : `<div class="card empty"><svg viewBox="0 0 76 76"><defs><radialGradient id="eg" cx=".36" cy=".28" r=".85"><stop offset="0" stop-color="#6fe3b4"/><stop offset="1" stop-color="#0c7a56"/></radialGradient></defs><circle cx="38" cy="40" r="30" fill="#000" opacity=".2"/><circle cx="38" cy="36" r="30" fill="url(#eg)"/><path class="arc" pathLength="1" d="M25 37l9 9 17-19" fill="none" stroke="#fff" stroke-width="6"/></svg><b>Открытых задач нет</b>Нажмите плюс, чтобы записать новую</div>`);
+    (bar || '') + (t.length ? `<div class="card">${groups.map(g => { const l = t.filter(g[2]); return l.length ? `<div class="tgroup ${g[1]}">${g[0]}</div>${l.map(item).join('')}` : ''; }).join('')}</div>`
+      : `<div class="card empty"><svg viewBox="0 0 76 76"><defs><radialGradient id="eg" cx=".36" cy=".28" r=".85"><stop offset="0" stop-color="#6fe3b4"/><stop offset="1" stop-color="#0c7a56"/></radialGradient></defs><circle cx="38" cy="40" r="30" fill="#000" opacity=".2"/><circle cx="38" cy="36" r="30" fill="url(#eg)"/><path class="arc" pathLength="1" d="M25 37l9 9 17-19" fill="none" stroke="#fff" stroke-width="6"/></svg><b>Открытых задач нет</b>Нажмите плюс, чтобы записать новую</div>`));
 }
 
 /* ---------- Режим: зал, привычки, сон и фокус ---------- */
@@ -1419,6 +1550,248 @@ function viewGym() {
     ${lifts ? `<div class="sec">Рабочие веса</div>${lifts}` : ''}`;
 }
 
+/* ---------- Переключатели внутри вкладок ---------- */
+const segPos = {};
+function segBar(key, items, cur, attr) {
+  const i = Math.max(0, items.findIndex(s => s[0] === cur)), from = segPos[key] === undefined ? i : segPos[key];
+  segPos[key] = i;
+  requestAnimationFrame(() => requestAnimationFrame(() => { const p = $('pill-' + key); if (p) p.style.transform = `translateX(${i * 100}%)`; }));
+  return `<div class="seg" style="--n:${items.length}"><span id="pill-${key}" style="transform:translateX(${from * 100}%)"></span>${items.map(s => `<button class="${s[0] === cur ? 'on' : ''}" data-${attr}="${s[0]}">${s[1]}</button>`).join('')}</div>`;
+}
+
+/* ---------- Бухгалтер ---------- */
+const rub = n => (n < 0 ? '−' : '') + Math.round(Math.abs(n || 0)).toLocaleString('ru-RU') + ' ₽';
+const MONEY_CATS = ['Еда', 'Кафе', 'Транспорт', 'Спорт', 'Учёба', 'Развлечения', 'Свидания', 'Подарки', 'Подписки', 'Одежда', 'Здоровье', 'Связь', 'Дом', 'Другое'];
+const INCOME_CATS = ['Стипендия', 'Зарплата', 'Перевод', 'Подарок', 'Другое'];
+const CATS = {
+  'Еда': ['#5FE0B8', 'M4 5h2l2.2 10h9.6L20 8H7.2M9 19.5h.01M17 19.5h.01'],
+  'Кафе': ['#FFB547', 'M5 9h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4zM16 10h2a2 2 0 0 1 0 4h-2M8 4v2M11 4v2'],
+  'Транспорт': ['#8EA8FF', 'M6 16V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v9M6 12h12M8 19v-3M16 19v-3'],
+  'Спорт': ['#FF8A5B', 'M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12'],
+  'Учёба': ['#C9C2FF', 'M3 9l9-5 9 5-9 5zM7 11.5V16c0 1.5 2.2 3 5 3s5-1.5 5-3v-4.5'],
+  'Развлечения': ['#FF7EB6', 'M4 7h16v11H4zM9 7L7 4M15 7l2-3'],
+  'Свидания': ['#FF6B8B', 'M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z'],
+  'Подарки': ['#F7D774', 'M4 10h16v10H4zM3 7h18v3H3zM12 7v13M12 7c-2-4-6-3-5 0M12 7c2-4 6-3 5 0'],
+  'Подписки': ['#6FD3FF', 'M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4'],
+  'Одежда': ['#B5E86F', 'M8 4l4 2 4-2 4 4-3 3v9H7v-9L4 8z'],
+  'Здоровье': ['#7CF0A0', 'M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z'],
+  'Связь': ['#9FB4FF', 'M8 3h8v18H8zM11 18h2'],
+  'Дом': ['#E6B98A', 'M4 11l8-7 8 7v9H4zM10 20v-5h4v5'],
+  'Другое': ['#A6ADBD', 'M5 12h.01M12 12h.01M19 12h.01']
+};
+const catColor = c => (CATS[c] || (INCOME_CATS.includes(c) ? ['#5FE0B8'] : CATS['Другое']))[0];
+const catIcon = c => `<svg class="cico" viewBox="0 0 24 24" aria-hidden="true"><path d="${(CATS[c] || (INCOME_CATS.includes(c) ? [0, 'M12 19V5M6 11l6-6 6 6'] : CATS['Другое']))[1]}"/></svg>`;
+const EMPTY_MONEY = { month: iso(Date.now()).slice(0, 7), spent: 0, income: 0, today: 0, budget: 0, daily: 0, forecast: 0, left: 30, subsLeft: 0, byCat: {}, prev: {}, limits: {}, days: {}, recent: [], subs: [], boxes: [], debts: [], cats: MONEY_CATS };
+
+function moneyTips(m) {
+  const tips = [], dim = new Date(+m.month.slice(0, 4), +m.month.slice(5), 0).getDate(), dom = dim - m.left + 1, cats = Object.keys(m.byCat).sort((a, b) => m.byCat[b] - m.byCat[a]);
+  if (m.budget) {
+    const pace = m.spent / m.budget - dom / dim;
+    tips.push(pace > .05 ? ['warn', `Тратишь быстрее плана на ${Math.round(pace * 100)}%: к концу месяца выйдет ${rub(m.forecast)}`] : ['good', `Укладываешься в бюджет: прогноз ${rub(m.forecast)} из ${rub(m.budget)}`]);
+  }
+  if (cats.length && m.spent) tips.push(['', `Больше всего уходит на «${cats[0]}»: ${rub(m.byCat[cats[0]])}, это ${Math.round(m.byCat[cats[0]] / m.spent * 100)}% трат`]);
+  cats.forEach(c => { const was = m.prev[c] || 0; if (was && m.byCat[c] > was * 1.2 && m.byCat[c] - was > 500) tips.push(['warn', `«${c}»: на ${Math.round((m.byCat[c] / was - 1) * 100)}% больше, чем в прошлом месяце`]); });
+  Object.keys(m.limits).forEach(c => { const u = m.byCat[c] || 0; if (u > m.limits[c]) tips.push(['bad', `Лимит «${c}» превышен на ${rub(u - m.limits[c])}`]); else if (u > m.limits[c] * .8) tips.push(['warn', `«${c}»: осталось ${rub(m.limits[c] - u)} до лимита`]); });
+  const subs = m.subs.reduce((s, x) => s + x.sum, 0);
+  if (subs) tips.push(['', `Подписки забирают ${rub(subs)} в месяц, это ${rub(subs * 12)} в год`]);
+  if (m.income && m.income > m.spent) tips.push(['good', `Доходы больше трат на ${rub(m.income - m.spent)}: можно отложить в копилку`]);
+  return tips.slice(0, 5);
+}
+function dayBars(m) {
+  const dim = new Date(+m.month.slice(0, 4), +m.month.slice(5), 0).getDate(), today = iso(NOW()), W = 326, H = 110, B = 18, step = W / dim;
+  const vals = [...Array(dim)].map((_, i) => m.days[m.month + '-' + String(i + 1).padStart(2, '0')] || 0), norm = m.budget ? m.budget / dim : 0, top = Math.max(norm * 1.4, ...vals, 1);
+  const y = v => H - B - v / top * (H - B - 10);
+  const bars = vals.map((v, i) => { const d = m.month + '-' + String(i + 1).padStart(2, '0'), h = v ? Math.max(3, H - B - y(v)) : 2; return `<rect class="b ${d === today ? 'today' : ''} ${norm && v > norm ? 'over' : ''}" x="${(i * step + step * .18).toFixed(1)}" y="${(H - B - h).toFixed(1)}" width="${(step * .64).toFixed(1)}" height="${h.toFixed(1)}" rx="2" style="animation-delay:${i * 15}ms;${v ? '' : 'opacity:.25'}"/><rect class="hit" x="${(i * step).toFixed(1)}" y="0" width="${step.toFixed(1)}" height="${H}" data-tip="${esc(dateText(d))}: ${v ? rub(v) : 'без трат'}"/>`; }).join('');
+  const labels = [1, 10, 20, dim].map(n => `<text class="lab" x="${((n - .5) * step).toFixed(1)}" y="${H - 4}" text-anchor="middle">${n}</text>`).join('');
+  return `<svg class="bars mbars" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Траты по дням месяца">${norm ? `<line class="norm" x1="0" x2="${W}" y1="${y(norm).toFixed(1)}" y2="${y(norm).toFixed(1)}"/><text class="lab" x="${W}" y="${(y(norm) - 4).toFixed(1)}" text-anchor="end">норма ${rub(norm)}</text>` : ''}${bars}${labels}</svg>`;
+}
+function viewMoney() {
+  const m = dash.money || EMPTY_MONEY, dim = new Date(+m.month.slice(0, 4), +m.month.slice(5), 0).getDate(), dom = dim - m.left + 1;
+  const used = m.budget ? Math.min(1, m.spent / m.budget) : 0, cats = Object.keys(m.byCat).sort((a, b) => m.byCat[b] - m.byCat[a]), maxCat = Math.max(1, ...cats.map(c => Math.max(m.byCat[c], m.limits[c] || 0)));
+  const monthName = fmt(dayMs(m.month + '-15'), { month: 'long' });
+  const hero = `<div class="card mhero"><svg class="coins" viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="62" cy="76" rx="40" ry="6" fill="#000" opacity=".3"/><g fill="url(#cg)" stroke="rgba(255,255,255,.35)"><ellipse cx="40" cy="62" rx="24" ry="8"/><rect x="16" y="46" width="48" height="16"/><ellipse cx="40" cy="46" rx="24" ry="8"/><ellipse cx="78" cy="56" rx="24" ry="8"/><rect x="54" y="30" width="48" height="26"/><ellipse cx="78" cy="30" rx="24" ry="8"/></g><defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE3A8"/><stop offset=".5" stop-color="#FFB547"/><stop offset="1" stop-color="#C9862A"/></linearGradient></defs><text x="78" y="34" text-anchor="middle" font-size="12" font-weight="800" fill="#7a4a10">₽</text></svg>
+    <div class="k">${m.budget ? 'Сегодня можно потратить' : 'Потрачено за ' + esc(monthName)}</div>
+    <div class="mbig num">${m.budget ? rub(Math.max(0, m.daily)) : rub(m.spent)}</div>
+    <div class="when">${m.budget ? `Потрачено ${rub(m.spent)} из ${rub(m.budget)} · прогноз ${rub(m.forecast)}` : 'Задайте бюджет: «бюджет 20000 в месяц», и бухгалтер посчитает дневной лимит'}</div>
+    ${m.budget ? `<div class="mbar ${m.spent > m.budget ? 'over' : ''}"><i style="width:${(used * 100).toFixed(1)}%"></i><b style="left:${(dom / dim * 100).toFixed(1)}%" data-tip="Сегодня ${dom}-е число: по плану потрачено ${rub(m.budget * dom / dim)}"></b></div>` : ''}
+    <div class="hbtns"><button class="btn3d orange" data-money-new="expense">+ Трата</button><button class="btn3d orange soft" data-money-new="income">+ Доход</button><button class="btn3d orange soft" data-say="Бухгалтер, ">${PEN}Спросить</button></div></div>`;
+  const tiles = `<div class="tiles mt3" style="grid-template-columns:repeat(3,1fr)">
+    <div class="tile stat"><b class="num" style="color:var(--mint)">${rub(m.income)}</b><span>Доходы</span></div>
+    <div class="tile stat"><b class="num">${rub(m.today)}</b><span>Сегодня</span></div>
+    <div class="tile stat"><b class="num" style="color:var(--blue)">${rub(m.subs.reduce((s, x) => s + x.sum, 0))}</b><span>Подписки в месяц</span></div></div>`;
+  const tips = moneyTips(m);
+  return shell(title('Деньги', `${monthName[0].toUpperCase() + monthName.slice(1)}: потрачено ${rub(m.spent)}${m.income ? `, доходы ${rub(m.income)}` : ''}`),
+    `${hero}${tiles}
+    ${tips.length ? `<div class="sec">Бухгалтер советует</div><div class="card tips">${tips.map(t => `<div class="tipr ${t[0]}"><i></i><span>${esc(t[1])}</span></div>`).join('')}</div>` : ''}
+    <div class="sec">По дням</div><div class="card">${dayBars(m)}</div>
+    <div class="sec">Категории<span>${cats.length ? 'лимиты задаются словами: «на кафе 3000»' : ''}</span></div>
+    <div class="card">${cats.length ? cats.map((c, i) => { const lim = m.limits[c], was = m.prev[c]; return `<div class="mcatr" style="--c:${catColor(c)}">${catIcon(c)}<div class="x"><div class="mrow"><b>${esc(c)}</b><span class="num">${rub(m.byCat[c])}${lim ? ` <em>из ${rub(lim)}</em>` : ''}</span></div><div class="mline ${lim && m.byCat[c] > lim ? 'over' : ''}"><i style="width:${(m.byCat[c] / maxCat * 100).toFixed(1)}%;animation-delay:${i * 60}ms"></i>${lim ? `<b style="left:${(lim / maxCat * 100).toFixed(1)}%"></b>` : ''}</div>${was ? `<small>в прошлом месяце ${rub(was)}</small>` : ''}</div></div>`; }).join('') : '<div class="empty" style="padding:8px 0"><b>Трат пока нет</b>Нажмите «+ Трата» или напишите боту: кофе 250</div>'}</div>
+    ${m.boxes.length ? `<div class="sec">Копилки</div><div class="card">${m.boxes.map(b => { const p = b.target ? Math.min(1, b.saved / b.target) : 0; return `<div class="box2"><div class="mrow"><b>${esc(b.title)}</b><span class="num">${rub(b.saved)}${b.target ? ` <em>из ${rub(b.target)}</em>` : ''}</span></div><div class="pbar"><i style="width:${(p * 100).toFixed(1)}%"></i></div><small>${b.target ? Math.round(p * 100) + '%' : ''}${b.due ? ` · к ${esc(dateText(b.due))}${b.target > b.saved && daysLeft(b.due) > 0 ? `, откладывать по ${rub((b.target - b.saved) / Math.max(1, Math.ceil(daysLeft(b.due) / 30)))} в месяц` : ''}` : ''}</small></div>`; }).join('')}</div>` : ''}
+    ${m.subs.length ? `<div class="sec">Подписки<span>${rub(m.subs.reduce((s, x) => s + x.sum, 0))} в месяц</span></div><div class="card">${m.subs.sort((a, b) => a.day - b.day).map(s => `<div class="row"><div style="display:flex;gap:10px;align-items:center">${catIcon(s.cat || 'Подписки')}<div><div>${esc(s.title)}</div><div class="hint">${s.day} числа</div></div></div><span class="v num">${rub(s.sum)}</span></div>`).join('')}</div>` : ''}
+    ${m.debts.length ? `<div class="sec">Долги</div><div class="card">${m.debts.map(d => `<div class="row"><div><div>${esc(d.who)}</div><div class="hint">${d.sum > 0 ? 'должен тебе' : 'ты должен'}${d.title ? ' · ' + esc(d.title) : ''}</div></div><span class="v num" style="color:${d.sum > 0 ? 'var(--mint)' : 'var(--bad)'}">${rub(Math.abs(d.sum))}</span></div>`).join('')}</div>` : ''}
+    <div class="sec">История</div><div class="card">${m.recent.length ? m.recent.slice(0, 25).map(r => `<div class="hrec" style="--c:${catColor(r.cat)}">${catIcon(r.cat)}<div class="x"><div>${esc(r.title || r.cat)}</div><div class="hint">${esc(r.cat)} · ${esc(dateShort(r.d))}</div></div><b class="num ${r.kind === 'доход' ? 'inc' : ''}">${r.kind === 'доход' ? '+' : '−'}${rub(r.sum)}</b></div>`).join('') : '<div class="hint">Здесь появятся траты и доходы. Можно прислать боту фото чека.</div>'}</div>`);
+}
+let mf = null;
+function openMoney(kind) {
+  mf = { kind, amount: '', cat: kind === 'income' ? 'Стипендия' : store.get('mcat') || 'Еда', title: '' };
+  drawMoney(); $('logger').classList.add('on'); $('back').classList.add('on'); document.body.style.overflow = 'hidden'; haptic(); placePop();
+  setTimeout(() => { const a = $('mAmt'); if (a) { a.focus({ preventScroll: true }); placePop(); } }, 60);
+}
+function readMoney() { const a = $('mAmt'), t = $('mTitle'); if (a) mf.amount = a.value; if (t) mf.title = t.value; }
+function drawMoney() {
+  const cats = mf.kind === 'income' ? INCOME_CATS : MONEY_CATS;
+  $('logger').innerHTML = `<div class="grip"></div><div class="lhead"><div class="x"><b>${mf.kind === 'income' ? 'Доход' : 'Новая трата'}</b><span>${mf.kind === 'income' ? 'Стипендия, зарплата, перевод' : 'Сразу попадёт в бухгалтерию'}</span></div><button class="lx" data-close-pop="1" aria-label="Закрыть">×</button></div>
+    <label class="mamount"><input id="mAmt" inputmode="decimal" placeholder="0" value="${esc(mf.amount)}" aria-label="Сумма"><span>₽</span></label>
+    <div class="chips mquick">${[100, 250, 500, 1000, 2000].map(v => `<button class="pill" data-mamt="${v}">${v.toLocaleString('ru-RU')}</button>`).join('')}</div>
+    <div class="mcats">${cats.map(c => `<button class="mcat ${c === mf.cat ? 'on' : ''}" data-mcat="${esc(c)}" style="--c:${catColor(c)}">${catIcon(c)}<span>${esc(c)}</span></button>`).join('')}</div>
+    <input id="mTitle" class="lnote" placeholder="${mf.kind === 'income' ? 'Откуда, например: стипендия' : 'Что именно, например: кофе'}" value="${esc(mf.title)}">
+    <div class="capfoot"><span></span><button class="btn3d" data-msave="1">Записать</button></div>`;
+}
+async function saveMoney() {
+  readMoney();
+  const sum = parseFloat(String(mf.amount).replace(/\s/g, '').replace(',', '.'));
+  if (!(sum > 0)) { toast('Введите сумму'); return; }
+  const m = dash.money = dash.money || JSON.parse(JSON.stringify(EMPTY_MONEY)), d = iso(NOW()), body = { action: 'money', kind: mf.kind, amount: sum, category: mf.cat, title: mf.title.trim() };
+  m.recent.unshift({ d, kind: mf.kind === 'income' ? 'доход' : 'расход', sum, cat: mf.cat, title: body.title });
+  if (mf.kind === 'income') m.income += sum;
+  else { m.spent += sum; m.today += sum; m.byCat[mf.cat] = (m.byCat[mf.cat] || 0) + sum; m.days[d] = (m.days[d] || 0) + sum; m.daily -= sum; store.set('mcat', mf.cat); }
+  closePop(); success(); toast(`Записано: ${rub(sum)} · ${mf.cat}`); render();
+  if (saved(await call(body).catch(() => null))) render();
+}
+
+/* ---------- Мы ---------- */
+let usFilms = 'want', photoCache = {};
+const EMPTY_COUPLE = { name: '', since: '', days: 0, dates: [], meets: { total: 0, month: 0, last: null, list: [] }, films: [], ideas: [], moments: [], spent: 0 };
+const HEART = `<svg class="heart" viewBox="0 0 120 110" aria-hidden="true"><defs><radialGradient id="hg2" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#FFC2D1"/><stop offset=".55" stop-color="#FF6B8B"/><stop offset="1" stop-color="#B8325A"/></radialGradient></defs><path d="M60 100S12 70 12 36a24 24 0 0 1 48-10 24 24 0 0 1 48 10c0 34-48 64-48 64z" fill="url(#hg2)" stroke="rgba(255,255,255,.35)"/><ellipse cx="38" cy="30" rx="10" ry="6" fill="#fff" opacity=".35" transform="rotate(-30 38 30)"/></svg>`;
+const leftText = n => n === 0 ? 'сегодня' : n === 1 ? 'завтра' : `через ${n} ${plural(n, 'день', 'дня', 'дней')}`;
+function viewUs() {
+  const c = dash.couple || EMPTY_COUPLE;
+  if (!c.name && !c.since) return shell(title('Мы', 'Ваша история вдвоём'), `<div class="card ushero">${HEART}<div class="k">Начнём</div><h2>Сколько вы вместе?</h2><div class="when">Напишите боту или здесь: «мы с Настей вместе с 14.02.2025». Появятся счётчик дней, годовщины, встречи, фильмы и идеи свиданий.</div><div class="hbtns"><button class="btn3d orange" data-say="Мы вместе с ">Указать дату</button></div></div>`);
+  const mile = c.dates.find(d => d.kind === 'круглая дата'), want = c.films.filter(f => f.status !== 'посмотрели'), seen = c.films.filter(f => f.status === 'посмотрели');
+  const prevMile = mile ? Math.max(0, ...[0, 100, 200, 300, 365, 500, 600, 700, 730, 800, 900, 1000, 1095, 1500, 2000, 2500].filter(x => x < +mile.title.match(/\d+/)[0])) : 0, mileN = mile ? +mile.title.match(/\d+/)[0] : 0;
+  const ideas = c.ideas.filter(i => i.kind !== 'подарок' && !i.done), gifts = c.ideas.filter(i => i.kind === 'подарок' && !i.done);
+  const weeks = 10, today = iso(NOW()), start = shift(monday(today), -(weeks - 1) * 7), met = new Set(c.meets.list.map(m => m.d));
+  let cells = ''; for (let w = 0; w < weeks; w++) for (let k = 0; k < 7; k++) { const d = shift(start, w * 7 + k); if (d > today) continue; cells += `<rect class="mc ${met.has(d) ? 'on' : ''}" x="${w * 31}" y="${k * 14}" width="27" height="11" rx="3" data-tip="${esc(dateText(d))}${met.has(d) ? ': встреча' : ''}"/>`; }
+  const since = c.meets.last ? daysLeft(c.meets.last.d) * -1 : null, avg = list => { const v = list.map(f => [f.my, f.her]).flat().filter(Boolean); return v.length ? (v.reduce((s, x) => s + x, 0) / v.length).toFixed(1).replace('.', ',') : '—'; };
+  return shell(title(c.name ? `Ты и ${c.name}` : 'Мы', c.since ? `Вместе с ${dateText(c.since)} ${c.since.slice(0, 4)} года` : ''),
+    `<div class="card ushero">${HEART}<div class="k">Вместе</div><div class="usbig"><b class="num">${count(c.days)}</b><span>${plural(c.days, 'день', 'дня', 'дней')}</span></div>
+      ${mile ? `<div class="when">${esc(mile.title)}: ${leftText(mile.left)}</div><div class="pbar"><i style="width:${((c.days - prevMile) / Math.max(1, mileN - prevMile) * 100).toFixed(1)}%"></i></div>` : ''}
+      <div class="hbtns"><button class="btn3d orange" data-meet="1">+ Встреча</button><button class="btn3d orange soft" data-pick="idea">Куда пойдём?</button><button class="btn3d orange soft" data-say="Момент: ">Момент</button></div></div>
+    <div class="sec">Ближайшие даты</div><div class="card">${c.dates.slice(0, 6).map(d => `<div class="drow ${d.left <= 7 ? 'soon' : ''}"><div class="x"><b>${esc(d.title)}</b><div class="hint">${esc(dateText(d.d))}${d.note ? ' · ' + esc(d.note) : ''}</div></div><span class="dchip num">${leftText(d.left)}</span></div>`).join('')}<button class="line-btn" data-say="Важная дата: ">+ Своя дата</button></div>
+    <div class="sec">Встречи</div><div class="card"><div class="tiles" style="grid-template-columns:repeat(3,1fr);margin-bottom:10px"><div class="tile stat"><b class="num">${c.meets.month}</b><span>В этом месяце</span></div><div class="tile stat"><b class="num">${c.meets.total}</b><span>Всего</span></div><div class="tile stat"><b class="num">${since === null ? '—' : since}</b><span>${since === null ? 'Пока нет' : plural(since, 'день', 'дня', 'дней') + ' назад'}</span></div></div>
+      <svg viewBox="0 0 ${weeks * 31} 98" width="100%" role="img" aria-label="Встречи за 10 недель">${cells}</svg>${c.spent ? `<div class="hint" style="margin-top:8px">На свидания и подарки в этом месяце: ${rub(c.spent)}</div>` : ''}</div>
+    <div class="sec">Фильмы и сериалы<span>${seen.length ? 'средняя оценка ' + avg(seen) : ''}</span></div><div class="card">
+      <div class="chips"><button class="pill ${usFilms === 'want' ? 'on' : ''}" data-films="want">Хотим · ${want.length}</button><button class="pill ${usFilms === 'seen' ? 'on' : ''}" data-films="seen">Посмотрели · ${seen.length}</button></div>
+      ${(usFilms === 'want' ? want : seen).slice(0, 30).map(f => `<div class="film"><svg class="cico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4zM8 6v12M16 6v12M4 10h4M4 14h4M16 10h4M16 14h4"/></svg><div class="x"><b>${esc(f.title)}</b><div class="hint">${esc(f.kind)}${f.d ? ' · ' + esc(dateShort(f.d)) : ''}</div></div>${f.status === 'посмотрели' ? `<span class="rate" title="Твоя оценка">${f.my || '—'}</span><span class="rate her" title="Её оценка">${f.her || '—'}</span>` : `<button class="pill" data-film-seen="${esc(f.title)}">Посмотрели</button>`}</div>`).join('') || '<div class="hint">Пока пусто. Напишите: хотим посмотреть Интерстеллар</div>'}
+      <div class="hbtns"><button class="btn3d" data-pick="film">Что смотрим сегодня?</button><button class="btn3d quiet" data-say="Хотим посмотреть: ">+ Фильм</button></div></div>
+    <div class="sec">Идеи свиданий и места</div><div class="card">${ideas.map(i => `<div class="step"><button class="box" data-idea="${esc(i.title)}" aria-label="Сделано: ${esc(i.title)}">${CHECK}</button><span>${esc(i.title)}</span><span class="d">${i.kind === 'место' ? 'место' : 'свидание'}</span></div>`).join('') || '<div class="hint">Напишите: давай сходим на каток</div>'}<button class="line-btn" data-say="Идея свидания: ">+ Идея</button></div>
+    <div class="sec">Её хотелки</div><div class="card">${gifts.map(g => `<div class="row"><div style="display:flex;gap:10px;align-items:center">${catIcon('Подарки')}<span>${esc(g.title)}</span></div>${g.price ? `<span class="v num">${rub(g.price)}</span>` : ''}</div>`).join('') || '<div class="hint">Услышал, что она хочет? Напишите: она хочет наушники</div>'}<button class="line-btn" data-say="Она хочет ">+ Хотелка</button></div>
+    <div class="sec">Моменты</div>${c.moments.length ? `<div class="moments">${c.moments.map((x, i) => `<div class="moment" style="animation-delay:${i * 50}ms">${x.photo ? `<div class="mph" data-photo="${esc(x.photo)}">${photoCache[x.photo] ? `<img src="${photoCache[x.photo]}" alt="">` : ''}</div>` : ''}<div class="mt"><span class="hint">${esc(dateText(x.d))}</span>${x.text ? `<p>${esc(x.text)}</p>` : ''}</div></div>`).join('')}</div>` : '<div class="card empty"><b>Здесь будут ваши моменты</b>Пришлите боту фото с подписью или напишите: запомни, первый снег вместе</div>'}`);
+}
+// Фото моментов подгружаются после отрисовки, по одному, и запоминаются до перезапуска.
+async function loadPhotos() {
+  for (const el of document.querySelectorAll('[data-photo]')) {
+    const id = el.dataset.photo;
+    if (el.querySelector('img')) continue;
+    if (!photoCache[id]) { const r = await call({ action: 'photo', id }).catch(() => null); if (!r || !r.ok) continue; photoCache[id] = r.photo; }
+    if (document.body.contains(el)) el.innerHTML = `<img src="${photoCache[id]}" alt="">`;
+  }
+}
+// Случайный выбор: названия быстро перебираются и замедляются, как барабан.
+function openPick(kind) {
+  const c = dash.couple || EMPTY_COUPLE, list = kind === 'film' ? c.films.filter(f => f.status !== 'посмотрели').map(f => f.title) : c.ideas.filter(i => i.kind !== 'подарок' && !i.done).map(i => i.title);
+  if (!list.length) return toast(kind === 'film' ? 'Список «Хотим посмотреть» пуст' : 'Идей пока нет: напишите, куда хотите сходить');
+  $('logger').innerHTML = `<div class="grip"></div><div class="lhead"><div class="x"><b>${kind === 'film' ? 'Что смотрим сегодня' : 'Куда пойдём'}</b><span>Выбирает случай</span></div><button class="lx" data-close-pop="1" aria-label="Закрыть">×</button></div><div class="pick"><b id="pickT">…</b></div><div class="capfoot"><button class="btn3d quiet" data-pick="${kind}">Ещё раз</button><button class="btn3d" data-close-pop="1">Решено</button></div>`;
+  $('logger').classList.add('on'); $('back').classList.add('on'); document.body.style.overflow = 'hidden'; placePop();
+  const end = Math.floor(Math.random() * list.length), steps = calm ? 1 : 18 + end;
+  let n = 0;
+  (function spin() {
+    const t = $('pickT'); if (!t) return;
+    t.textContent = list[((end - (steps - 1 - n)) % list.length + list.length) % list.length]; t.classList.remove('hit'); tick();
+    if (++n < steps) return setTimeout(spin, 40 + n * n * .9);
+    t.textContent = list[end]; t.classList.add('hit'); success(); confetti();
+  })();
+}
+
+/* ---------- Ритм дня ---------- */
+const EMPTY_RHYTHM = { today: { d: iso(Date.now()), score: 0, parts: { wake: 10, bed: 10, study: 40, focus: 0, bonus: 0 }, known: { wake: false, bed: false, blocks: 0 } }, days: [], streak: 0, avg: 0, weak: '' };
+function scoreRing(t) {
+  const S = 168, r = 70, c = 2 * Math.PI * r, parts = [['wake', 20, '#C9C2FF'], ['bed', 20, '#8EA8FF'], ['study', 40, '#FFB547'], ['focus', 20, '#5FE0B8']];
+  let at = 0;
+  const arcs = parts.map(p => { const len = Math.max(0, t.parts[p[0]] / 100 * c - 3), off = at; at += p[1] / 100 * c; return len < 1 ? "" : `<circle cx="${S / 2}" cy="${S / 2}" r="${r}" fill="none" stroke="${p[2]}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${len.toFixed(1)} ${c.toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}" style="filter:drop-shadow(0 0 6px ${p[2]})"/>`; }).join('');
+  return `<div class="sring"><svg width="${S}" height="${S}" viewBox="0 0 ${S} ${S}" style="transform:rotate(-90deg)" role="img" aria-label="Счёт дня ${t.score} из 100"><circle cx="${S / 2}" cy="${S / 2}" r="${r}" fill="none" stroke="var(--track)" stroke-width="14"/>${arcs}</svg><div class="c"><b class="num">${count(t.score)}</b><span>из 100</span></div></div>`;
+}
+function rhythmBody() {
+  const r = dash.rhythm || EMPTY_RHYTHM, t = r.today, y = r.days[r.days.length - 2], today = iso(NOW()), yd = shift(today, -1);
+  const ask = (what, day, yes, no) => `<span class="cbtns"><button class="pill" data-checkin="${what}:1:${day}">${yes}</button><button class="pill" data-checkin="${what}:0:${day}">${no}</button></span>`;
+  const state = (ok, text) => `<span class="cstate ${ok ? 'good' : 'bad'}">${text}</span>`;
+  const W = 326, H = 96, B = 16, step = W / Math.max(1, r.days.length);
+  const bars = r.days.map((d, i) => { const h = Math.max(3, d.score / 100 * (H - B - 8)); return `<rect class="b ${d.score >= 70 ? 'good' : ''} ${d.d === today ? 'today' : ''}" x="${(i * step + step * .2).toFixed(1)}" y="${(H - B - h).toFixed(1)}" width="${(step * .6).toFixed(1)}" height="${h.toFixed(1)}" rx="2" style="animation-delay:${i * 18}ms"/><rect class="hit" x="${(i * step).toFixed(1)}" y="0" width="${step.toFixed(1)}" height="${H}" data-tip="${esc(dateText(d.d))}: ${d.score} из 100"/>`; }).join('');
+  return `<div class="card rhero">${scoreRing(t)}<div class="rside"><div class="rstat">${FLAME.replace('class="flame"', 'class="flame big"')}<b class="num">${r.streak}</b><span>${plural(r.streak, 'день', 'дня', 'дней')} подряд от 70</span></div><div class="rstat"><b class="num">${r.avg}</b><span>в среднем за неделю</span></div></div>
+      <div class="legend" style="margin-top:6px"><span style="--c:#C9C2FF"><i></i>Подъём ${t.parts.wake}/20</span><span style="--c:#8EA8FF"><i></i>Отбой ${t.parts.bed}/20</span><span style="--c:#FFB547"><i></i>Учёба ${t.parts.study}/40</span><span style="--c:#5FE0B8"><i></i>Фокус ${t.parts.focus}/20</span>${t.parts.bonus ? `<span style="--c:#FF8A5B"><i></i>Бонус +${t.parts.bonus}</span>` : ''}</div></div>
+    <div class="sec">Сегодня</div><div class="card">
+      <div class="crow"><div class="x"><b>Подъём в ${dash.sleep.wake}</b><div class="hint">Утром бот спросит сам, можно отметить здесь</div></div>${t.known.wake ? state(t.parts.wake, t.parts.wake ? 'вовремя' : 'позже') : ask('wake', today, 'Встал', 'Позже')}</div>
+      <div class="crow"><div class="x"><b>Вчера свет в ${dash.sleep.bed}</b><div class="hint">Отбой засчитывается за вчерашний вечер</div></div>${y && y.known.bed ? state(y.parts.bed, y.parts.bed ? 'вовремя' : 'позже') : ask('bed', yd, 'Лёг', 'Позже')}</div>
+      <div class="crow"><div class="x"><b>Учёба по плану</b><div class="hint">${t.known.blocks ? `Отмечено блоков: ${t.known.blocks}` : 'В конце блока бот спросит, получилось ли'}</div></div><span class="cstate">${t.parts.study}/40</span></div>
+      <div class="crow"><div class="x"><b>Фокус от 60 минут</b><div class="hint">Сегодня ${dur(dash.focus.today || 0)}</div></div><button class="pill" data-focus="Фокус">${PLAY.replace('<svg', '<svg width="12" height="12" style="display:inline;vertical-align:-1px;fill:currentColor"')} Начать</button></div></div>
+    ${r.weak ? `<div class="card tips"><div class="tipr warn"><i></i><span>На этой неделе чаще всего проседает ${esc(r.weak)}. Начните с него: это самые лёгкие баллы.</span></div></div>` : ''}
+    <div class="sec">4 недели</div><div class="card"><svg class="bars rbars" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Счёт по дням за 4 недели"><line class="norm" x1="0" x2="${W}" y1="${(H - B - .7 * (H - B - 8)).toFixed(1)}" y2="${(H - B - .7 * (H - B - 8)).toFixed(1)}"/>${bars}</svg></div>
+    <div class="sec">Свои привычки<span>каждая сделанная +5 к счёту</span></div>${viewHabits()}`;
+}
+
+/* ---------- Учёба ---------- */
+function studyBody() {
+  const s = dash.study || { subjects: [], exams: [] };
+  return `${s.exams.length ? `<div class="exams">${s.exams.slice(0, 4).map((e, i) => `<div class="card exam ${e.left <= 7 ? 'soon' : ''}" style="animation-delay:${i * 60}ms"><div class="k">${esc(e.kind)}</div><b>${esc(e.subject)}</b><div class="eleft"><span class="num">${e.left}</span>${plural(e.left, 'день', 'дня', 'дней')}</div><div class="hint">${esc(dateText(e.d))}</div></div>`).join('')}</div>` : ''}
+    <div class="sec">Предметы<span>10-балльная шкала</span></div><div class="card">${s.subjects.length ? s.subjects.map(x => `<div class="subj"><div class="mrow"><b>${esc(x.name)}</b><span class="num avg ${x.avg >= 8 ? 'good' : x.avg < 6 ? 'bad' : ''}">${String(x.avg).replace('.', ',')}</span></div><div class="mline"><i style="width:${x.avg * 10}%"></i></div><div class="gchips">${x.grades.slice(0, 8).map(g => `<span class="gchip" data-tip="${esc(dateText(g.d))}${g.what ? ': ' + esc(g.what) : ''}">${String(g.g).replace('.', ',')}</span>`).join('')}</div></div>`).join('') : '<div class="empty" style="padding:8px 0"><b>Оценок пока нет</b>Напишите: по матанализу 8 за контрольную</div>'}</div>
+    <div class="hbtns" style="margin-bottom:12px"><button class="btn3d" data-say="Оценка: ">+ Оценка</button><button class="btn3d quiet" data-say="Экзамен по ">+ Экзамен</button></div>`;
+}
+
+/* ---------- Списки ---------- */
+function listsBody() {
+  const ls = dash.lists || [];
+  return `${ls.length ? ls.map(l => { const left = l.items.filter(i => !i.done).length; return `<div class="card lcard"><div class="mrow"><b>${esc(l.name)}</b><span class="hint">${left ? `осталось ${left}` : 'всё готово'}</span></div>${l.items.map(i => `<div class="litem ${i.done ? 'done' : ''}"><button class="box ${i.done ? 'on' : ''}" data-litem="${esc(l.name)}|${esc(i.item)}" aria-pressed="${i.done}" aria-label="${esc(i.item)}">${CHECK}</button><span>${esc(i.item)}</span></div>`).join('')}<button class="line-btn" data-say="${esc(l.name)}: ">+ Пункт</button></div>`; }).join('') : '<div class="card empty"><b>Списков пока нет</b>Напишите: купить молоко, хлеб, протеин</div>'}
+    <div class="hbtns" style="margin-bottom:12px"><button class="btn3d" data-say="Купить: ">+ Список покупок</button><button class="btn3d quiet" data-say="Список ">+ Другой список</button></div>`;
+}
+function viewPlan() {
+  const bar = segBar('plan', PLAN_SEGS, planSeg, 'pseg');
+  if (planSeg === 'tasks') return viewTasks(bar);
+  if (planSeg === 'lists') { const ls = dash.lists || [], left = ls.reduce((s, l) => s + l.items.filter(i => !i.done).length, 0); return shell(title('Списки', left ? `Не отмечено: ${left}` : 'Покупки и любые перечни'), bar + listsBody()); }
+  return viewDay(bar);
+}
+
+/* ---------- Быстрые действия без модели ---------- */
+async function toggleItem(el) {
+  const [list, item] = el.dataset.litem.split('|'), l = (dash.lists || []).find(x => x.name === list), it = l && l.items.find(i => i.item === item);
+  if (!it) return;
+  it.done = !it.done; tick(); if (it.done) success(); render();
+  if (saved(await call({ action: 'list_item', list, item, done: it.done }).catch(() => null))) render();
+}
+async function checkIn(v) {
+  const [what, value, date] = v.split(':');
+  haptic('medium'); toast(+value ? 'Отмечено, так держать' : 'Отмечено. Завтра получится');
+  if (saved(await call({ action: 'checkin', what, value: +value, date }).catch(() => null))) render();
+}
+async function ideaDone(el) {
+  const t = el.dataset.idea, i = ((dash.couple || EMPTY_COUPLE).ideas || []).find(x => x.title === t);
+  if (i) i.done = true;
+  success(); confetti(); render();
+  if (saved(await call({ action: 'idea_done', title: t }).catch(() => null))) render();
+}
+async function addMeet() {
+  const c = dash.couple, d = iso(NOW());
+  if (c) { c.meets.month++; c.meets.total++; c.meets.last = { d }; c.meets.list.unshift({ d, what: 'Встреча' }); }
+  success(); toast('Встреча засчитана'); render();
+  if (saved(await call({ action: 'meeting', what: 'Встреча' }).catch(() => null))) render();
+}
+
+/* ---------- Главная: деньги и ближайшая дата ---------- */
+function homeExtras() {
+  const m = dash.money || EMPTY_MONEY, c = dash.couple || EMPTY_COUPLE, d = c.dates[0];
+  return `<div class="hx"><button class="card hxc" data-tab="money">${catIcon('Кафе')}<span class="hint">${m.budget ? 'Сегодня можно' : 'Потрачено за месяц'}</span><b class="num">${rub(m.budget ? Math.max(0, m.daily) : m.spent)}</b></button>
+    <button class="card hxc" data-tab="us">${catIcon('Свидания')}<span class="hint">${d ? esc(d.title) : 'Мы'}</span><b>${d ? leftText(d.left) : c.since ? c.days + ' ' + plural(c.days, 'день', 'дня', 'дней') : 'Указать дату'}</b></button></div>`;
+}
+
 /* ---------- Тренер в панели: техника упражнения и итог тренировки ---------- */
 let techName = '';
 // «вниз 2–3 с, пауза 1 с, вверх 1 с»: из диапазона берётся верхнее число, без темпа вниз 3 с и вверх 1 с.
@@ -1563,11 +1936,11 @@ async function deleteLog() {
 }
 
 function viewHabits() {
-  const today = iso(NOW()), h = dash.habits, rest = STARTERS.filter(n => !h.some(x => x.name === n));
+  const today = iso(NOW()), h = dash.habits;
   const habits = h.length ? h.map(x => `<div class="habit"><div><b>${esc(x.name)}</b><span class="hint">${x.streak ? FLAME + 'Серия: ' + x.streak : 'Серии пока нет'}</span></div>
     <div class="cells" aria-label="Последние 5 недель">${[...Array(35)].map((_, i) => { const d = shift(today, i - 34), on = x.days.includes(d); return `<i class="${on ? 'on' : ''} ${d === today ? 'today' : ''}" data-tip="${esc(dateText(d))}: ${on ? 'сделано' : 'нет'}" style="animation-delay:${i * 7}ms"></i>`; }).join('')}</div>
-    <button class="box ${x.today ? 'on' : ''}" data-habit="${x.index}" aria-label="Отметить: ${esc(x.name)}" aria-pressed="${x.today}">${CHECK}</button></div>`).join('') : '<div class="empty" style="padding:6px 0 2px"><b>Привычек пока нет</b>Добавьте одним нажатием:</div>';
-  const add = rest.length ? `<div class="starts" ${h.length ? 'style="margin-top:12px;justify-content:flex-start"' : ''}>${rest.slice(0, h.length ? 3 : 5).map(n => `<button class="pill" data-add-habit="${esc(n)}">+ ${esc(n)}</button>`).join('')}</div>` : '';
+    <button class="box ${x.today ? 'on' : ''}" data-habit="${x.index}" aria-label="Отметить: ${esc(x.name)}" aria-pressed="${x.today}">${CHECK}</button></div>`).join('') : '<div class="hint">Свои привычки по желанию: каждая сделанная даёт +5 к счёту дня.</div>';
+  const add = '<button class="line-btn" data-say="Добавь привычку: ">+ Своя привычка</button>';
   return `<div class="card">${habits}${add}</div>`;
 }
 function viewRest() {
@@ -1575,18 +1948,23 @@ function viewRest() {
     ${tg && tg.addToHomeScreen && tg.isVersionAtLeast('8.0') ? '<button class="line-btn" data-home="1" style="border:0;text-align:center">Добавить панель на экран телефона</button>' : ''}`;
 }
 function viewMode() {
-  const g = dash.gym, i = SEGS.findIndex(s => s[0] === seg), hDone = dash.habits.filter(h => h.today).length;
-  const head = seg === 'gym' ? title('Зал', motive(gymWeeks())) : seg === 'habits' ? title('Привычки', dash.habits.length ? `Сегодня ${hDone} из ${dash.habits.length}` : 'Маленькие шаги каждый день') : title('Сон и фокус', `Отбой в ${dash.sleep.bed}, подъём в ${dash.sleep.wake}`);
-  const bar = `<div class="seg"><span id="segPill" style="transform:translateX(${segAt * 100}%)"></span>${SEGS.map(s => `<button class="${s[0] === seg ? 'on' : ''}" data-seg="${s[0]}">${s[1]}</button>`).join('')}</div>`;
-  requestAnimationFrame(() => requestAnimationFrame(() => { const p = $('segPill'); if (p) p.style.transform = `translateX(${i * 100}%)`; }));
-  segAt = i;
-  return shell(head, bar + (seg === 'gym' ? viewGym() : seg === 'habits' ? viewHabits() : viewRest()));
+  const bar = segBar('mode', SEGS, seg, 'seg');
+  if (seg === 'goals') return viewGoals(bar);
+  const st = dash.study || { exams: [] }, r = dash.rhythm;
+  const head = {
+    gym: () => title('Зал', motive(gymWeeks())),
+    rhythm: () => title('Ритм дня', r ? `Сегодня ${r.today.score} из 100${r.streak ? ', серия ' + r.streak + ' ' + plural(r.streak, 'день', 'дня', 'дней') : ''}` : 'Подъём, отбой, учёба и фокус'),
+    study: () => title('Учёба', st.exams.length ? `Ближайшее: ${st.exams[0].subject}, ${leftText(st.exams[0].left)}` : 'Оценки и экзамены'),
+    rest: () => title('Сон и фокус', `Отбой в ${dash.sleep.bed}, подъём в ${dash.sleep.wake}`)
+  }[seg] || (() => title('Зал', ''));
+  const body = { gym: viewGym, rhythm: rhythmBody, study: studyBody, rest: viewRest }[seg] || viewGym;
+  return shell(head(), bar + body());
 }
 
 /* ---------- Отрисовка и действия ---------- */
-const VIEWS = { today: viewToday, day: viewDay, goals: viewGoals, tasks: viewTasks, mode: viewMode };
+const VIEWS = { today: viewToday, plan: viewPlan, money: viewMoney, us: viewUs, mode: viewMode };
 function render(dir) {
-  const boot = $('boot'), app = $('app'), key = tab + selDay + selEx + seg + diaryN, same = key === render.key, first = !render.key;
+  const boot = $('boot'), app = $('app'), key = tab + selDay + selEx + seg + planSeg + usFilms + diaryN, same = key === render.key, first = !render.key;
   const was = document.querySelector('.sheet'), from = was ? was.getBoundingClientRect().top : null;
   if (boot) boot.remove();
   app.classList.toggle('still', same); app.classList.toggle('moved', !first);
@@ -1602,6 +1980,7 @@ function render(dir) {
     countUp();
   }
   renderNav();
+  if (tab === 'us') loadPhotos();
   par.scroll = scrollY; wake();
 }
 function countUp() {
@@ -1618,8 +1997,11 @@ function renderNav() {
   requestAnimationFrame(() => requestAnimationFrame(() => { const p = $('pill'); if (p) p.style.transform = `translateX(${i * 100}%)`; }));
   pillAt = i;
 }
+// Старые адреса разделов ведут во вкладки, где они теперь живут.
 function go(next) {
-  if (next === tab) return;
+  if (['day', 'tasks', 'lists'].includes(next)) { planSeg = next; store.set('pseg', next); next = 'plan'; }
+  if (next === 'goals') { seg = 'goals'; store.set('seg', seg); next = 'mode'; }
+  if (next === tab) return render(0);
   const a = TABS.findIndex(t => t[0] === tab), b = TABS.findIndex(t => t[0] === next);
   tab = next; tick(); scrollTo(0, 0); render(b > a ? 1 : -1);
 }
@@ -1772,6 +2154,18 @@ document.addEventListener('click', e => {
   if ((el = q('[data-plan]'))) return togglePlan(+el.dataset.plan);
   if (q('[data-gym-say]')) return openSay('', true);
   if (q('[data-more]')) { diaryN += 10; tick(); return render(); }
+  if ((el = q('[data-pseg]'))) { planSeg = el.dataset.pseg; store.set('pseg', planSeg); tick(); return tab === 'plan' ? render(0) : go('plan'); }
+  if ((el = q('[data-money-new]'))) return openMoney(el.dataset.moneyNew);
+  if ((el = q('[data-mcat]'))) { readMoney(); mf.cat = el.dataset.mcat; tick(); drawMoney(); return placePop(); }
+  if ((el = q('[data-mamt]'))) { readMoney(); mf.amount = el.dataset.mamt; tick(); drawMoney(); return placePop(); }
+  if (q('[data-msave]')) return saveMoney();
+  if ((el = q('[data-litem]'))) return toggleItem(el);
+  if ((el = q('[data-checkin]'))) return checkIn(el.dataset.checkin);
+  if ((el = q('[data-idea]'))) return ideaDone(el);
+  if ((el = q('[data-films]'))) { usFilms = el.dataset.films; tick(); return render(0); }
+  if ((el = q('[data-film-seen]'))) return openSay(`Посмотрели ${el.dataset.filmSeen}, мне `);
+  if ((el = q('[data-pick]'))) return openPick(el.dataset.pick);
+  if (q('[data-meet]')) return addMeet();
   if ((el = q('[data-seg]'))) { seg = el.dataset.seg; store.set('seg', seg); tick(); return tab === 'mode' ? render(el.closest('.seg') ? 0 : 1) : go('mode'); }
   if ((el = q('[data-focus]'))) return openFocus(el.dataset.focus, el.dataset.note);
   if (q('[data-open-focus]')) return openFocus();
@@ -1865,6 +2259,7 @@ setInterval(() => {
 /* ---------- Демо для проверки вне Telegram ---------- */
 function demoCall(body) {
   const d = demoData(body);
+  if (body.action === 'photo') return { ok: true, photo: DEMO_PHOTO(body.id === 'demo1' ? ['#2c3f8f', '#ffc08a'] : ['#7d3b86', '#ee8355']) };
   if (body.action === 'ask') return { ok: true, dash: d, reply: 'Задача: ' + body.text };
   if (body.action === 'gym_finish') return { ok: true, dash: d, reply: '🏁 Тренировка завершена\n\n📈 Прибавляем\n• Жим ногами: платформа+40 → платформа+50\n\n🎯 Держим вес\n• Жим лёжа: 40 кг, добираем повторы до 10/10/8+\n\n💬 Тренер\nНоги взяли верх диапазона во всех подходах, поэтому прибавляем деление. В жиме лёжа последний подход просел: оставь 40 кг и опускай штангу 3 секунды.' };
   return { ok: true, dash: d };
@@ -1873,6 +2268,7 @@ function demoData(body) {
   if (dash) {
     if (body.action === 'habit') { const h = dash.habits.find(x => x.name === body.name); h.today = body.done; }
     if (body.action === 'add_habit') dash.habits.push({ index: dash.habits.length, name: body.name, days: [], streak: 0, today: false });
+    if (body.action === 'checkin' && dash.rhythm) dash.rhythm.days.filter(x => x.d === body.date).forEach(x => { x.known[body.what] = true; x.parts[body.what] = body.value ? 20 : 0; x.score = Math.min(100, Object.values(x.parts).reduce((a, b) => a + b, 0)); });
     if (body.action === 'technique') (dash.gym.tech = dash.gym.tech || {})[body.name] = { muscles: 'основные мышцы упражнения', setup: ['Встань устойчиво, корпус собран', 'Возьми рабочий вес, который чувствуешь'], cues: ['Движение под контролем, без рывков', 'Дыши: усилие на выдохе', 'Полная амплитуда без боли'], mistakes: ['Рывок вместо контроля', 'Слишком большой вес в ущерб технике'], tempo: 'вниз 3 с, пауза 1 с, вверх 1 с', video: body.name + ' техника' };
     if (body.action === 'ask') dash.tasks.push({ row: 50 + dash.tasks.length, title: body.text, due: '', priority: 'средняя', minutes: 0 });
     return dash;
@@ -1899,9 +2295,52 @@ function demoData(body) {
     ],
     habits: [{ index: 0, name: 'Читать 20 минут', days: nearby(9), streak: 9, today: false }, { index: 1, name: 'Вода 2 литра', days: nearby(3), streak: 3, today: false }],
     focus: { active: null, today: 75, week: [40, 0, 90, 120, 25, 60, 75].map((m, i) => ({ d: shift(t, i - 6), m })) },
-    gym: demoGym(t)
+    gym: demoGym(t), money: demoMoney(t), couple: demoCouple(t), study: demoStudy(t), rhythm: demoRhythm(t),
+    lists: [{ name: 'Покупки', items: [{ item: 'молоко', done: true }, { item: 'хлеб', done: false }, { item: 'протеин', done: false }] }, { name: 'В поездку', items: [{ item: 'паспорт', done: false }, { item: 'зарядка', done: false }] }]
   };
 }
+// Демо новых разделов: примерные траты, пара, учёба, списки и ритм, чтобы проверить экраны вне Telegram.
+function demoMoney(t) {
+  const month = t.slice(0, 7), dom = +t.slice(8), dim = new Date(+month.slice(0, 4), +month.slice(5), 0).getDate(), recent = [];
+  const add = (n, sum, cat, title, kind) => { const d = shift(t, -n); if (d.slice(0, 7) === month) recent.push({ d, kind: kind || 'расход', sum, cat, title }); };
+  add(0, 250, 'Кафе', 'кофе'); add(0, 60, 'Транспорт', 'автобус'); add(1, 640, 'Еда', 'Пятёрочка'); add(1, 900, 'Свидания', 'кино с Настей'); add(2, 3200, 'Стипендия', 'стипендия', 'доход');
+  add(2, 1490, 'Спорт', 'протеин'); add(3, 420, 'Кафе', 'обед'); add(4, 1200, 'Одежда', 'футболка'); add(5, 199, 'Подписки', 'Spotify'); add(6, 380, 'Еда', 'продукты');
+  const m = { month, spent: 0, income: 0, today: 0, budget: 20000, byCat: {}, prev: { 'Кафе': 900, 'Еда': 4200, 'Спорт': 1500 }, limits: { 'Кафе': 3000, 'Еда': 6000 }, days: {}, recent,
+    subs: [{ title: 'Spotify', sum: 199, day: 5, cat: 'Подписки' }, { title: 'Яндекс Плюс', sum: 299, day: 20, cat: 'Подписки' }],
+    boxes: [{ title: 'Ноутбук', target: 60000, saved: 18500, due: '2027-05-01' }, { title: 'Подарок на годовщину', target: 5000, saved: 3200, due: '2027-02-14' }],
+    debts: [{ who: 'Вася', sum: 500, title: 'пицца', d: shift(t, -3) }], cats: MONEY_CATS };
+  recent.forEach(r => { if (r.kind === 'доход') { m.income += r.sum; return; } m.spent += r.sum; m.byCat[r.cat] = (m.byCat[r.cat] || 0) + r.sum; m.days[r.d] = (m.days[r.d] || 0) + r.sum; if (r.d === t) m.today += r.sum; });
+  m.left = dim - dom + 1; m.subsLeft = dom < 20 ? 299 : 0;
+  m.daily = Math.round((m.budget - (m.spent - m.today) - m.subsLeft) / m.left - m.today); m.forecast = Math.round(m.spent / dom * dim + m.subsLeft);
+  return m;
+}
+function demoCouple(t) {
+  const since = '2025-02-14', days = Math.round((dayMs(t) - dayMs(since)) / 864e5), next = md => { const d = t.slice(0, 4) + '-' + md; return d >= t ? d : (+t.slice(0, 4) + 1) + '-' + md; };
+  const left = d => Math.round((dayMs(d) - dayMs(t)) / 864e5), ms = [100, 200, 300, 365, 500, 600, 700, 730, 800, 900, 1000].find(x => x > days);
+  const dates = [{ title: 'День рождения Насти', d: shift(t, 7), kind: 'дата', note: 'любит пионы' }, { title: 'Годовщина: ' + (+next('02-14').slice(0, 4) - 2025) + ' года', d: next('02-14'), kind: 'годовщина' },
+    { title: ms + ' дней вместе', d: shift(since, ms), kind: 'круглая дата' }, { title: 'Новый год', d: next('12-31'), kind: 'праздник' }, { title: 'День всех влюблённых', d: next('02-14'), kind: 'праздник' }, { title: '8 Марта', d: next('03-08'), kind: 'праздник' }]
+    .map(x => ({ ...x, left: left(x.d) })).sort((a, b) => a.left - b.left);
+  const list = [1, 4, 6, 9, 13, 15, 20, 24, 27, 33, 38, 41, 47, 52, 60, 66].map(n => ({ d: shift(t, -n), what: 'Встреча' }));
+  return { name: 'Настя', since, days, dates, meets: { total: 84, month: list.filter(x => x.d.slice(0, 7) === t.slice(0, 7)).length, last: list[0], list },
+    films: [{ title: 'Дюна: Часть вторая', kind: 'фильм', status: 'посмотрели', my: 8, her: 9, d: shift(t, -1) }, { title: 'Ла-Ла Ленд', kind: 'фильм', status: 'посмотрели', my: 7, her: 10, d: shift(t, -12) },
+      { title: 'Интерстеллар', kind: 'фильм', status: 'хотим' }, { title: 'Атака титанов', kind: 'сериал', status: 'хотим' }, { title: 'Бегущий по лезвию 2049', kind: 'фильм', status: 'хотим' }, { title: 'Начало', kind: 'фильм', status: 'хотим' }],
+    ideas: [{ kind: 'место', title: 'Каток в парке Швейцария', done: false }, { kind: 'свидание', title: 'Пикник на Откосе на закате', done: false }, { kind: 'свидание', title: 'Мастер-класс по керамике', done: false }, { kind: 'место', title: 'Кофейня на Рождественской', done: false },
+      { kind: 'подарок', title: 'Наушники AirPods', done: false, price: 14990 }, { kind: 'подарок', title: 'Книга «Маленькая жизнь»', done: false, price: 900 }],
+    moments: [{ d: shift(t, -1), text: 'Первый снег вместе на Откосе', photo: 'demo1' }, { d: shift(t, -9), text: 'Смеялись до слёз в кино', photo: 'demo2' }, { d: shift(t, -20), text: 'Ночная прогулка по Большой Покровской', photo: '' }],
+    spent: 900 };
+}
+function demoStudy(t) {
+  const g = (n, v, what) => ({ d: shift(t, -n), g: v, what });
+  return { subjects: [{ name: 'Основы Python', avg: 9.5, grades: [g(3, 10, 'лабораторная'), g(10, 9, 'тест')] }, { name: 'Матанализ', avg: 8, grades: [g(2, 8, 'контрольная'), g(9, 7, 'дз'), g(16, 9, 'коллоквиум')] }, { name: 'Микроэкономика 2', avg: 6.5, grades: [g(5, 6, 'семинар'), g(12, 7, 'эссе')] }],
+    exams: [{ subject: 'Статистика', d: shift(t, 5), kind: 'контрольная', left: 5 }, { subject: 'Матанализ', d: shift(t, 19), kind: 'экзамен', left: 19 }, { subject: 'Английский язык', d: shift(t, 33), kind: 'зачёт', left: 33 }] };
+}
+function demoRhythm(t) {
+  const days = [...Array(28)].map((_, i) => { const d = shift(t, i - 27), s = [62, 78, 85, 70, 55, 90, 74][i % 7] - (i % 5) * 2; return { d, score: s, parts: { wake: 20, bed: s > 70 ? 20 : 0, study: 30, focus: 15, bonus: 0 }, known: { wake: true, bed: true, blocks: 2 } }; });
+  days[27] = { d: t, score: 55, parts: { wake: 20, bed: 10, study: 25, focus: 0, bonus: 0 }, known: { wake: true, bed: false, blocks: 1 } };
+  days[26].known.bed = false;
+  return { today: days[27], days, streak: 2, avg: 72, weak: 'отбой' };
+}
+const DEMO_PHOTO = c => 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient></defs><rect width="300" height="300" fill="url(#g)"/><circle cx="220" cy="80" r="34" fill="#fff" opacity=".7"/><path d="M0 230 Q80 180 160 220 T300 200 V300 H0z" fill="#000" opacity=".35"/></svg>`);
 // Настоящий бумажный дневник и программа, присланные 2026-11-03.
 function demoGym(t) {
   const L = (name, w, reps, label, note) => ({ name, w, label: label || '', reps, note: note || '' });
