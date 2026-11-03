@@ -592,6 +592,20 @@ nav button.on svg { filter: drop-shadow(0 0 6px rgba(255, 181, 71, .8)); }
 #ftime { font-size: 52px; }
 #focus .pill.on { background: var(--acc); color: #1A1205; }
 .boot { background: #0A0E19; }
+/* Тренер: техника, темп повтора, итог тренировки */
+.tech-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin: 0 0 10px; padding: 11px 12px; border-radius: 14px; font-size: 14px; font-weight: 800; color: var(--acc); background: rgba(255, 181, 71, .08); box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .28), 0 0 16px rgba(255, 181, 71, .08); }
+.tech-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tempo { display: flex; gap: 14px; align-items: center; padding: 10px 14px; margin-bottom: 8px; border-radius: 16px; background: #0F1422; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06); }
+.tempo svg { flex: none; filter: drop-shadow(0 0 8px rgba(255, 181, 71, .35)); }
+.tph { flex: 1; display: grid; gap: 9px; }
+.tp { display: grid; grid-template-columns: 1fr auto; gap: 3px 8px; font-size: 13px; font-weight: 700; opacity: .45; }
+.tp b { font-family: var(--disp); font-weight: 600; color: var(--acc); }
+.tp i { grid-column: 1 / -1; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+.tp em { display: block; width: 0; height: 100%; border-radius: 2px; background: var(--acc); box-shadow: 0 0 8px var(--acc); }
+.tbody { max-height: 32vh; overflow-y: auto; margin-bottom: 12px; }
+.tload { color: var(--acc); padding: 14px 0; }
+.coach { max-height: 52vh; overflow-y: auto; margin-bottom: 14px; white-space: pre-wrap; font-size: 14.5px; line-height: 1.5; color: var(--ink); user-select: text; -webkit-user-select: text; }
+.btn3d svg { margin-right: 2px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
@@ -1385,7 +1399,7 @@ function viewGym() {
     ${prog.length ? (fresh ? `<div class="plabel"><span>Программа сегодня</span><span class="num">${doneN} из ${prog.length}</span></div><div class="pbar"><i style="width:${(doneN / prog.length * 100).toFixed(0)}%"></i></div>` : `<div class="plabel"><span>Программа на следующую</span><span class="num">${prog.length} ${plural(prog.length, 'упражнение', 'упражнения', 'упражнений')}</span></div>`)
       : items.length ? `<div class="plabel"><span>План с ${dateText(plan.d)}</span><span class="num">${ticks.length} из ${items.length}</span></div><div class="pbar"><i style="width:${(ticks.length / items.length * 100).toFixed(0)}%"></i></div>${items.map((t, i) => `<div class="pitem ${ticks.includes(i) ? 'done' : ''}"><button class="box ${ticks.includes(i) ? 'on' : ''}" data-plan="${i}" aria-label="Отметить: ${esc(t)}">${CHECK}</button><span>${esc(t)}</span></div>`).join('')}`
       : '<p class="pempty">Программы пока нет. Пришлите боту список упражнений на следующую тренировку, и он появится здесь.</p>'}
-    <div class="hbtns"><button class="btn3d orange" data-log-new="1">+ Упражнение</button><button class="btn3d orange soft" data-gym-say="1">${PEN}Текстом</button></div></div>`;
+    <div class="hbtns">${fresh && todayDone.length && prog.length ? '<button class="btn3d orange" data-finish="1">Завершить тренировку</button>' : ''}<button class="btn3d orange ${fresh && todayDone.length && prog.length ? 'soft' : ''}" data-log-new="1">+ Упражнение</button><button class="btn3d orange soft" data-gym-say="1">${PEN}Текстом</button></div></div>`;
   const stats = `<div class="tiles" style="grid-template-columns:repeat(3,1fr)">
     <div class="tile stat"><div class="plates">${[...Array(g.goal)].map((_, i) => `<i class="${i < g.week ? 'on' : ''}" style="animation-delay:${i * 90}ms"></i>`).join('')}</div><b class="num">${g.week}/${g.goal}</b><span>Эта неделя</span></div>
     <div class="tile stat">${FLAME.replace('class="flame"', 'class="flame big"')}<b class="num">${count(info.streak)}</b><span>${plural(info.streak, 'Неделя', 'Недели', 'Недель')} подряд</span></div>
@@ -1403,6 +1417,61 @@ function viewGym() {
     <div class="sec">Вес тела</div>${weight}
     <div class="sec">Дни тренировок</div><div class="card">${heat(info)}</div>
     ${lifts ? `<div class="sec">Рабочие веса</div>${lifts}` : ''}`;
+}
+
+/* ---------- Тренер в панели: техника упражнения и итог тренировки ---------- */
+let techName = '';
+// «вниз 2–3 с, пауза 1 с, вверх 1 с»: из диапазона берётся верхнее число, без темпа вниз 3 с и вверх 1 с.
+function tempoOf(s) {
+  const n = re => { const m = String(s || '').match(re); return m ? Math.max(...m[1].replace(/\s/g, '').split(/[–-]/).map(Number)) : null; };
+  return { down: n(/вниз\D*(\d+(?:\s*[–-]\s*\d+)?)/i) || 3, pause: /пауз/i.test(s || '') ? n(/пауз\D*(\d+)/i) || 1 : 0, up: n(/вверх\D*(\d+(?:\s*[–-]\s*\d+)?)/i) || 1 };
+}
+function tempoView(s) {
+  const t = tempoOf(s), phases = [['Вниз, под контролем', t.down], ['Пауза', t.pause], ['Вверх, мощно', t.up]].filter(p => p[1]);
+  return `<div class="tempo" role="img" aria-label="Темп повтора: ${phases.map(p => p[0] + ' ' + p[1] + ' с').join(', ')}"><svg viewBox="0 0 60 120" width="60" height="120" aria-hidden="true"><line x1="30" y1="10" x2="30" y2="112" stroke="rgba(255,255,255,.14)" stroke-width="3" stroke-linecap="round"/>
+    <g id="tbw"><rect x="4" y="10" width="52" height="5" rx="2.5" fill="#cfd5e2"/><rect x="0" y="2" width="9" height="21" rx="3" fill="var(--acc)"/><rect x="51" y="2" width="9" height="21" rx="3" fill="var(--acc)"/></g></svg>
+    <div class="tph">${phases.map(p => `<div class="tp"><span>${p[0]}</span><b class="num">${p[1]} с</b><i><em></em></i></div>`).join('')}</div></div>
+    <div class="hint" style="margin:-2px 2px 8px">${esc(s ? 'Темп: ' + s : 'Темп по умолчанию: вниз 3 с, вверх 1 с')}</div>`;
+}
+function startTempo(s) {
+  const bar = $('tbw'), rows = [...document.querySelectorAll('#logger .tp')];
+  if (calm || !bar) return;
+  const t = tempoOf(s), total = t.down + t.pause + t.up + .8, at = v => Math.min(1, v / total), loop = { duration: total * 1000, iterations: Infinity };
+  bar.animate([{ transform: 'translateY(0)', offset: 0, easing: 'linear' }, { transform: 'translateY(84px)', offset: at(t.down) }, { transform: 'translateY(84px)', offset: at(t.down + t.pause), easing: 'cubic-bezier(.2,.8,.2,1)' }, { transform: 'translateY(0)', offset: at(t.down + t.pause + t.up) }, { transform: 'translateY(0)', offset: 1 }], loop);
+  let from = 0;
+  [t.down, t.pause, t.up].filter(Boolean).forEach((len, i) => {
+    const a = at(from), b = at(from + len), row = rows[i];
+    from += len;
+    if (!row) return;
+    row.animate([{ opacity: .45, offset: 0 }, { opacity: .45, offset: a }, { opacity: 1, offset: Math.min(1, a + .001) }, { opacity: 1, offset: b }, { opacity: .45, offset: Math.min(1, b + .001) }, { opacity: .45, offset: 1 }], loop);
+    row.querySelector('em').animate([{ width: '0%', offset: 0 }, { width: '0%', offset: a }, { width: '100%', offset: b }, { width: '0%', offset: Math.min(1, b + .001) }, { width: '0%', offset: 1 }], loop);
+  });
+}
+function drawTech() {
+  const name = techName, t = (dash.gym.tech || {})[name], q = encodeURIComponent((t && t.video) || name + ' техника');
+  const list = (head, xs) => xs && xs.length ? `<div class="dlabel">${head}</div><ul class="dlist">${xs.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+  $('logger').innerHTML = `<div class="grip"></div><div class="lhead"><div class="x"><b>${esc(name)}</b><span>Техника от тренера</span></div><button class="lx" data-tech-back="1" aria-label="Назад к записи">×</button></div>
+    ${t ? `${t.muscles ? `<div class="lprev">Работают: <b>${esc(t.muscles)}</b></div>` : ''}${tempoView(t.tempo)}<div class="tbody">${list('Подготовка', t.setup)}${list('Как делать', t.cues)}${list('Частые ошибки', t.mistakes)}</div>`
+      : '<div class="lprev tload">Тренер готовит подсказки…</div>'}
+    <div class="capfoot"><button class="btn3d quiet" data-link="https://yandex.ru/images/search?text=${q}">Картинки</button><button class="btn3d" data-link="https://www.youtube.com/results?search_query=${q}">${PLAY}Видео техники</button></div>`;
+  if (t) startTempo(t.tempo);
+}
+async function openTech(name) {
+  techName = name; tick(); drawTech(); placePop();
+  if ((dash.gym.tech || {})[name]) return;
+  const r = await call({ action: 'technique', name }).catch(() => null);
+  if (saved(r) && techName === name && $('logger').classList.contains('on')) { drawTech(); placePop(); }
+}
+// Тренировка закончена: программа на следующую пересчитывается на сервере, итог с советом тренера приходит сюда и в чат.
+async function finishGym(btn) {
+  btn.disabled = true; haptic('medium'); toast('Тренер пересчитывает программу…');
+  const r = await call({ action: 'gym_finish', date: iso(NOW()) }).catch(() => null);
+  if (!saved(r)) { btn.disabled = false; return; }
+  confetti(); success(); lg = null;
+  $('logger').innerHTML = `<div class="grip"></div><div class="lhead"><div class="x"><b>Тренировка завершена</b><span>Программа на следующую готова</span></div></div>
+    <div class="coach">${esc(String(r.reply || '').replace(/^.*\n/, '').trim())}</div><div class="capfoot"><span></span><button class="btn3d" data-close-pop="1">Отлично</button></div>`;
+  $('logger').classList.add('on'); $('back').classList.add('on'); document.body.style.overflow = 'hidden';
+  placePop(); render();
 }
 
 /* ---------- Запись подходов: кнопки вместо клавиатуры ---------- */
@@ -1431,6 +1500,7 @@ function drawLog() {
     <div class="lhead"><div class="x">${lg.isNew ? `<input id="lgName" class="lname" placeholder="Упражнение" list="exList" value="${esc(lg.name)}"><datalist id="exList">${known.map(n => `<option value="${esc(n)}">`).join('')}</datalist>` : `<b>${esc(p && !lg.free ? p.name : lg.name)}</b>`}
       <span>${p ? esc([p.weight, p.target].filter(Boolean).join(' · ')) : 'Своё упражнение'}</span></div><input type="date" id="lgDate" value="${lg.date}" max="${iso(NOW())}" aria-label="Дата"></div>
     ${prev && !lg.free ? `<div class="lprev">Прошлый раз, ${esc(dateShort(prev.d))}: <b>${esc(itemText(prev.items))}</b></div>` : ''}
+    ${lg.name && !lg.free ? `<button class="tech-btn" data-tech="${esc(lg.name)}"><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5z"/><path d="M7 11.5V16c0 1.5 2.2 3 5 3s5-1.5 5-3v-4.5"/></svg>Техника, видео и темп</button>` : ''}
     ${lg.free ? `<div class="lset">${stepper('m', 0, lg.minutes, 'мин')}</div><input id="lgNote" class="lnote" value="${esc(lg.note)}" placeholder="Что делали">`
       : `<div class="lsets">${lg.sets.map((s, i) => `<div class="lset"><span class="sn num">${i + 1}</span>${stepper('w', i, s.w, unitOf(lg.tpl))}${stepper('r', i, s.r, 'повт')}<button class="lx" data-lx="${i}" aria-label="Убрать подход">×</button></div>`).join('')}</div>
         <button class="pill ladd" data-ladd="1">+ Подход</button><input id="lgNote" class="lnote" value="${esc(lg.note)}" placeholder="Заметка, например: левая гуляет">`}
@@ -1689,6 +1759,11 @@ document.addEventListener('click', e => {
   if (q('[data-ladd]')) { readLog(); lg.sets.push({ ...(lg.sets[lg.sets.length - 1] || { w: null, r: 10 }) }); tick(); drawLog(); return placePop(); }
   if (q('[data-lsave]')) return saveLog();
   if (q('[data-ldel]')) return deleteLog();
+  if ((el = q('[data-tech]'))) return openTech(el.dataset.tech);
+  if (q('[data-tech-back]')) { techName = ''; if (lg) { drawLog(); return placePop(); } return closePop(); }
+  if ((el = q('[data-link]'))) { try { tg.openLink(el.dataset.link); } catch (err) { open(el.dataset.link, '_blank'); } return; }
+  if ((el = q('[data-finish]'))) return finishGym(el);
+  if (q('[data-close-pop]')) return closePop();
   if ((el = q('[data-log]'))) return openLog(el.dataset.log, '', el.dataset.planName);
   if ((el = q('[data-edit]'))) return openLog(el.dataset.name, el.dataset.edit);
   if ((el = q('[data-add-day]'))) return openLog('', el.dataset.addDay);
@@ -1791,12 +1866,14 @@ setInterval(() => {
 function demoCall(body) {
   const d = demoData(body);
   if (body.action === 'ask') return { ok: true, dash: d, reply: 'Задача: ' + body.text };
+  if (body.action === 'gym_finish') return { ok: true, dash: d, reply: '🏁 Тренировка завершена\n\n📈 Прибавляем\n• Жим ногами: платформа+40 → платформа+50\n\n🎯 Держим вес\n• Жим лёжа: 40 кг, добираем повторы до 10/10/8+\n\n💬 Тренер\nНоги взяли верх диапазона во всех подходах, поэтому прибавляем деление. В жиме лёжа последний подход просел: оставь 40 кг и опускай штангу 3 секунды.' };
   return { ok: true, dash: d };
 }
 function demoData(body) {
   if (dash) {
     if (body.action === 'habit') { const h = dash.habits.find(x => x.name === body.name); h.today = body.done; }
     if (body.action === 'add_habit') dash.habits.push({ index: dash.habits.length, name: body.name, days: [], streak: 0, today: false });
+    if (body.action === 'technique') (dash.gym.tech = dash.gym.tech || {})[body.name] = { muscles: 'основные мышцы упражнения', setup: ['Встань устойчиво, корпус собран', 'Возьми рабочий вес, который чувствуешь'], cues: ['Движение под контролем, без рывков', 'Дыши: усилие на выдохе', 'Полная амплитуда без боли'], mistakes: ['Рывок вместо контроля', 'Слишком большой вес в ущерб технике'], tempo: 'вниз 3 с, пауза 1 с, вверх 1 с', video: body.name + ' техника' };
     if (body.action === 'ask') dash.tasks.push({ row: 50 + dash.tasks.length, title: body.text, due: '', priority: 'средняя', minutes: 0 });
     return dash;
   }
