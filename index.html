@@ -735,6 +735,63 @@ nav button.on svg { filter: drop-shadow(0 0 6px rgba(255, 181, 71, .8)); }
 .hxc:nth-child(2) { --c: #FF6B8B; }
 .hxc b { font-family: var(--disp); font-weight: 600; font-size: 17px; }
 .mt3 .stat b { font-size: 16px; white-space: nowrap; }
+/* Учебная сессия, игра и банк */
+#focus { overflow-y: auto; justify-content: flex-start; gap: 14px; padding-top: calc(var(--safe-top) + 36px); }
+#focus h2 { font-family: var(--disp); font-weight: 600; }
+.fk { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); }
+.fsubj, .fpre, .freason, .fadj { justify-content: center; flex-wrap: wrap; max-width: 360px; margin: 0; overflow: visible; }
+.fcustom { display: flex; gap: 8px; width: min(340px, 92%); }
+.fcustom .lnote { margin: 0; }
+.fnext { display: grid; gap: 6px; justify-items: center; width: min(340px, 92%); padding: 12px 16px; border-radius: 18px; background: rgba(255, 181, 71, .08); box-shadow: inset 0 0 0 1px rgba(255, 181, 71, .28), 0 0 18px rgba(255, 181, 71, .1); }
+.fnext span { font-size: 11.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--acc); }
+.fnext b { font-size: 15px; line-height: 1.35; }
+.fdur { display: flex; align-items: center; gap: 18px; }
+.fdur b { display: block; font-family: var(--disp); font-size: 38px; font-weight: 600; line-height: 1.1; text-shadow: 0 0 22px rgba(255, 181, 71, .4); }
+.fdur span { font-size: 13px; color: var(--ink-2); }
+.fstep { width: 56px; height: 56px; border-radius: 18px; font-size: 28px; color: var(--ink); background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+.fstep:active { transform: scale(.92); }
+.fquest { width: min(340px, 92%); text-align: left; }
+.fquest .mrow { font-size: 13px; color: var(--ink-2); }
+.btn3d.big { padding: 15px 26px; font-size: 17px; border-radius: 18px; justify-content: center; }
+.flink { color: var(--ink-2); font-size: 14px; padding: 6px 12px; }
+.fphase { min-height: 40px; max-width: 320px; font-size: 14.5px; line-height: 1.4; color: var(--ink); opacity: .92; }
+.fmeta { font-size: 13px; color: var(--ink-2); }
+.fmeta b { color: var(--acc); font-family: var(--disp); font-weight: 600; }
+.exring { position: relative; width: 150px; height: 150px; }
+.exring svg { transform: rotate(-90deg); filter: drop-shadow(0 0 10px rgba(255, 138, 91, .5)); }
+.exring b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--disp); font-size: 44px; font-weight: 600; }
+#focus .btn3d[disabled] { opacity: .35; }
+#focus .btn3d[disabled]::after { display: none; }
+.fxp { font-family: var(--disp); font-size: 34px; font-weight: 600; color: var(--acc); text-shadow: 0 0 24px rgba(255, 181, 71, .6); }
+#focus .lnote { width: min(340px, 92%); margin: 0; }
+.gcard { display: grid; grid-template-columns: auto 1fr; gap: 12px 14px; align-items: center; overflow: hidden; background: #161D33; border-radius: 28px; box-shadow: 0 24px 48px rgba(0, 0, 0, .5), 0 0 40px rgba(255, 181, 71, .12), inset 0 1px 0 rgba(255, 255, 255, .06); }
+.gcard::before { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; padding: 1px; pointer-events: none; background: conic-gradient(from var(--a), transparent 0deg 240deg, rgba(255, 181, 71, .9) 300deg, #FF8A5B 335deg, transparent 360deg); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: nspin 8s linear infinite; }
+.glvl { position: relative; width: 64px; height: 64px; }
+.glvl svg { transform: rotate(-90deg); }
+.glvl b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--disp); font-size: 24px; font-weight: 600; color: var(--acc); text-shadow: 0 0 14px rgba(255, 181, 71, .6); }
+.gcard .k { font-family: var(--disp); font-size: 16px; font-weight: 600; }
+.gxp, .gqb { height: 7px; border-radius: 4px; background: rgba(255, 255, 255, .1); margin: 6px 0 4px; overflow: hidden; }
+.gxp i, .gqb i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #FFB547, #FF8A5B); box-shadow: 0 0 10px rgba(255, 181, 71, .6); transform-origin: left; animation: fill 1s var(--ease) both; }
+.gqb i { background: linear-gradient(90deg, #5FE0B8, #8EA8FF); box-shadow: 0 0 10px rgba(95, 224, 184, .5); }
+.gq, .gstreaks, .gcard > .btn3d { grid-column: 1 / -1; }
+.gq .fquest { width: 100%; }
+.gstreaks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.gst { display: grid; justify-items: center; gap: 1px; padding: 8px 2px; border-radius: 14px; background: rgba(255, 255, 255, .04); font-size: 10.5px; font-weight: 700; color: var(--ink-3); }
+.gst b { font-family: var(--disp); font-size: 18px; font-weight: 600; color: var(--ink-2); }
+.gst svg { width: 20px; height: 20px; fill: #4a5066; }
+.gst.on { color: var(--ink-2); box-shadow: inset 0 0 0 1px rgba(255, 138, 91, .3); }
+.gst.on b { color: var(--ink); }
+.gst.on svg { fill: #FF8A5B; filter: drop-shadow(0 0 6px rgba(255, 138, 91, .8)); }
+.badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: var(--gap); }
+.badge2 { display: grid; justify-items: center; align-content: start; text-align: center; gap: 4px; padding: 12px 6px; border-radius: 18px; background: #141A2A; box-shadow: var(--lift); font-size: 11px; line-height: 1.25; color: var(--ink-3); }
+.badge2 b { font-size: 12.5px; color: var(--ink-2); }
+.badge2 svg { width: 34px; height: 34px; opacity: .3; filter: grayscale(1); }
+.badge2.on { color: var(--ink-2); box-shadow: var(--lift), inset 0 0 0 1px rgba(255, 181, 71, .35), 0 0 20px rgba(255, 181, 71, .15); }
+.badge2.on b { color: var(--ink); }
+.badge2.on svg { opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 181, 71, .7)); }
+.bank { position: relative; z-index: 1; display: grid; gap: 1px; margin-bottom: 12px; padding: 10px 14px; border-radius: 16px; text-align: left; background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); max-width: 62%; }
+.bank b { font-family: var(--disp); font-size: 20px; font-weight: 600; color: var(--mint); text-shadow: 0 0 14px rgba(95, 224, 184, .35); }
+.bank:active { transform: scale(.97); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
@@ -1295,7 +1352,7 @@ function viewToday() {
   const top = topTasks().slice(0, 3), goal = dash.goals.find(x => x.due) || dash.goals[0];
   const step = dash.goals.flatMap(x => x.steps.filter(s => !s.done && s.date).map(s => ({ ...s, goal: x.title }))).sort((a, b) => a.date.localeCompare(b.date))[0];
   return shell(`<div><div class="kick">${esc(fmt(ms, { weekday: 'long', day: 'numeric', month: 'long' }))}</div><h1>${esc(greeting(ms))}</h1></div>${skyCard(ms)}${hero(ms, list)}`,
-    `${top.length ? `<div class="sec">Главное сегодня</div><div class="card">${top.map((t, i) => `<div class="todo"><span class="rank num">${i + 1}</span><div class="x"><div>${esc(t.title)}</div>${t.due ? dueTag(t.due) : ''}</div><button class="play" data-focus="${esc(t.title)}" aria-label="Фокус: ${esc(t.title)}">${PLAY}</button></div>`).join('')}</div>` : ''}
+    `${gameCard()}${top.length ? `<div class="sec">Главное сегодня</div><div class="card">${top.map((t, i) => `<div class="todo"><span class="rank num">${i + 1}</span><div class="x"><div>${esc(t.title)}</div>${t.due ? dueTag(t.due) : ''}</div><button class="play" data-focus="${esc(t.title)}" aria-label="Фокус: ${esc(t.title)}">${PLAY}</button></div>`).join('')}</div>` : ''}
     <div class="card">${dial(list)}</div>
     <div class="tiles">
       <button class="tile" data-seg="rhythm">${ring((dash.rhythm ? dash.rhythm.today.score : 0) / 100, 'var(--acc)', dash.rhythm ? dash.rhythm.today.score : 0)}<span>Ритм</span></button>
@@ -1610,6 +1667,7 @@ function viewMoney() {
   const used = m.budget ? Math.min(1, m.spent / m.budget) : 0, cats = Object.keys(m.byCat).sort((a, b) => m.byCat[b] - m.byCat[a]), maxCat = Math.max(1, ...cats.map(c => Math.max(m.byCat[c], m.limits[c] || 0)));
   const monthName = fmt(dayMs(m.month + '-15'), { month: 'long' });
   const hero = `<div class="card mhero"><svg class="coins" viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="62" cy="76" rx="40" ry="6" fill="#000" opacity=".3"/><g fill="url(#cg)" stroke="rgba(255,255,255,.35)"><ellipse cx="40" cy="62" rx="24" ry="8"/><rect x="16" y="46" width="48" height="16"/><ellipse cx="40" cy="46" rx="24" ry="8"/><ellipse cx="78" cy="56" rx="24" ry="8"/><rect x="54" y="30" width="48" height="26"/><ellipse cx="78" cy="30" rx="24" ry="8"/></g><defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE3A8"/><stop offset=".5" stop-color="#FFB547"/><stop offset="1" stop-color="#C9862A"/></linearGradient></defs><text x="78" y="34" text-anchor="middle" font-size="12" font-weight="800" fill="#7a4a10">₽</text></svg>
+    <button class="bank" data-bank="1"><span class="hint">На счету</span><b class="num">${m.bank ? rub(m.bank.amount) : 'Указать'}</b>${m.bank && m.budget ? `<span class="hint">по плану к концу месяца ≈ ${rub(m.bank.amount - Math.max(0, m.budget - m.spent))}</span>` : m.bank ? '' : '<span class="hint">сколько денег сейчас</span>'}</button>
     <div class="k">${m.budget ? 'Сегодня можно потратить' : 'Потрачено за ' + esc(monthName)}</div>
     <div class="mbig num">${m.budget ? rub(Math.max(0, m.daily)) : rub(m.spent)}</div>
     <div class="when">${m.budget ? `Потрачено ${rub(m.spent)} из ${rub(m.budget)} · прогноз ${rub(m.forecast)}` : 'Задайте бюджет: «бюджет 20000 в месяц», и бухгалтер посчитает дневной лимит'}</div>
@@ -1653,6 +1711,7 @@ async function saveMoney() {
   if (!(sum > 0)) { toast('Введите сумму'); return; }
   const m = dash.money = dash.money || JSON.parse(JSON.stringify(EMPTY_MONEY)), d = iso(NOW()), body = { action: 'money', kind: mf.kind, amount: sum, category: mf.cat, title: mf.title.trim() };
   m.recent.unshift({ d, kind: mf.kind === 'income' ? 'доход' : 'расход', sum, cat: mf.cat, title: body.title });
+  if (m.bank) m.bank.amount += mf.kind === 'income' ? sum : -sum;
   if (mf.kind === 'income') m.income += sum;
   else { m.spent += sum; m.today += sum; m.byCat[mf.cat] = (m.byCat[mf.cat] || 0) + sum; m.days[d] = (m.days[d] || 0) + sum; m.daily -= sum; store.set('mcat', mf.cat); }
   closePop(); success(); toast(`Записано: ${rub(sum)} · ${mf.cat}`); render();
@@ -1736,7 +1795,7 @@ function rhythmBody() {
       <div class="crow"><div class="x"><b>Фокус от 60 минут</b><div class="hint">Сегодня ${dur(dash.focus.today || 0)}</div></div><button class="pill" data-focus="Фокус">${PLAY.replace('<svg', '<svg width="12" height="12" style="display:inline;vertical-align:-1px;fill:currentColor"')} Начать</button></div></div>
     ${r.weak ? `<div class="card tips"><div class="tipr warn"><i></i><span>На этой неделе чаще всего проседает ${esc(r.weak)}. Начните с него: это самые лёгкие баллы.</span></div></div>` : ''}
     <div class="sec">4 недели</div><div class="card"><svg class="bars rbars" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Счёт по дням за 4 недели"><line class="norm" x1="0" x2="${W}" y1="${(H - B - .7 * (H - B - 8)).toFixed(1)}" y2="${(H - B - .7 * (H - B - 8)).toFixed(1)}"/>${bars}</svg></div>
-    <div class="sec">Свои привычки<span>каждая сделанная +5 к счёту</span></div>${viewHabits()}`;
+    <div class="sec">Свои привычки<span>каждая сделанная +5 к счёту</span></div>${viewHabits()}${badgesCard()}`;
 }
 
 /* ---------- Учёба ---------- */
@@ -1788,7 +1847,7 @@ async function addMeet() {
 /* ---------- Главная: деньги и ближайшая дата ---------- */
 function homeExtras() {
   const m = dash.money || EMPTY_MONEY, c = dash.couple || EMPTY_COUPLE, d = c.dates[0];
-  return `<div class="hx"><button class="card hxc" data-tab="money">${catIcon('Кафе')}<span class="hint">${m.budget ? 'Сегодня можно' : 'Потрачено за месяц'}</span><b class="num">${rub(m.budget ? Math.max(0, m.daily) : m.spent)}</b></button>
+  return `<div class="hx"><button class="card hxc" data-tab="money">${catIcon('Кафе')}<span class="hint">${m.budget ? 'Сегодня можно' : 'Потрачено за месяц'}</span><b class="num">${rub(m.budget ? Math.max(0, m.daily) : m.spent)}</b>${m.bank ? `<span class="hint">на счету ${rub(m.bank.amount)}</span>` : ''}</button>
     <button class="card hxc" data-tab="us">${catIcon('Свидания')}<span class="hint">${d ? esc(d.title) : 'Мы'}</span><b>${d ? leftText(d.left) : c.since ? c.days + ' ' + plural(c.days, 'день', 'дня', 'дней') : 'Указать дату'}</b></button></div>`;
 }
 
@@ -2079,48 +2138,177 @@ async function sendSay() {
   s.value = ''; $('reply').textContent = r.reply.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 }
 
-/* ---------- Фокус ---------- */
-let fPick = 25, fTitle = '', fNote = '', fTimer = 0, fLock = null;
+/* ---------- Учебная сессия ---------- */
+// Время задаёте сами: от 10 минут до 4 часов, и его можно менять на ходу.
+// Выйти раньше можно, но после 30 секунд ожидания и с причиной. В конце записывается следующий шаг.
+const SUBJECTS = ['Python', 'Английский'], PRESETS = [40, 60, 90, 120, 180, 240], REASONS = ['Устал', 'Сонливость', 'Скучно', 'Сложно', 'Отвлёкся', 'Срочное дело'];
+let fPick = store.get('fmin') || 60, fTitle = store.get('fsubj') || 'Python', fNote = '', fTimer = 0, fLock = null, fExit = null, fDone = null, fCustom = false;
 function openFocus(t, note) {
-  if (t !== undefined) { fTitle = t; fNote = note || ''; }
+  if (t && t !== 'Фокус') fTitle = t;
+  fNote = note || ''; fExit = null; fDone = null; fCustom = false;
   $('focus').classList.add('on'); haptic(); drawFocus();
 }
-function closeFocus() { $('focus').classList.remove('on'); clearInterval(fTimer); if (fLock) { fLock.release().catch(() => {}); fLock = null; } }
-const clockText = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+function closeFocus() {
+  $('focus').classList.remove('on'); clearInterval(fTimer); if (fExit) clearInterval(fExit.t); fExit = null; fDone = null;
+  if (fLock) { fLock.release().catch(() => {}); fLock = null; }
+}
+const clockText = s => { const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ':' + String(m).padStart(2, '0') : String(m).padStart(2, '0')) + ':' + String(x).padStart(2, '0'); };
+// Подсказка по ходу сессии: первые минуты самые тяжёлые, дальше легче.
+function phaseText(f) {
+  const pass = (Date.now() - f.start) / 6e4, left = (f.end - Date.now()) / 6e4;
+  if (left < 5) return 'Финишная прямая. Доделай и запиши, с чего начнёшь в следующий раз';
+  if (pass < 10) return 'Первые 10 минут самые тяжёлые. Желание уйти пройдёт, если не уходить';
+  if (pass < 30) return 'Разгон пройден. Закончил задание раньше времени? Бери следующее';
+  if (pass < 60) return 'Полчаса есть: день уже идёт в серию учёбы';
+  return pass < 120 ? 'Больше часа в потоке. Так и выглядит прогресс' : 'Больше двух часов. Это уровень марафонца';
+}
+const nextCard = n => n ? `<div class="fnext"><span>В прошлый раз остановился</span><b>${esc(n.next || 'на этом задании')}</b>${n.link ? `<button class="pill" data-link="${esc(n.link)}">Открыть задание</button>` : ''}</div>` : '';
+function questLine() {
+  const g = dash.game, done = (dash.focus.today || 0), goal = g ? g.quest.goal : 120;
+  return `<div class="fquest"><div class="mrow"><span>Учёба сегодня</span><span class="num">${dur(done)} из ${dur(goal)}</span></div><div class="gqb"><i style="width:${Math.min(100, done / goal * 100).toFixed(1)}%"></i></div></div>`;
+}
 function drawFocus() {
   const f = dash.focus.active, run = f && f.end > Date.now(), C = 2 * Math.PI * 118;
-  $('focus').innerHTML = `<h2>${esc(run ? f.title : fTitle || 'Фокус')}</h2><div class="sub">${run ? 'Телефон можно заблокировать: бот напишет, когда время выйдет' : fNote ? esc(fNote) : 'Один блок, одно дело. Итог попадёт в статистику'}</div>
-    <div class="fring"><svg viewBox="0 0 268 268" width="268" height="268"><defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB547"/><stop offset="1" stop-color="#8EA8FF"/></linearGradient></defs><circle cx="134" cy="134" r="118" stroke="rgba(255,255,255,.1)"/><circle id="fprog" cx="134" cy="134" r="118" stroke="url(#fg)" pathLength="1"/></svg><div id="ftime" class="num">${clockText(fPick * 60)}</div></div>
-    ${run ? '<div class="fbtns"><button class="btn3d quiet" data-fstop="1">Завершить</button><button class="btn3d quiet" data-fhide="1">Свернуть</button></div>'
-      : `<div class="fbtns">${[15, 25, 50, 90].map(m => `<button class="pill ${m === fPick ? 'on' : ''}" data-fpick="${m}">${m} мин</button>`).join('')}</div><div class="fbtns"><button class="btn3d" data-fstart="1">${PLAY}Начать</button><button class="btn3d quiet" data-fhide="1">Закрыть</button></div>`}`;
   clearInterval(fTimer);
-  if (run) { tickFocus(); fTimer = setInterval(tickFocus, 1000); if (navigator.wakeLock && !fLock) navigator.wakeLock.request('screen').then(l => { fLock = l; }).catch(() => {}); }
-  else $('fprog').style.strokeDashoffset = 0;
+  if (fDone) return drawDone();
+  if (run && fExit) return drawExit();
+  const next = (dash.focus.next || {})[run ? f.title : fTitle];
+  if (run) {
+    $('focus').innerHTML = `<div class="fk">${esc(f.title)} · сессия ${dur(f.minutes)}</div><div class="fphase" id="fphase">${esc(phaseText(f))}</div>
+      <div class="fring"><svg viewBox="0 0 268 268" width="268" height="268"><defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB547"/><stop offset="1" stop-color="#8EA8FF"/></linearGradient></defs><circle cx="134" cy="134" r="118" stroke="rgba(255,255,255,.1)"/><circle id="fprog" cx="134" cy="134" r="118" stroke="url(#fg)" pathLength="1"/></svg><div id="ftime" class="num">${clockText(Math.max(0, Math.round((f.end - Date.now()) / 1000)))}</div></div>
+      <div class="fmeta"><span id="fpass"></span> · <b id="fxp"></b> · до ${hm(f.end)}</div>
+      <div class="chips fadj"><button class="pill" data-fset="-15">−15 мин</button><button class="pill" data-fset="15">+15 мин</button><button class="pill" data-fset="30">+30 мин</button><button class="pill" data-fset="60">+1 ч</button></div>
+      ${nextCard(next)}
+      <div class="fbtns"><button class="btn3d quiet" data-fexit="1">Закончить раньше</button><button class="btn3d quiet" data-fhide="1">Свернуть</button></div>`;
+    tickFocus(); fTimer = setInterval(tickFocus, 1000);
+    if (navigator.wakeLock && !fLock) navigator.wakeLock.request('screen').then(l => { fLock = l; }).catch(() => {});
+    return;
+  }
+  const subs = SUBJECTS.includes(fTitle) ? SUBJECTS : SUBJECTS.concat(fTitle);
+  $('focus').innerHTML = `<div class="fk">Учебная сессия</div><h2>Что учим?</h2>
+    <div class="chips fsubj">${subs.map(s => `<button class="pill ${s === fTitle ? 'on' : ''}" data-fsubj="${esc(s)}">${esc(s)}</button>`).join('')}<button class="pill" data-fsubj-new="1">+ Своё</button></div>
+    ${fCustom ? `<div class="fcustom"><input id="fsubjIn" class="lnote" placeholder="Например: Матанализ" maxlength="60"><button class="btn3d" data-fsubj-ok="1">ОК</button></div>` : ''}
+    ${fNote ? `<div class="sub">${esc(fNote)}</div>` : ''}${nextCard(next)}
+    <div class="fdur"><button class="fstep" data-fadd="-10" aria-label="Меньше на 10 минут">−</button><div><b class="num">${dur(fPick)}</b><span>закончишь в ${hm(NOW() + fPick * 6e4)}</span></div><button class="fstep" data-fadd="10" aria-label="Больше на 10 минут">+</button></div>
+    <div class="chips fpre">${PRESETS.map(m => `<button class="pill ${m === fPick ? 'on' : ''}" data-fpick="${m}">${dur(m)}</button>`).join('')}</div>
+    ${questLine()}
+    <div class="fbtns"><button class="btn3d big" data-fstart="1">${PLAY}Начать сессию</button></div><button class="flink" data-fhide="1">Закрыть</button>`;
+  if (fCustom) setTimeout(() => { const i = $('fsubjIn'); if (i) i.focus(); }, 50);
 }
 function tickFocus() {
   const f = dash.focus.active, el = $('ftime'), bar = $('fprog');
   if (!f || !el) return;
-  const left = Math.max(0, Math.round((f.end - Date.now()) / 1000));
+  const left = Math.max(0, Math.round((f.end - Date.now()) / 1000)), pass = Math.max(0, Math.floor((Date.now() - f.start) / 6e4));
   el.textContent = clockText(left); bar.style.strokeDashoffset = 1 - left / (f.minutes * 60);
+  const p = $('fpass'), x = $('fxp'), ph = $('fphase');
+  if (p) p.textContent = 'прошло ' + dur(pass); if (x) x.textContent = '+' + pass + ' XP'; if (ph && pass % 1 === 0) ph.textContent = phaseText(f);
   if (left > 0) return;
   clearInterval(fTimer);
   dash.focus.today = (dash.focus.today || 0) + f.minutes;
-  dash.focus.active = null; confetti(); success(); toast(`Фокус окончен: ${f.minutes} мин`);
-  setTimeout(() => { closeFocus(); render(); load(true); }, 1400);
+  dash.focus.active = null; fDone = { title: f.title, minutes: f.minutes, early: false };
+  confetti(); success(); drawFocus();
+  load(true);
 }
 async function startFocus() {
-  const title = fTitle || 'Фокус', now = Date.now();
+  const title = fTitle || 'Учёба', now = Date.now();
+  store.set('fmin', fPick); store.set('fsubj', title);
   dash.focus.active = { title, minutes: fPick, start: now, end: now + fPick * 6e4 };
   haptic('heavy'); drawFocus();
   const r = await call({ action: 'focus', minutes: fPick, title }).catch(() => null);
   if (r && r.ok) { adopt(r.dash); if (dash.focus.active) drawFocus(); } else { dash.focus.active = null; toast('Таймер не запустился, проверьте сеть'); drawFocus(); }
 }
-async function stopFocus() {
+async function setFocusTime(delta) {
+  const f = dash.focus.active; if (!f) return;
+  const pass = Math.ceil((Date.now() - f.start) / 6e4), minutes = Math.min(240, Math.max(pass + 1, f.minutes + delta));
+  f.minutes = minutes; f.end = f.start + minutes * 6e4; tick(); drawFocus();
+  toast(`Сессия: ${dur(minutes)}, до ${hm(f.end)}`);
+  const r = await call({ action: 'focus', set: true, minutes }).catch(() => null);
+  if (r && r.ok) adopt(r.dash);
+}
+// Выход раньше: 30 секунд ожидания, причина обязательна, «Остаюсь» всегда под рукой.
+function askExit() {
+  fExit = { left: 30, reason: '' }; haptic('medium');
+  fExit.t = setInterval(() => {
+    if (!fExit) return;
+    fExit.left = Math.max(0, fExit.left - 1);
+    const l = $('fexl'), r = $('fexr'), b = $('fleave');
+    if (l) l.textContent = fExit.left; if (r) r.style.strokeDashoffset = 1 - fExit.left / 30;
+    if (b) b.disabled = fExit.left > 0 || !fExit.reason;
+    if (!fExit.left) clearInterval(fExit.t);
+  }, 1000);
+  drawFocus();
+}
+function drawExit() {
+  $('focus').innerHTML = `<div class="fk">Точно уходишь?</div><h2>Подожди 30 секунд</h2><div class="sub">Желание уйти почти всегда проходит, если переждать. Пока ждёшь, отметь, что мешает.</div>
+    <div class="exring"><svg viewBox="0 0 150 150" width="150" height="150"><circle cx="75" cy="75" r="64" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="10"/><circle id="fexr" cx="75" cy="75" r="64" fill="none" stroke="#FF8A5B" stroke-width="10" stroke-linecap="round" pathLength="1" stroke-dasharray="1" style="stroke-dashoffset:${1 - fExit.left / 30};transition:stroke-dashoffset 1s linear"/></svg><b class="num" id="fexl">${fExit.left}</b></div>
+    <div class="chips freason">${REASONS.map(r => `<button class="pill ${fExit.reason === r ? 'on' : ''}" data-freason="${r}">${r}</button>`).join('')}</div>
+    <div class="fbtns"><button class="btn3d big" data-fstay="1">Остаюсь</button><button class="btn3d quiet" id="fleave" data-fleave="1" ${fExit.left > 0 || !fExit.reason ? 'disabled' : ''}>Выйти</button></div>`;
+}
+async function stopFocus(reason) {
   const f = dash.focus.active, spent = f ? Math.round((Date.now() - f.start) / 6e4) : 0;
-  dash.focus.active = null; closeFocus(); haptic();
-  toast(spent >= 5 ? `Записано ${dur(spent)} фокуса` : 'Меньше 5 минут в статистику не идёт');
-  render();
-  if (saved(await call({ action: 'focus', stop: true }).catch(() => null))) { render(); }
+  if (fExit) clearInterval(fExit.t);
+  fExit = null; dash.focus.active = null; haptic();
+  if (spent >= 5) dash.focus.today = (dash.focus.today || 0) + spent;
+  fDone = { title: f ? f.title : fTitle, minutes: spent, early: true };
+  drawFocus();
+  if (saved(await call({ action: 'focus', stop: true, reason }).catch(() => null))) render();
+}
+function drawDone() {
+  const d = fDone, short = d.early && d.minutes < 5, g = dash.game;
+  $('focus').innerHTML = `<div class="fk">${d.early ? 'Сессия прервана' : 'Сессия завершена'}</div><h2>${esc(d.title)} · ${dur(d.minutes)}</h2>
+    ${short ? '<div class="sub">Меньше 5 минут в статистику не идёт. В следующий раз попробуй переждать первые 10 минут</div>' : `<div class="fxp num">+${d.minutes + (d.early ? 0 : 10)} XP</div>`}
+    ${g && g.streaks.study ? `<div class="sub">Серия учёбы: ${g.streaks.study} ${plural(g.streaks.study, 'день', 'дня', 'дней')}</div>` : ''}${questLine()}
+    <div class="sub">Запиши, с чего начнёшь в следующий раз: завтра будет «дописать», а не «начать с нуля».</div>
+    <input id="fnNext" class="lnote" placeholder="Например: Stepik 3.4, задача про словари" maxlength="200">
+    <input id="fnLink" class="lnote" placeholder="Ссылка на задание, если есть" inputmode="url" maxlength="300">
+    <div class="fbtns"><button class="btn3d big" data-fnote="1">Сохранить шаг</button><button class="btn3d quiet" data-fhide="1">Пропустить</button></div>`;
+}
+async function saveNote() {
+  const next = $('fnNext').value.trim(), link = $('fnLink').value.trim(), title = fDone ? fDone.title : fTitle;
+  if (!next && !link) { toast('Напишите хотя бы пару слов'); return; }
+  (dash.focus.next = dash.focus.next || {})[title] = { next, link, d: iso(NOW()) };
+  closeFocus(); success(); toast('Следующий шаг сохранён'); render();
+  if (saved(await call({ action: 'focus_note', title, next, link }).catch(() => null))) render();
+}
+
+/* ---------- Игра: уровень, опыт, серии, награды ---------- */
+const FLAME_I = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-4 2.5-7 1.5 1 2.5 2.5 2.5 4 1.5-2 1-5 1-9z"/></svg>';
+function gameCard() {
+  const g = dash.game;
+  if (!g) return '';
+  const p = Math.min(1, (g.xp - g.from) / Math.max(1, g.to - g.from)), run = dash.focus.active && dash.focus.active.end > Date.now(), r = 27, c = 2 * Math.PI * r;
+  const chip = (label, n, unit) => `<div class="gst ${n ? 'on' : ''}">${FLAME_I}<b class="num">${n}</b><span>${label} · ${unit}</span></div>`;
+  return `<div class="card gcard"><div class="glvl"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--track)" stroke-width="6"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="#FFB547" stroke-width="6" stroke-linecap="round" stroke-dasharray="${(p * c).toFixed(1)} ${c.toFixed(1)}" style="filter:drop-shadow(0 0 6px rgba(255,181,71,.7))"/></svg><b class="num">${g.level}</b></div>
+    <div class="x"><div class="k">${esc(g.title)}</div><div class="gxp"><i style="width:${(p * 100).toFixed(1)}%"></i></div><div class="hint num">${g.xp} XP · до ${g.level + 1} уровня ещё ${g.to - g.xp}</div></div>
+    <div class="gq">${questLine()}</div>
+    <div class="gstreaks">${chip('учёба', g.streaks.study, 'дн')}${chip('зал', g.streaks.gym, 'нед')}${chip('ритм', g.streaks.rhythm, 'дн')}${chip('бюджет', g.streaks.budget, 'дн')}</div>
+    <button class="btn3d big" data-focus="${esc(run ? dash.focus.active.title : fTitle)}">${PLAY}${run ? 'Вернуться к сессии' : 'Начать сессию'}</button></div>`;
+}
+const MEDAL_I = '<svg viewBox="0 0 34 34" aria-hidden="true"><path d="M11 2h5l3 9h-5zM23 2h-5l-3 9h5z" fill="#FF8A5B"/><circle cx="17" cy="21" r="10" fill="#FFB547"/><circle cx="17" cy="21" r="7" fill="#FFD27A"/><path d="M17 16.5l1.4 3 3.2.3-2.4 2.1.7 3.1-2.9-1.7-2.9 1.7.7-3.1-2.4-2.1 3.2-.3z" fill="#fff" opacity=".9"/></svg>';
+function badgesCard() {
+  const g = dash.game;
+  if (!g) return '';
+  const got = g.badges.filter(b => b.done).length;
+  return `<div class="sec">Награды<span>${got} из ${g.badges.length}</span></div><div class="badges">${g.badges.map(b => `<div class="badge2 ${b.done ? 'on' : ''}" data-tip="${esc(b.desc)}">${MEDAL_I}<b>${esc(b.title)}</b><span>${esc(b.desc)}</span></div>`).join('')}</div>
+    ${g.reasons.length ? `<div class="card tips" style="margin-top:12px">${g.reasons.slice(0, 3).map(r => `<div class="tipr warn"><i></i><span>Уходил раньше: «${esc(r.reason)}» — ${r.n} ${plural(r.n, 'раз', 'раза', 'раз')} за 2 недели</span></div>`).join('')}</div>` : ''}`;
+}
+
+/* ---------- Банк ---------- */
+function openBank() {
+  const m = dash.money || EMPTY_MONEY;
+  $('logger').innerHTML = `<div class="grip"></div><div class="lhead"><div class="x"><b>Сколько денег сейчас</b><span>Всё вместе: карта и наличные</span></div><button class="lx" data-close-pop="1" aria-label="Закрыть">×</button></div>
+    <label class="mamount"><input id="bAmt" inputmode="decimal" placeholder="0" value="${m.bank ? m.bank.amount : ''}" aria-label="Сумма на счету"><span>₽</span></label>
+    <div class="hint" style="margin:-2px 2px 12px">Дальше бухгалтер сам пересчитывает остаток по тратам и доходам. Поправить можно в любой момент.</div>
+    <div class="capfoot"><span></span><button class="btn3d" data-bsave="1">Сохранить</button></div>`;
+  $('logger').classList.add('on'); $('back').classList.add('on'); document.body.style.overflow = 'hidden'; haptic(); placePop();
+  setTimeout(() => { const a = $('bAmt'); if (a) { a.focus({ preventScroll: true }); placePop(); } }, 60);
+}
+async function saveBank() {
+  const v = parseFloat(String($('bAmt').value).replace(/\s/g, '').replace(',', '.'));
+  if (!(v >= 0)) { toast('Введите сумму'); return; }
+  (dash.money = dash.money || JSON.parse(JSON.stringify(EMPTY_MONEY))).bank = { amount: Math.round(v), since: Date.now(), start: v };
+  closePop(); success(); toast(`На счету: ${rub(v)}`); render();
+  if (saved(await call({ action: 'balance', amount: v }).catch(() => null))) render();
 }
 
 /* ---------- Подсказки и жесты ---------- */
@@ -2170,6 +2358,18 @@ document.addEventListener('click', e => {
   if ((el = q('[data-focus]'))) return openFocus(el.dataset.focus, el.dataset.note);
   if (q('[data-open-focus]')) return openFocus();
   if ((el = q('[data-fpick]'))) { fPick = +el.dataset.fpick; tick(); return drawFocus(); }
+  if ((el = q('[data-fadd]'))) { fPick = Math.min(240, Math.max(10, fPick + +el.dataset.fadd)); tick(); return drawFocus(); }
+  if ((el = q('[data-fsubj]'))) { fTitle = el.dataset.fsubj; fCustom = false; tick(); return drawFocus(); }
+  if (q('[data-fsubj-new]')) { fCustom = true; return drawFocus(); }
+  if (q('[data-fsubj-ok]')) { const v = $('fsubjIn').value.trim(); if (v) fTitle = v.slice(0, 60); fCustom = false; return drawFocus(); }
+  if ((el = q('[data-fset]'))) return setFocusTime(+el.dataset.fset);
+  if (q('[data-fexit]')) return askExit();
+  if ((el = q('[data-freason]'))) { fExit.reason = el.dataset.freason; tick(); return drawExit(); }
+  if (q('[data-fstay]')) { clearInterval(fExit.t); fExit = null; success(); toast('Так держать: остаёмся'); return drawFocus(); }
+  if (q('[data-fleave]')) return stopFocus(fExit && fExit.reason);
+  if (q('[data-fnote]')) return saveNote();
+  if (q('[data-bank]')) return openBank();
+  if (q('[data-bsave]')) return saveBank();
   if (q('[data-fstart]')) return startFocus();
   if (q('[data-fstop]')) return stopFocus();
   if (q('[data-fhide]')) { closeFocus(); return render(); }
@@ -2294,12 +2494,19 @@ function demoData(body) {
       { row: 4, title: 'Зал 3 раза в неделю', due: '', metric: 'Тренировки за неделю', progress: 0, steps: [] }
     ],
     habits: [{ index: 0, name: 'Читать 20 минут', days: nearby(9), streak: 9, today: false }, { index: 1, name: 'Вода 2 литра', days: nearby(3), streak: 3, today: false }],
-    focus: { active: null, today: 75, week: [40, 0, 90, 120, 25, 60, 75].map((m, i) => ({ d: shift(t, i - 6), m })) },
+    focus: { active: null, today: 75, next: { Python: { next: 'Stepik 3.4, задача про словари', link: 'https://stepik.org', d: shift(t, -1) } }, week: [40, 0, 90, 120, 25, 60, 75].map((m, i) => ({ d: shift(t, i - 6), m })) },
+    game: demoGame(),
     gym: demoGym(t), money: demoMoney(t), couple: demoCouple(t), study: demoStudy(t), rhythm: demoRhythm(t),
     lists: [{ name: 'Покупки', items: [{ item: 'молоко', done: true }, { item: 'хлеб', done: false }, { item: 'протеин', done: false }] }, { name: 'В поездку', items: [{ item: 'паспорт', done: false }, { item: 'зарядка', done: false }] }]
   };
 }
 // Демо новых разделов: примерные траты, пара, учёба, списки и ритм, чтобы проверить экраны вне Telegram.
+function demoGame() {
+  const badges = [['first', 'Первый шаг', 'Первая сессия', 1], ['hour', 'Час в потоке', 'Сессия от часа', 1], ['marathon', 'Марафонец', 'Сессия от 2 часов', 0], ['iron', 'Железная воля', '10 сессий без раннего выхода', 0], ['ten', '10 часов', '10 часов учёбы всего', 1], ['fifty', '50 часов', '50 часов учёбы всего', 0],
+    ['s3', 'Разгон', '3 дня учёбы подряд', 1], ['s7', 'Неделя', '7 дней учёбы подряд', 0], ['s30', 'Месяц', '30 дней учёбы подряд', 0], ['gym10', 'Железо', '10 тренировок', 0], ['rhythm7', 'Режим', '7 дней ритма от 70 подряд', 0], ['budget7', 'Бухгалтер', '7 дней в бюджете подряд', 0], ['lvl5', 'Пятый уровень', 'Дойти до 5 уровня', 1]]
+    .map(b => ({ id: b[0], title: b[1], desc: b[2], done: !!b[3] }));
+  return { xp: 1240, level: 5, title: 'Боец', from: 1000, to: 1500, streaks: { study: 4, studyBest: 6, gym: 2, rhythm: 2, budget: 3 }, quest: { goal: 120, done: 75 }, sessions: 23, total: 1080, badges, reasons: [{ reason: 'Сонливость', n: 3 }, { reason: 'Скучно', n: 1 }] };
+}
 function demoMoney(t) {
   const month = t.slice(0, 7), dom = +t.slice(8), dim = new Date(+month.slice(0, 4), +month.slice(5), 0).getDate(), recent = [];
   const add = (n, sum, cat, title, kind) => { const d = shift(t, -n); if (d.slice(0, 7) === month) recent.push({ d, kind: kind || 'расход', sum, cat, title }); };
@@ -2308,7 +2515,7 @@ function demoMoney(t) {
   const m = { month, spent: 0, income: 0, today: 0, budget: 20000, byCat: {}, prev: { 'Кафе': 900, 'Еда': 4200, 'Спорт': 1500 }, limits: { 'Кафе': 3000, 'Еда': 6000 }, days: {}, recent,
     subs: [{ title: 'Spotify', sum: 199, day: 5, cat: 'Подписки' }, { title: 'Яндекс Плюс', sum: 299, day: 20, cat: 'Подписки' }],
     boxes: [{ title: 'Ноутбук', target: 60000, saved: 18500, due: '2027-05-01' }, { title: 'Подарок на годовщину', target: 5000, saved: 3200, due: '2027-02-14' }],
-    debts: [{ who: 'Вася', sum: 500, title: 'пицца', d: shift(t, -3) }], cats: MONEY_CATS };
+    debts: [{ who: 'Вася', sum: 500, title: 'пицца', d: shift(t, -3) }], cats: MONEY_CATS, bank: { amount: 18450, since: Date.now() - 864e5 * 3, start: 21000 } };
   recent.forEach(r => { if (r.kind === 'доход') { m.income += r.sum; return; } m.spent += r.sum; m.byCat[r.cat] = (m.byCat[r.cat] || 0) + r.sum; m.days[r.d] = (m.days[r.d] || 0) + r.sum; if (r.d === t) m.today += r.sum; });
   m.left = dim - dom + 1; m.subsLeft = dom < 20 ? 299 : 0;
   m.daily = Math.round((m.budget - (m.spent - m.today) - m.subsLeft) / m.left - m.today); m.forecast = Math.round(m.spent / dom * dim + m.subsLeft);
